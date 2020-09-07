@@ -1,7 +1,9 @@
 \section{Reachability}
 \label{sec:reachability}
 
-
+\iffalse
+%%%%%%%%%%%%%%%s%%%%%%%%%%%%%%%%%%%%%%%
+%%% This result appears in [Chistikov et al. 2020]
 \smallskip
 \begin{theorem}\label{thm:reachability_bounded_levels}
 Assuming that the node transition functions are given in a form 
@@ -15,7 +17,11 @@ for DAG SyDSs with a bounded number of levels.
 The algorithm can simulate the given SyDS for the number of steps specified in 
 Theorem \ref{thm:levels_phase_space}.
 \QED
+%%%%%%%%%%%%%%%s%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
+\iffalse
+%%%%%%%%%%%%%%%s%%%%%%%%%%%%%%%%%%%%%%%
 \bigskip
 
 NOTE: The following result has been made obsolete by 
@@ -35,7 +41,7 @@ For the reduction, we construct a reachability problem instance whose SyDS \cals
 each on a separate layer.
 Let $X$ denote the first $n$ nodes of \cals{}.
 These $n$ nodes have the same incoming edges and local transition functions 
-as the $n$ nodes in the construction of Observation \ref{obs:long_phase_space_cycle}.
+as the $n$ nodes in the construction of Proposition \ref{pro:long_phase_space_cycle}.
 There is an additional node $x_{n+1}$,
 which has an incoming edge from each of the other $n$  nodes.
 Its local transition function is the {\em or} of $x_{n+1}$ and $f$.
@@ -43,7 +49,7 @@ The initial configuration \calc{} for the constructed problem instance is all ze
 and the goal configuration \cald{} is the configuration with $x_{n+1} = 1$,
 and all other nodes equal to 0.
 
-From the proof in Theorem \ref{obs:long_phase_space_cycle}, 
+From the proof in Theorem \ref{pro:long_phase_space_cycle}, 
 the first $n$ nodes undergo a phase space cycle whose length is $2^n$.
 Thus, all $2^n$ possible assignments to $X$ occur during this cycle.
 
@@ -89,7 +95,7 @@ We let $h$ be an additional node of \cals{}.
 
 Nodes $Y$ and $Z$ will each function as a counter,
 with incoming edges and local transition functions similar to those for
-the $n$ nodes in the construction of Observation \ref{obs:long_phase_space_cycle}.
+the $n$ nodes in the construction of Proposition \ref{pro:long_phase_space_cycle}.
 
 The underlying graph of \cals{} has directed edges
 $(y_i, y_j)$ and $(z_i, z_j)$ for each $i$ and $j$ such that $0 \leq i < j < n$.
@@ -121,8 +127,8 @@ By the construction of \calc{}, this property hold for $t = 0$.
 The induction step on $t$ follows from the definitions of the local transition functions of $Y$ and $Z$.
 
 The $n$ nodes in $Y$ have the same incoming edges and local transition functions 
-as the $n$ nodes in the construction of Theorem \ref{obs:long_phase_space_cycle}.
-From the proof in Theorem \ref{obs:long_phase_space_cycle}, 
+as the $n$ nodes in the construction of Theorem \ref{pro:long_phase_space_cycle}.
+From the proof in Theorem \ref{pro:long_phase_space_cycle}, 
 the nodes in $Y$ undergo a phase space cycle whose length is $2^n$.
 Thus, all $2^n$ possible assignments to $Y$ occur during this cycle.
 
@@ -146,15 +152,18 @@ Consequently, $\calc_{i-2}[Y]$ corresponds to a satisfying assignment for $f$
 
 Thus, $f$ is satisfiable iff the answer to the constructed reachability problem is {\em YES}. 
 \QED
+%%%%%%%%%%%%%%%s%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
-\smallskip
+%\smallskip
 \begin{theorem}\label{thm:reachability-PSPACE}
-The reachability problem is PSPACE-complete for DAG symmetric SyDSs.
+The reachability problem is \cpsp-complete for DAG-SyDSs
+where each local function is symmetric.
 \end{theorem}
 
 \noindent
 \textbf{Proof:}~ 
-The proof is via a reduction from Quantified Boolean Formulas.
+The proof is via a reduction from Quantified Boolean Formulas (QBF).
 Let $F$ denote the given quantified Boolean formula.
 Let $f$ denote the Boolean expression that is quantified.
 Without loss of generality, we can assume that $f$ is a 3SAT formula.
@@ -189,7 +198,7 @@ and each $w_j$ equal to 1 iff the corresponding clause $c_j$ contains a positive
 
 Node set $Y$ will function as a cyclical counter,
 with incoming edges and local transition functions similar to those for
-the $n$ nodes in the construction of Observation \ref{obs:long_phase_space_cycle}.
+the $n$ nodes in the construction of Proposition \ref{pro:long_phase_space_cycle}.
 For each $i$, $0 \leq i < n$,
 node $y_i$ will correspond to the variable $x_i$ in $f$.
 
@@ -254,15 +263,18 @@ For $0 \leq i < n$, we let $F_i$ be a Boolean function of $n-i-1$ variables, as 
 
 $$F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1}) = (Q_ i x_i) \cdots (Q_1 x_1) (Q_0 x_0) f(X)$$
 
-The following table illustrates the dataflow as the constructed SyDS \cals{}  for $n =4$ goes through
+Table~\ref{tab:dag_syds_trans}
+illustrates the dataflow as the constructed SyDS \cals{}  for $n =4$ goes through
 its initial sequence of transitions.
 
 
-\bigskip
+%\bigskip
 
-\bigskip
+%\bigskip
 
-\begin{tabular}{l | c c c c c c c c c c c |} \hline
+\begin{table*}
+\begin{center}
+\begin{tabular}{|l | c c c c c c c c c c c |} \hline
 \multicolumn{12}{c|}{{\bf Initial Configuration Sequence of  Constructed SyDS for Four Variables}}
         \\ \hline
 
@@ -290,6 +302,11 @@ $\calc_{19}$ & $F_2(0)$ & $F_2(1)$ & $F_1(11)$ & $F_0(000)$ & $W(0010)$ & 0 & 1 
 $\calc_{20}$ & $F_3$ & $F_2(1)$ & $F_1(11)$ & $f(0010)$ & $W(0011)$ & 1 & 1 & 0 & 1 & 0 & 0 \\ 
 $\calc_{21}$ & $F_3$ & 0 & 0 & 0 & $W(0100)$ & 1 & 1 & 0 & 1 & 0 & 1 \\ 
 \end{tabular}
+\end{center}
+\caption{Table illustrating the data flow for $n = 4$ 
+as the DAG-SyDS \cals{} goes through the initial sequence of trnasitions}
+\label{tab:dag_syds_trans}
+\end{table*}
 
 \bigskip
 We now consider the correctness of the reduction.
@@ -306,7 +323,7 @@ and let $t(\beta) = (k(\beta)+1) 2^{n-l(\beta)} +n -l(\beta)$.
 For any $ t \geq 0$,
 let  $X^t$ be the assignment to the variables $X$ of $f$ where 
 $X^t(x_i) = \calc _t(y_i)$, $ 0 \leq i \leq n-1$.
-From the proof in Theorem \ref{obs:long_phase_space_cycle}, 
+From the proof in Theorem \ref{pro:long_phase_space_cycle}, 
 the first $n$ nodes of $\cals$ undergo a phase space cycle whose length is $2^n$.
 Thus, all $2^n$ possible assignments to $X$ occur during this cycle.
 In particular, all $2^n$ assignments to $X$ are in the set $\{  X^t \, | \, 0 \leq t < 2^n \}$.

@@ -51,3 +51,186 @@ encodes the integer $k + 1 \mod 2^n$.  Thus, the phase space of
 $S_n$ is a cycle of length $2^n$.  \QED
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
+
+
+\noindent
+\textbf{Statement and Proof of Lemma~\ref{lem:all_inputs_stable}}
+
+\medskip
+
+\underline{Statement of Lemma~\ref{lem:all_inputs_stable}:}~
+For a given DAG SyDS, and a given initial configuration, suppose
+that the node values of all incoming edges to a given node $v$ are
+stable at time $t$.  Then node $v$ is either alternating at time
+$t$, or stable at time $t+1$.
+
+\medskip
+
+\noindent
+\textbf{Proof:}~
+Given the stable value of each incoming variable, the local transition
+function for node $v$ at any time $t'$, where $t' \geq t$ is a
+function of only one variable: the self variable $v$.  The only
+possible functions of a single variable are a constant function,
+the identity function, or the complement function.  If the local
+transition function for $v$ is a constant function, then the value
+of $v$ can possibly change between $t$ and $t+1$, but for any $t'
+\geq t+1$, remains unchanged.  If the local transition function for
+$v$ is the identity function, then the value of $v$ never changes
+from its value at time $t$.  If the local transition function for
+$v$ is the complement function, then the value of $v$ alternates
+between complementary values.  \QED
+
+\medskip
+
+\noindent
+\textbf{Statement and Proof of Theorem~\ref{thm:levels_phase_space}}
+
+\medskip
+
+\underline{Statement of Theorem~\ref{thm:levels_phase_space}:}~
+For a DAG SyDS,
+the length of every phase space cycle is a power of 2.
+Moreover if the number of levels of a given acyclic SyDS is $L$,
+then no phase space cycle is longer than $2^L$,
+and no transient is longer than $2^L-1$.
+
+\noindent
+\textbf{Proof:}~ We use induction on the number of levels.
+
+\smallskip
+
+\noindent
+{\bf Basis}: Suppose that there is only one level.
+Then the underlying  graph has no edges.
+By Lemma \ref{lem:all_inputs_stable},
+either all phase cycles are of length 1 or all are of length 2. 
+Also, no transient is of length greater than 1.
+
+\smallskip
+
+\noindent
+{\bf Induction Step}: Suppose that the result holds for a given value of $L$,
+and consider a DAG SyDS \cals{} with $L+1$ levels (numbered as levels 0 through $L$).
+Let $\cals_L$ be the DAG SyDS with $L$ levels obtained 
+by deleting $\call_L$ (the nodes in level $L$) from \cals{}.
+Let \calc{} be a given configuration of \cals{}.
+
+\smallskip
+
+For non-negative integer $i$, 
+recall that $C_i$ denotes the configuration of \cals{} at time $i$, 
+when started from configuration \calc{}.
+Since the underlying graph in $S$ has 
+no edges from the level $L$ nodes to the nodes in $\cals_L$,
+$C_i[\call_{L-1}']$ is the configuration at time $i$ 
+when $S_L$ starts in configuration $C_0[\call_{L-1}']$.
+
+From the induction hypothesis, when $\cals_L$  is started in
+configuration $C_0[\call_{L-1}']$, the length of the phase space
+cycle that is reached is $2^k$, where $0 \leq k \leq L$, and the
+length of the transient leading to this cycle is some value $j$
+such that $j \leq 2^L-1$.
+
+Let $v$ be a level $L$ node of \cals{}.
+The sequence of values taken on by $v$ 
+can be classified as belonging to one of the following three cases.
+
+\smallskip
+
+\noindent
+{\bf Case 1.} $C_{j+2^k}(v) = C_j(v)$:
+Then, for every $i \geq j$, $C_{i+2^k}(v) = C_i(v)$.  Thus, the
+values of $C_i(v)$, where $i \geq j$, form a cycle, whose period
+divides (not necessarily properly) $2^k$.  So, after a transient
+of length at most $j$, where $j \leq 2^L-1$, the value of node $v$
+cycles with a cycle whose length is a power of 2 and is at most
+$2^L$.
+
+\smallskip
+
+\noindent
+{\bf Case 2}. $C_{j+2^k}(v) = \overline{C_j(v)}$ and $C_{j+2^{k+1}}(v) = C_j(v)$:
+Then, for every $i \geq j$, $C_{i+2^{k+1}}(v) = C_i(v)$.
+Thus, the values of $C_i(v)$, where $i \geq j$, form a cycle, 
+whose period divides (not necessarily properly) $2^{k+1}$.
+So, after a transient of length at most $2^L-1$,
+the value of node $v$ cycles with a cycle whose length is 
+a power of 2 and is at most $2^{L+1}$.
+
+\smallskip
+
+\noindent
+{\bf Case 3}. $C_{j+2^k}(v) = \overline{C_j(v)}$ 
+and $C_{j+2^{k+1}}(v) = \overline{C_j(v)}$:
+Then, for every $i \geq j + 2^k$, $C_{i+2^k}(v) = C_i(v)$.
+Thus, the values of $C_i(v)$, where $i \geq j + 2^k$, form a cycle, 
+whose period divides (not necessarily properly) $2^k$.
+Note that  $\calc_{j+2^k}$ is part of this cycle.
+So, after a transient of length at most $2^{L+1}-1$,
+the value of node $v$ cycles with a cycle whose length is 
+a power of 2 and is at most $2^L$.
+
+
+Considering all the nodes in \cals{}, the length of the transient
+beginning at  \calc{} is at most $2^{k+1}-1$, and the length of the
+cycle reached from  \calc{} divides $2^{k+1}$.
+
+Since this holds for all configurations \calc{}, the inductive
+hypothesis holds for \cals{}.  
+\QED
+
+\bigskip
+
+\noindent
+\textbf{Statement and Proof of Theorem~\ref{thm:path_length_lower_bounds}}
+
+\medskip
+
+\noindent
+\underline{Statement of Theorem~\ref{thm:path_length_lower_bounds}:}
+For every $L  \geq 1$,
+there is a a DAG-SyDS with $L$ levels
+whose phase space contains a transient of length $2^L-1$,
+leading to a cycle of length $2^L$.
+
+\medskip
+
+\noindent
+\textbf{Proof:}~ 
+We show this by constructing a DAG SyDS that
+incorporates the counter from Proposition \ref{pro:long_phase_space_cycle}
+to produce a long cycle, and repeated applications of Case 3 from
+the proof of Theorem \ref{thm:levels_phase_space} to produce a long
+transient.
+
+The constructed SyDS \cals{}  contains
+$2L$ nodes, which we refer to as $X = \{x_0, x_1, \dots , x_{L-1}\}$ 
+and $Y = \{y_0, y_1, \dots , y_{L-1}\}$.
+For each $i$, nodes $x_i$ and $y_i$ will occur on level $i$.
+
+The underlying graph of \cals{} has directed edges
+$(x_i, x_j)$  and $(x_i, y_j)$ for each $i$ and $j$  such that $0 \leq i < j  < L$,
+and also has directed edges $(y_i, y_{i+1})$ for each $i$ such that $0 \leq i < L-1$.
+
+The local transition function for each node in $X$ is the function 
+that retains the current value of the node if any of the incoming variables equals 0,
+and changes the value of the node otherwise.
+Thus, node set $X$ behaves as a counter,
+similar to the nodes in the construction of 
+Proposition \ref{pro:long_phase_space_cycle}.
+
+The local transition function for node $y_0$ is the constant function
+1.  The local transition function for each node $y_i$, $1 \leq i
+\leq L-1$, is 1 iff $y_i = 1$ or $y_{i-1} = 1$ and the incoming
+variables $\{x_0, x_1, \dots , x_{i-1}\}$ encode the integer $2^i-2$.
+
+Note that the $L$ nodes in $X$ form a phase space cycle of length $2^L$.
+
+Consider the initial configuration \calc{}, where all nodes have the value 0.
+It can be seen that by induction on $i$, for each node $y_i$, $0 \leq i \leq L-1$,
+and each nonnegative $j$, 
+$\calc_j(y_i)$ equals 0 if $j < 2^{i+1} -1$, and equals 1 if $j \geq 2^{i+1} -1$.
+Since $y_{L-1}$ does not change from 0 to 1 until configuration $C_{2^L-1}$, 
+the length of the transient from \calc{} is $2^L-1$.
+\QED

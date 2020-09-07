@@ -42,6 +42,7 @@ DAG-SyDS, the length of every phase space cycle is a power of 2.
 Moreover, the lengths of the longest transient and the longest phase
 space cycle are each bounded by an exponential function of the
 number of levels in the underlying graph of the SyDS.
+We begin with a lemma whose proof appears in the supplement.
 
 \smallskip
 
@@ -52,6 +53,8 @@ stable at time $t$.  Then node $v$ is either alternating at time
 $t$, or stable at time $t+1$.
 \end{lemma}
 
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
 \textbf{Proof:}~ 
 Given the stable value of each incoming variable, the local transition
@@ -66,20 +69,30 @@ $v$ is the identity function, then the value of $v$ never changes
 from its value at time $t$.  If the local transition function for
 $v$ is the complement function, then the value of $v$ alternates
 between complementary values.  \QED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
 \begin{lemma}\label{lem:level_zero_nodes}
-For a DAG SyDS, every level 0 node is either alternating at time 0 or stable at time 1.
+For a DAG SyDS, every level 0 node is either 
+alternating at time 0 or stable at time 1.
 \end{lemma}
 \noindent
 \textbf{Proof:}~ 
  A level 0 node has no incoming edges,
-so the result follows from Lemma \ref{lem:all_inputs_stable}.
-\QED
+so the result follows from Lemma \ref{lem:all_inputs_stable}.  \QED
 
-\begin{theorem}\label{thm:transient_fixed_point}
+We will also use the following result which is a slight restatement
+of Proposition~1 in \cite{Chistikov-etal-2020}.
+
+
+\begin{proposition}\label{pro:transient_fixed_point}
 For a DAG SyDS,
-the length of a transient leading to a fixed point does not exceed the number of levels of the SyDS.
-\end{theorem}
+the length of a transient leading to a fixed point does not 
+exceed the number of levels of the SyDS.
+\end{proposition}
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
 \textbf{Proof:}~ 
 Consider a given SyDS $\cals$ and initial configuration $\calc$ that leads to a fixed point.
@@ -87,22 +100,24 @@ Let $L$ be the number of levels of $\cals$.
 We argue that by induction on $i$, for each $i$, $0 \leq i < L$,
 all the nodes in $\call_i'$ are stable at time $i+1$.
 
-From Lemma \ref{lem:level_zero_nodes},
-every level 0 node is either alternating at time 0 or stable at time 1.
-If any level 0 node is alternating at time 0, then $\calc$ does not lead to a fixed point.
+From Lemma \ref{lem:level_zero_nodes}, every level 0 node is either
+alternating at time 0 or stable at time 1.  If any level 0 node is
+alternating at time 0, then $\calc$ does not lead to a fixed point.
 Thus, all level 0 nodes are stable at time 1.
 
-Now assume that the induction hypotheses holds for $i$, $0 \leq i < L-1$.
-Let $v$ be a level $i+1$ node.
-From the induction hypothesis, all the incoming edges to $v$ are stable at time $i+1$.
-From Lemma \ref{lem:all_inputs_stable},
-node $v$ is either alternating at time $i+1$ or stable at time $i+2$.
-If $v$ is alternating at time $i+1$, then $\calc$ does not lead to a fixed point.
-Thus, $v$ is stable at time $i+2$.
+Now assume that the induction hypotheses holds for $i$, $0 \leq i
+< L-1$.  Let $v$ be a level $i+1$ node.  From the induction hypothesis,
+all the incoming edges to $v$ are stable at time $i+1$.  From Lemma
+\ref{lem:all_inputs_stable}, node $v$ is either alternating at time
+$i+1$ or stable at time $i+2$.  If $v$ is alternating at time $i+1$,
+then $\calc$ does not lead to a fixed point.  Thus, $v$ is stable
+at time $i+2$.
 
 Thus, all nodes of $\cals$ are stable at time $L$,
 so  $\calc_L$ is the fixed point reached from $\calc$.
 \QED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
 \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,6 +174,9 @@ iff the given 3SAT problem instance is unsatisfiable.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
 
+We can now state our result on the lengths of cycles and
+transients in DAG-SyDSs.
+
 \begin{theorem}\label{thm:levels_phase_space}
 For a DAG SyDS,
 the length of every phase space cycle is a power of 2.
@@ -168,9 +186,12 @@ and no transient is longer than $2^L-1$.
 \end{theorem}
 
 \noindent
-\textbf{Proof:}~ 
-The proof is by induction on the number of levels.
+\textbf{Proof:}~ The proof, which is by induction on the number of levels,
+is given in the supplement.
 
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
 {\bf Basis}: Suppose that there is only one level.
 Then the underlying  graph has no edges.
 By Lemma \ref{lem:all_inputs_stable},
@@ -227,15 +248,14 @@ Considering all the nodes in \cals{}, the length of the transient beginning at  
 is at most $2^{k+1}-1$, 
 and the length of the cycle reached from  \calc{} divides $2^{k+1}$.
 
-Since this holds for all configurations \calc{}, the inductive hypothesis holds for \cals{}.
+Since this holds for all configurations \calc{}, 
+the inductive hypothesis holds for \cals{}.
 \QED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
-We now show that there are matching lower bounds on cycle and transient length.
-We show this by constructing a DAG SyDS
-that incorporates the counter from Observation \ref{obs:long_phase_space_cycle}
-to produce a long cycle,
-and repeated applications of Case 3 from the proof of Theorem \ref{thm:levels_phase_space}
-to produce a long transient.
+We now present a result that presents matching 
+lower bounds on cycle and transient lengths.  
 
 \begin{theorem}\label{thm:path_length_lower_bounds}
 For every $L  \geq 1$,
@@ -243,8 +263,18 @@ there is a a DAG SyDS with $L$ levels
 whose phase space contains a transient of length $2^L-1$,
 leading to a cycle of length $2^L$.
 \end{theorem}
+
 \noindent
-\textbf{Proof:}~ 
+\textbf{Proof:}~ See supplement.
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We show this by constructing a DAG SyDS that
+incorporates the counter from Proposition \ref{pro:long_phase_space_cycle}
+to produce a long cycle, and repeated applications of Case 3 from
+the proof of Theorem \ref{thm:levels_phase_space} to produce a long
+transient.
+
 The constructed SyDS \cals{}  contains
 $2L$ nodes, which we refer to as $X = \{x_0, x_1, \dots , x_{L-1}\}$ 
 and $Y = \{y_0, y_1, \dots , y_{L-1}\}$.
@@ -258,7 +288,7 @@ The local transition function for each node in $X$ is the function
 that retains the current value of the node if any of the incoming variables equals 0,
 and changes the value of the node otherwise.
 Thus, node set $X$ behaves as a counter,
-similar to the nodes in the construction of Observation \ref{obs:long_phase_space_cycle}.
+similar to the nodes in the construction of Proposition \ref{pro:long_phase_space_cycle}.
 
 The local transition function for node $y_0$ is the constant function 1.
 The local transition function for each node $y_i$, $1 \leq i \leq L-1$,
@@ -274,3 +304,5 @@ $\calc_j(y_i)$ equals 0 if $j < 2^{i+1} -1$, and equals 1 if $j \geq 2^{i+1} -1$
 Since $y_{L-1}$ does not change from 0 to 1 until configuration $C_{2^L-1}$, 
 the length of the transient from \calc{} is $2^L-1$.
 \QED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
