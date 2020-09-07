@@ -259,14 +259,13 @@ Otherwise, $r_{n-1}$.
 Note that SyDS \cals{} is 6-symmetric; 
 the local transition functions for nodes $r_i$ , $1 \leq i \leq n-1$, contain 6 symmetry classes.
 
-For $0 \leq i < n$, we let $F_i$ be a Boolean function of $n-i-1$ variables, as follows.
-
-$$F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1}) = (Q_ i x_i) \cdots (Q_1 x_1) (Q_0 x_0) f(X)$$
-
+For $0 \leq i < n$, we let $F_i$ be a Boolean function of $n-i-1$ variables, 
+as follows.
+$$F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1}) = (Q_ i x_i) 
+\cdots (Q_1 x_1) (Q_0 x_0) f(X)$$
 Table~\ref{tab:dag_syds_trans}
 illustrates the dataflow as the constructed SyDS \cals{}  for $n =4$ goes through
 its initial sequence of transitions.
-
 
 %\bigskip
 
@@ -275,8 +274,8 @@ its initial sequence of transitions.
 \begin{table*}
 \begin{center}
 \begin{tabular}{|l | c c c c c c c c c c c |} \hline
-\multicolumn{12}{c|}{{\bf Initial Configuration Sequence of  Constructed SyDS for Four Variables}}
-        \\ \hline
+\multicolumn{12}{|c|}{{\bf Initial Configuration Sequence of 
+Constructed SyDS for Four Variables}}\\ \hline
 
 $C_i$ &$r_3$ & $r_2$ & $r_1$ & $r_0$ & $W$ & $h$ & $y_4$ & $y_3$ & $y_2$ & $y_1$ & $y_0$ \\ \hline
 $\calc_0$ & 0 & 0 & 0 & 0 & $--0--$ & 0 & 0 & 0 & 0 & 0 & 0 \\ 
@@ -300,7 +299,7 @@ $\calc_{17}$ & $F_2(0)$ & $F_1(10)$ & $F_0(110)$ & $F_0(111)$ & $W(0000)$ & 0 & 
 $\calc_{18}$ & $F_2(0)$ & $F_1(10)$ & $F_1(11)$ & $f(0000)$ & $W(0001)$ & 0 & 1 & 0 & 0 & 1 & 0 \\ 
 $\calc_{19}$ & $F_2(0)$ & $F_2(1)$ & $F_1(11)$ & $F_0(000)$ & $W(0010)$ & 0 & 1 & 0 & 0 & 1 & 1 \\ 
 $\calc_{20}$ & $F_3$ & $F_2(1)$ & $F_1(11)$ & $f(0010)$ & $W(0011)$ & 1 & 1 & 0 & 1 & 0 & 0 \\ 
-$\calc_{21}$ & $F_3$ & 0 & 0 & 0 & $W(0100)$ & 1 & 1 & 0 & 1 & 0 & 1 \\ 
+$\calc_{21}$ & $F_3$ & 0 & 0 & 0 & $W(0100)$ & 1 & 1 & 0 & 1 & 0 & 1 \\ \hline
 \end{tabular}
 \end{center}
 \caption{Table illustrating the data flow for $n = 4$ 
@@ -342,22 +341,29 @@ Moreover, the value of $F_{j(\beta)}(\beta) = F_i(x_{n-1}, x_{n-2}, \ldots , x_{
 is determined by the $2^{i+1}$ assignments to $X$  occurring at times 
 $k(\beta) 2^{n-l(\beta)}$ through $(k(\beta)+1) 2^{n-l(\beta)}-1$.
 
+\smallskip
+\noindent
 {\bf Claim:} We claim that for all $j'$, $0 \leq j' < n$,
 for all $\beta$ such that $j(\beta) = j'$,
 $F_{j(\beta)}(\beta) =\calc_{t(\beta)}[r_{j(\beta)}]$.
 We prove the claim by induction on $j'$.
 
+\smallskip
+\noindent
 {\bf Basis Step:} Suppose that $j' = 0$.
 Consider any $\beta$ such that $j(\beta) = 0$.
 Then $l(\beta) = n-1$, $t(\beta) = 2k(\beta) + 3$,
 and the variables in $\beta$ are $(x_{n-1}, x_{n-2}, \ldots , x_1)$.
 By definition,
-$F_0(x_{n-1}, x_{n-2}, \ldots , x_1)$ $= (Q_0 x_0) \, f(x_{n-1}, x_{n-2}, \ldots , x_1, x_0)$.
-Thus,
-$$F_0(x_{n-1}, x_{n-2}, \ldots , x_1) =  
-f(x_{n-1}, x_{n-2}, \ldots , x_1, 0) \; o_0 \; f(x_{n-1}, x_{n-2}, \ldots , x_1, 1).$$
-Let $\gamma^0 = (x_{n-1}, x_{n-2}, \ldots , x_1, 0)$
-and $\gamma^1 = (x_{n-1}, x_{n-2}, \ldots , x_1, 1)$.
+$$F_0(x_{n-1}, x_{n-2}, \ldots, x_1) 
+= (Q_0 x_0) \, f(x_{n-1}, x_{n-2}, \ldots , x_1, x_0).$$
+Thus,\\
+$F_0(x_{n-1}, x_{n-2}, \ldots , x_1) ~=~$ \\
+\hspace*{0.1in}
+$f(x_{n-1}, x_{n-2}, \ldots , x_1, 0) \; o_0 \; 
+f(x_{n-1}, x_{n-2}, \ldots , x_1, 1).$ \\
+Let $\gamma^0 = (x_{n-1}, x_{n-2}, \ldots , x_1, 0)$ and\\
+$\gamma^1 = (x_{n-1}, x_{n-2}, \ldots , x_1, 1)$.
 Then, $F_0(\beta) =  
 f(\gamma^0) \; o_0 \; f(\gamma^1)$.
 Note that $\gamma^0 = X^{k(\gamma^0)}$ and $\gamma^1 = X^{k(\gamma^1)}$.
@@ -375,6 +381,8 @@ the {\em and} of the values of the incoming edges from $W$ at time $2k(\beta)+2$
 Thus, $\calc_{2k(\beta)+3}[r_0] = f(\gamma^0) \; o_i \; f(\gamma^1) = F_0(\beta)$.
 This proves the claim for $j' = 0$.
 
+\smallskip
+\noindent
 {\bf Inductive Step:} 
 Now assume that the claim holds for a given value of $j'$, $0 \leq j' < n-1$.
 We want to prove that the claim holds for $j'+1$.
@@ -386,9 +394,11 @@ and the variables in $\beta$ are $(x_{n-1}, x_{n-2}, \ldots , x_{j'+2})$.
 (If $j' = n-2$, then $\beta$ contains no variables.)
 By definition, 
 $F_{j'+1}(\beta) =  (Q_{j'+1} x_{j'+1}) \cdots (Q_1 x_1) (Q_0 x_0) f(X)$.
-Thus,
-$$F_{j'+1}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}) =  
-F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 0) \; o_{j'+1} \; F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 1).$$
+Thus,\\
+$F_{j'+1}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}) = $\\
+\hspace*{0.1in}
+$F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 0) \; o_{j'+1} \;$\\
+\hspace*{0.1in} $F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 1).$\\
 Let $\gamma^0 = (x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 0)$
 and $\gamma^1 = (x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 1)$.
 Then, $F_{j'+1}(\beta) =$  
@@ -422,19 +432,19 @@ However, note that $t(\beta) = (k(\beta) + 1)2^{j'+2}+j'+2 =  t(\gamma^1)+1$.
 Thus, $F_{j'+1}(\beta) = \calc_{t(\beta)}[r_{j'+1}]$.
 This completes the proof of the claim.
 
-\bigskip
+\smallskip
 
 Note that each node in $Y$ and $W$ cycles with a period that divides $2^{n+1}$.
 Since $\cald$ has all nodes in $Y$ equal to 0, 
 and this only occurs at a time that is a multiple of $2^{n+1}$,
 $\cald$ is reachable  iff it is reachable at a time that is a multiple of $2^{n+1}$.
 
-Note that $\calc[h]=0$ and $\cald[h]=1$.
-Furthermore, node $h$ is stable with value 1 at time $2^n+n$, 
-and $h$ is equal to 0 at all prior times.
-Thus $\cald$ is reachable iff it is reachable at a time $t$ such that $t \geq 2^n+n$.
-Considering node set $Y$, 
-$\cald$ is reachable iff it is reachable  at a time that is a nonzero multiple of $2^{n+1}$.
+Note that $\calc[h]=0$ and $\cald[h]=1$.  Furthermore, node $h$ is
+stable with value 1 at time $2^n+n$, and $h$ is equal to 0 at all
+prior times.  Thus $\cald$ is reachable iff it is reachable at a
+time $t$ such that $t \geq 2^n+n$.  Considering node set $Y$, $\cald$
+is reachable iff it is reachable  at a time that is a nonzero
+multiple of $2^{n+1}$.
 
 Note that every node of $\cals$ 
 has the same value for every time that is a  nonzero multiple of $2^{n+1}$.
@@ -462,6 +472,7 @@ and $t(\beta) = (k(\beta)+1) 2^{n-l(\beta)} +n -l(\beta) = 2^n+n$.
 Thus, $\calc_{2^n+n}(r_{n-1}) = F_{n-1}$, which is the value of the given quantified Boolean formula $F$.
 Thus $F$ is true iff $\cald$ is reachable from $\calc$.
 
-\bigskip
+\smallskip
+
 The reduction from DAG $r$-symmetric to DAG symmetric SyDSs follows from Corollary \ref{cor:reachability_symmetric}.
 \QED
