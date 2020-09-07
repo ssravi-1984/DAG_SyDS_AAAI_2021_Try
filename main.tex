@@ -21,9 +21,14 @@
 \def\UrlFont{\rm}  % DO NOT CHANGE THIS
 \usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
 \usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+
+%%% Suggested by AAAI
+\usepackage[switch]{lineno}
+
 \frenchspacing  % DO NOT CHANGE THIS
 \setlength{\pdfpagewidth}{8.5in}  % DO NOT CHANGE THIS
 \setlength{\pdfpageheight}{11in}  % DO NOT CHANGE THIS
+
 %\nocopyright
 %PDF Info Is REQUIRED.
 % For /Author, add all authors within the parentheses, separated by commas. No accents or commands.
@@ -191,6 +196,8 @@
 
 \begin{document}
 
+\linenumbers  %
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{corollary}{Corollary}[section]
@@ -240,7 +247,9 @@
 
 \input{definitions.tex}
 
-\input{levels_and_paths.tex}
+\input{levels_and_paths.tex}   %% Structural properties of DAG SyDSs
+
+\input{conv_guarantee.tex}
 
 \input{reachability.tex}
 
