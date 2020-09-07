@@ -207,7 +207,6 @@
 \newtheorem{observation}{Observation}[section]
 \newtheorem{claim}{Claim}[section]
 
-\newcommand{\cnp}{\textbf{NP}}
 \newcommand{\true}{\texttt{True}}
 \newcommand{\false}{\texttt{False}}
 
@@ -237,6 +236,10 @@
 \newcommand{\pre}{\textsc{Pre}}
 \newcommand{\npre}{\textsc{\#Pre}}
 
+\newcommand{\cnp}{\textbf{NP}}
+\newcommand{\cconp}{\textbf{Co-NP}}
+\newcommand{\cpsp}{\textbf{PSPACE}}
+
 \maketitle
 
 \begin{abstract}
@@ -255,15 +258,21 @@
 
 \input{monotone_reachability.tex}
 
-\input{linear_reachability.tex}
+%%% We omit the result for reachability of linear functions
+%%% since that result has been reported by Ogihara et al.
+
+%\input{linear_reachability.tex}
 
 \input{ncf_reachability.tex}
 
 \input{reducing_symmetry_level.tex}
 
-\input{ge_problem.tex}
+%%% We will keep the results in the following 
+%%% sections for a longer version of the paper. 
 
-\input{hardness_for_two_level_dags.tex}
+%\input{ge_problem.tex} 
+
+%\input{hardness_for_two_level_dags.tex}
 
 \input{conclusions.tex}
 

@@ -55,19 +55,29 @@ no transient is longer than $2L-1$
 (Theorem \ref{thm:NCF_phase_space}).
 \end{description}
 
+\item \textbf{Results for the Convergence Problem:}
+\begin{description}
+\item{(a)} The convergence problem for DAG SyDSs is efficiently solvable 
+as shown in \cite{Chistikov-etal-2020}.
+%%(Corollary \ref{cor:convergence}).
+
+\item{(b)} The convergence guarantee problem for DAG SyDSs is co-NP-complete,
+even when restricted to dags with  three levels and 3-symmetric functions
+(Theorem \ref{thm:convergence_guaranee}).
+\end{description}
+
 \item \textbf{Results for the Reachability Problem:}
 \begin{description}
-\item{(a)} The reachability problem is solvable in polynomial time
-for DAG SyDSs with a bounded number of levels
-(Theorem \ref{thm:reachability_bounded_levels}).
+%\item{(a)} The reachability problem is solvable in polynomial time
+%for DAG SyDSs with a bounded number of levels
+%(Theorem \ref{thm:reachability_bounded_levels}).
 
 \item{(b)} The reachability problem is PSPACE-complete for DAG symmetric SyDSs
 (Theorem~\ref{thm:reachability-PSPACE}).
 
-
-\item{(c)} The reachability problem is efficiently solvable 
-for DAG linear SyDSs
-(Theorem \ref{thm:linear_systems_reachability}).
+%\item{(c)} The reachability problem is efficiently solvable 
+%for DAG linear SyDSs
+%(Theorem \ref{thm:linear_systems_reachability}).
 
 \item{(d)} We define the concept of an \textbf{embedding} of one SyDS into another,
 and use this concept to show that
@@ -78,16 +88,9 @@ is polynomial-time reducible to the reachability problem for DAG  symmetric  SyD
 (Corollary \ref{cor:reachability_symmetric}).
 \end{description}
 
-\item \textbf{Results for the Convergence Problem:}
-\begin{description}
-\item{(a)} The convergence problem for DAG SyDSs is efficiently solvable 
-(Corollary \ref{cor:convergence}).
 
-\item{(b)} The convergence guarantee problem for DAG SyDSs is co-NP-complete,
-even when restricted to dags with  three levels and 3-symmetric functions
-(Theorem \ref{thm:convergence_guaranee}).
-\end{description}
-
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \item \textbf{Results for Garden of Eden, Fixed Point and Predecessor Existence
 Problems:}
 
@@ -114,8 +117,9 @@ even when restricted to dags with two levels and maximum node degree 3
 \item{(e)} The predecessor existence problem for DAG SyDSs  is NP-complete,
 even when restricted to dags with two levels and maximum node degree 3
 (Theorem \ref{thm:predecessor_existence}).
-
 \end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 \end{enumerate}
 
 \subsection{Related Work}
