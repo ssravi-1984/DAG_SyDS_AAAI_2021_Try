@@ -1,0 +1,175 @@
+\section{ Definitions and Notation}
+\label{sec:defs}
+
+Given a directed graph, we say that node $u$ {\bf directly precedes} node $v$ 
+if the graph contains an edge from $u$ to $v$,
+ that $u$ {\bf precedes} $v$ if the graph contains a path (possibly with no edges) from $u$ to $v$,
+and that $u$ {\bf properly precedes} $v$
+ if the graph contains a path with at least one edge  from $u$ to $v$.
+Note that the local transition function for a given node $v$  in a directed SyDS is a function of $v$
+ and the nodes that directly precede $v$.
+
+\begin{definition}\label{def:variable_typesl}
+For the local transition function $f_v$ of a given node $v$ of a directed  SyDS,
+we call the variable corresponding to the source node 
+of each incoming edge to $v$ an {\bf incoming variable} of $f_v$,
+and call the variable corresponding to $v$ the  {\bf self variable} of $f_v$.
+\end{definition}
+
+\begin{definition}\label{def:dag_level}
+Let $G(V,E)$ be a dag.
+The \textbf{level} of a node $v$  in $G$ is the maximum number
+of edges in any directed path to $v$.
+\end{definition}
+
+Suppose a given dag $G(V,E)$ has $L$ levels. 
+For each $j$, $0 \leq j < L$, we let $\call_j$ denote the set of nodes at level $j$,
+and let $\call_j'$ denote the nodes whose level is at most $j$.
+
+The {\bf length} of a phase space cycle is the number of edges in the cycle,
+and the {\bf length} of a phase space transient is the number of edges in the transient.
+
+Let \cals{} be a SyDS.
+For a given configuration \calc{} and node $v$,
+we let $\calc(v)$ denote the state of node $v$ in \calc{}.
+For a given configuration \calc{} and set of nodes $Y$,
+we let $\calc[Y]$ denote the projection of \calc{} onto $Y$.
+We assume that the initial configuration of the system 
+occurs at time 0.
+For a given initial configuration \calc{} and nonnegative integer $i$,
+we let $\calc_i$ denote the configuration of \cals{} at time $i$.
+
+For a given initial configuration \calc{},
+we  say that a given node $v$ is \textbf{stable} at time $t$ if
+for all $i \geq t$, $\calc_i(v)= \calc_t(v)$.
+Also, we say that a given node $v$ is \textbf{alternating} at time $t$ if
+for all $i \geq 0$, 
+$\calc_{t+2i}(v) =  \calc_t(v)$ 
+and $\calc_{t+2i+1}(v) = \overline{ \calc_t(v)}$ 
+(i.e., the state of $v$ alternates between 0 and 1).  
+%The following lemma shows an important property of some
+%nodes of a \btsyds{} whose underlying graph is a dag.
+
+A {\bf linear} Boolean function is one that can be expressed as a linear equation mod 2 of its variables,
+i.e., the xor or complement of the xor of its variables.
+A {\bf linear SyDS} is a SyDS whose local transition functions are all linear.
+
+Consider assignments $\alpha$ and $\beta$ to a set of Boolean variables $X$.
+We say that $\alpha \leq \beta$ if for every variable $x \in X$, $\alpha(x) \leq \beta(x)$.
+A Boolean function $f$  is {\bf monotone nondecreasing}
+if for every pair of assignments $\alpha$ and $\beta$ to its variables,
+$\alpha \leq \beta$ implies that $f(\alpha) \leq f(\beta)$,
+and is {\bf monotone nonincreasing}
+if for every pair of assignments $\alpha$ and $\beta$ to its variables,
+$\alpha \leq \beta$ implies that $f(\alpha) \geq f(\beta)$.
+We say that $f$ is {\bf monotone} if $f$ is either monotone nondecreasing or monotone nonincreasing
+A {\bf monotone SyDS} is a SyDS whose local transition functions are all monotone.
+
+
+\medskip
+\noindent
+\textbf{Predecessor Existence} (\pre)
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by an underlying
+graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$;
+a configuration \calc{} for \cals.
+
+\smallskip
+\noindent
+\underline{\textsf{Question:}}~ Does \calc{} have a predecessor, 
+that is, is there
+a configuration \calcp{} such that \cals{} has a one step transition
+from \calcp{} to \calc?  
+
+\medskip
+The corresponding counting problem (i.e., finding the number
+of predecessors of \calc) will be denoted by \npre.
+
+\medskip
+\noindent
+\textbf{Fixed Point Existence} (\textsc{Fixed Point})
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by an underlying
+graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$.
+
+\smallskip
+\noindent
+\underline{\textsf{Question:}}~ Does \cals{} have a fixed point?  
+
+\medskip
+\noindent
+\textbf{Configuration Reachability} (\textsc{Reach})
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by an underlying
+graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$,
+and two configurations \calc{} and \cald{}. 
+
+\smallskip
+\noindent
+\underline{\textsf{Question:}}~ Starting from configuration \calc,
+does  \cals{} reach configuration \cald? 
+
+We observe that \textsc{Reach} is solvable in polynomial time for any class of SyDSs
+for which function evaluation can be done in polynomial time and
+there is a polynomial bound on the length of a phase space cycle and the length of a transient.
+In such a case, the given SyDS can be simulated for the required number of steps.
+As will be seen, this approach is applicable to NCFs,
+monotone functions 
+(with both positive and negative monotone functions allowed in \cals{}),
+and bithreshold functions.
+
+\medskip
+\noindent
+\textbf{Convergence} (\textsc{Convergence})
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by an underlying
+graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$,
+and a configuration \calc{}. 
+
+\smallskip
+\noindent
+\underline{\textsf{Question:}}~ Starting from configuration \calc,
+does  \cals{} reach a fixed point? 
+
+We observe that similar to \textsc{Reach},
+ \textsc{Convergence} is solvable in polynomial time for any class of SyDSs
+for which function evaluation can be done in polynomial time and
+there is a polynomial bound on the length of a phase space cycle and the length of a transient.
+In such a case, the given SyDS can be simulated for the required number of steps.
+
+
+\medskip
+\noindent
+\textbf{Convergence Guarantee} (\textsc{Convergence Guarantee})
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by an underlying
+graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$. 
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by an underlying
+graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$. 
+
+\smallskip
+\noindent
+\underline{\textsf{Question:}}~ Does  \cals{} always reach a fixed point,
+that is, does the phase space of  \cals{} contain a cycle with more than one node? 
+
+
+

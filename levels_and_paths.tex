@@ -1,0 +1,256 @@
+\section{Number of Levels and Phase Space Paths}
+\label{sec:bounded-levels}
+
+
+\smallskip
+\begin{observation}\label{obs:long_phase_space_cycle}
+For every $n  > 1$, there is an $n$ node DAG SyDS 
+whose phase space graph is a cycle of length $2^n$.
+\end{observation}
+
+\noindent
+\textbf{Proof:}~ 
+For a given $n > 1$ we construct the DAG SyDS $S_n$ to be a counter, as follows.
+The underlying graph contains $n$ levels, one node per level. 
+For each node, there is an incoming edge from the nodes on each of the lower levels.
+The transition function for each node is the function 
+that retains the current value of the node if any of the lower order bits is 0,
+and changes the value of the node if all of the lower order bits are 1.
+
+Suppose a given configuration of $S_n$ is interpreted as encoding an integer $k$, $0 \leq k < 2^n$.
+Then the successor configuration encodes the integer $k + 1 \mod 2^n$.
+Thus, the phase space of $S_n$ is a cycle of length $2^n$.
+\QED
+
+For any SyDS, any infinitely long phase space path consists of a transient (possibly of length 0),
+followed by an infinite number of repetitions of a basic cycle.
+We now show that for any acyclic SyDS, the length of every phase space cycle is a power of 2.
+Moreover, the lengths of the longest transient and the longest 
+phase space cycle are each bounded by an exponential function of the number of levels
+in the underlying graph of the SyDS.
+
+\medskip
+
+\begin{lemma}\label{lem:all_inputs_stable}
+For a given DAG SyDS, and a given initial configuration,
+suppose that the node values of all incoming edges to a given node $v$ are stable at time $t$.
+Then node $v$ is either alternating at time $t$, or stable at time $t+1$
+\end{lemma}
+\noindent
+\textbf{Proof:}~ 
+Given the stable value of each incoming variable,
+the local transition function for node $v$ at any time $t'$, where $t' \geq t$ is a function of 
+only one variable: the self variable $v$.
+The only possible functions of a single variable are a constant function, the identity function, 
+or the complement function.
+If the local transition function for $v$ is a constant function, 
+then the value of $v$ can possibly change between $t$ and $t+1$, but for any $t'  \geq t+1$, 
+remains unchanged.
+If the local transition function for $v$ is the identity function, 
+then the value of $v$ never changes from its value at time $t$.
+If the local transition function for $v$ is the complement function, then
+the value of $v$ alternates between complementary values.
+\QED
+
+\begin{lemma}\label{lem:level_zero_nodes}
+For a DAG SyDS, every level 0 node is either alternating at time 0 or stable at time 1.
+\end{lemma}
+\noindent
+\textbf{Proof:}~ 
+ A level 0 node has no incoming edges,
+so the result follows from Lemma \ref{lem:all_inputs_stable}.
+\QED
+
+\begin{theorem}\label{thm:transient_fixed_point}
+For a DAG SyDS,
+the length of a transient leading to a fixed point does not exceed the number of levels of the SyDS.
+\end{theorem}
+\noindent
+\textbf{Proof:}~ 
+Consider a given SyDS $\cals$ and initial configuration $\calc$ that leads to a fixed point.
+Let $L$ be the number of levels of $\cals$.
+We argue that by induction on $i$, for each $i$, $0 \leq i < L$,
+all the nodes in $\call_i'$ are stable at time $i+1$.
+
+From Lemma \ref{lem:level_zero_nodes},
+every level 0 node is either alternating at time 0 or stable at time 1.
+If any level 0 node is alternating at time 0, then $\calc$ does not lead to a fixed point.
+Thus, all level 0 nodes are stable at time 1.
+
+Now assume that the induction hypotheses holds for $i$, $0 \leq i < L-1$.
+Let $v$ be a level $i+1$ node.
+From the induction hypothesis, all the incoming edges to $v$ are stable at time $i+1$.
+From Lemma \ref{lem:all_inputs_stable},
+node $v$ is either alternating at time $i+1$ or stable at time $i+2$.
+If $v$ is alternating at time $i+1$, then $\calc$ does not lead to a fixed point.
+Thus, $v$ is stable at time $i+2$.
+
+Thus, all nodes of $\cals$ are stable at time $L$,
+so  $\calc_L$ is the fixed point reached from $\calc$.
+\QED
+
+\begin{corollary}\label{cor:convergence}
+For a DAG SyDS, the convergence problem can be solved in polynomial time.
+\end{corollary}
+\noindent
+\textbf{Proof:}~ Given a DAG SyDS $\calc$ with $L$ and configuration $\calc$,
+from Theorem \ref{thm:transient_fixed_point},
+if $\calc$ converges, i.e., leads to a fixed point,
+it does so after at most $L$ transitions.
+In polynomial time, we can find $\calc_L$, and see if it is a fixed point.
+\QED
+
+\begin{theorem}\label{thm:convergence_guaranee}
+The convergence guarantee problem for DAG SyDSs is co-NP-complete,
+even when restricted to dags with  three levels and 3-symmetric functions.
+\end{theorem}
+\noindent
+\textbf{Proof:}~ 
+We use a reduction from 3SAT, similar to that used in the proof of Theorem \ref{thm:fixed_point}.
+The constructed SyDS $\cals$ has a level zero node for each variable, 
+a level one node for each clause, and a single level two node.
+We denote these three sets of nodes as $\{x_1, x_2, \ldots , x_n\}$,
+$\{c_1,c_2, \ldots , c_m\}$, and $\{y\}$, respectively.
+
+There is a directed edge from a  level zero node for a given variable 
+to each of  the nodes for the clauses involving that variable.
+There is a directed edge from each level one node to node $y$.
+The local transition function for each level zero node is the identity function.
+The local transition function for each level one node is the function that equals 1
+ if the value of at least one of the incoming edges
+makes the clause true. 
+(This transition function is 3-symmetric because at least two of the literals are positive or negative.)
+The local transition function for $y$ is the function $\bar{y} \, \wedge \, c_1 c_2 \cdots  c_{m}$.
+
+Note that for every initial configuration, the level zero nodes are all stable at time 0,
+and the level one nodes are all stable at time 1.
+
+\smallskip
+Suppose the given 3SAT problem instance is satisfiable.
+Then any initial configuration of $\cals$ where the level zero nodes 
+have values corresponding to a satisfying assignment
+results in node $y$ being alternating at time 1.
+Suppose the given 3SAT problem instance is unsatisfiable.
+Then for every initial configuration, node $y$ is stable with value 0 at time 2.
+
+\smallskip
+Thus, $\cals$ reaches a fixed point from every initial configuration, 
+i.e.,  convergence is guaranteed for $\cals$,
+iff the given 3SAT problem instance is unsatisfiable.
+\QED
+
+\begin{theorem}\label{thm:levels_phase_space}
+For a DAG SyDS,
+the length of every phase space cycle is a power of 2.
+Moreover if the number of levels of a given acyclic SyDS is $L$,
+then no phase space cycle is longer than $2^L$,
+and no transient is longer than $2^L-1$.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ 
+The proof is by induction on the number of levels.
+
+{\bf Basis}: Suppose that there is only one level.
+Then the underlying  graph has no edges.
+By Lemma \ref{lem:all_inputs_stable},
+either all phase cycles are of length 1 or all are of length 2. 
+Also, no transient is of length greater than 1.
+
+{\bf Induction Step}: Suppose that the result holds for a given value of $L$,
+and consider a DAG SyDS \cals{} with $L+1$ levels (numbered as levels 0 through $L$).
+Let $\cals_L$ be the DAG SyDS with $L$ levels obtained 
+by deleting $\call_L$ (the nodes in level $L$) from \cals{}.
+Let \calc{} be a given configuration of \cals{}.
+
+For non-negative integer $i$, 
+recall that $C_i$ denotes the configuration of \cals{} at time $i$, 
+when started from configuration \calc{}.
+Since the underlying graph in $S$ has 
+no edges from the level $L$ nodes to the nodes in $\cals_L$,
+$C_i[\call_{L-1}']$ is the configuration at time $i$ 
+when $S_L$ starts in configuration $C_0[\call_{L-1}']$.
+
+From the induction hypothesis, 
+when $\cals_L$  is started in configuration $C_0[\call_{L-1}']$,
+the length of the phase space cycle that is reached is $2^k$, where $0 \leq k \leq L$,
+and the length of the transient leading to this cycle is some value $j$ such that $j \leq 2^L-1$.
+
+Let $v$ be a level $L$ node of \cals{}.
+The sequence of values taken on by $v$ 
+can be classified as belonging to one of the following three cases.
+
+{\bf Case 1.} $C_{j+2^k}(v) = C_j(v)$:
+Then, for every $i \geq j$, $C_{i+2^k}(v) = C_i(v)$.
+Thus, the values of $C_i(v)$, where $i \geq j$, form a cycle, 
+whose period divides (not necessarily properly) $2^k$.
+So, after a transient of length at most $j$, where $j \leq 2^L-1$,
+the value of node $v$ cycles with a cycle whose length is a power of 2 and is at most $2^L$.
+
+{\bf Case 2}. $C_{j+2^k}(v) = \overline{C_j(v)}$ and $C_{j+2^{k+1}}(v) = C_j(v)$:
+Then, for every $i \geq j$, $C_{i+2^{k+1}}(v) = C_i(v)$.
+Thus, the values of $C_i(v)$, where $i \geq j$, form a cycle, 
+whose period divides (not necessarily properly) $2^{k+1}$.
+So, after a transient of length at most $2^L-1$,
+the value of node $v$ cycles with a cycle whose length is a power of 2 and is at most $2^{L+1}$.
+
+{\bf Case 3}. $C_{j+2^k}(v) = \overline{C_j(v)}$ and $C_{j+2^{k+1}}(v) = \overline{C_j(v)}$:
+Then, for every $i \geq j + 2^k$, $C_{i+2^k}(v) = C_i(v)$.
+Thus, the values of $C_i(v)$, where $i \geq j + 2^k$, form a cycle, 
+whose period divides (not necessarily properly) $2^k$.
+Note that  $\calc_{j+2^k}$ is part of this cycle.
+So, after a transient of length at most $2^{L+1}-1$,
+the value of node $v$ cycles with a cycle whose length is a power of 2 and is at most $2^L$.
+
+
+Considering all the nodes in \cals{}, the length of the transient beginning at  \calc{} 
+is at most $2^{k+1}-1$, 
+and the length of the cycle reached from  \calc{} divides $2^{k+1}$.
+
+Since this holds for all configurations \calc{}, the inductive hypothesis holds for \cals{}.
+\QED
+
+We now show that there are matching lower bounds on cycle and transient length.
+We show this by constructing a DAG SyDS
+that incorporates the counter from Observation \ref{obs:long_phase_space_cycle}
+to produce a long cycle,
+and repeated applications of Case 3 from the proof of Theorem \ref{thm:levels_phase_space}
+to produce a long transient.
+
+\begin{theorem}\label{thm:path_length_lower_bounds}
+For every $L  \geq 1$,
+there is a a DAG SyDS with $L$ levels
+whose phase space contains a transient of length $2^L-1$,
+leading to a cycle of length $2^L$.
+\end{theorem}
+\noindent
+\textbf{Proof:}~ 
+The constructed SyDS \cals{}  contains
+$2L$ nodes, which we refer to as $X = \{x_0, x_1, \dots , x_{L-1}\}$ 
+and $Y = \{y_0, y_1, \dots , y_{L-1}\}$.
+For each $i$, nodes $x_i$ and $y_i$ will occur on level $i$.
+
+The underlying graph of \cals{} has directed edges
+$(x_i, x_j)$  and $(x_i, y_j)$ for each $i$ and $j$  such that $0 \leq i < j  < L$,
+and also has directed edges $(y_i, y_{i+1})$ for each $i$ such that $0 \leq i < L-1$.
+
+The local transition function for each node in $X$ is the function 
+that retains the current value of the node if any of the incoming variables equals 0,
+and changes the value of the node otherwise.
+Thus, node set $X$ behaves as a counter,
+similar to the nodes in the construction of Observation \ref{obs:long_phase_space_cycle}.
+
+The local transition function for node $y_0$ is the constant function 1.
+The local transition function for each node $y_i$, $1 \leq i \leq L-1$,
+is 1 iff $y_i = 1$ or $y_{i-1} = 1$ and the incoming variables $\{x_0, x_1, \dots , x_{i-1}\}$
+encode the integer $2^i-2$.
+
+Note that the $L$ nodes in $X$ form a phase space cycle of length $2^L$.
+
+Consider the initial configuration \calc{}, where all nodes have the value 0.
+It can be seen that by induction on $i$, for each node $y_i$, $0 \leq i \leq L-1$,
+and each nonnegative $j$, 
+$\calc_j(y_i)$ equals 0 if $j < 2^{i+1} -1$, and equals 1 if $j \geq 2^{i+1} -1$.
+Since $y_{L-1}$ does not change from 0 to 1 until configuration $C_{2^L-1}$, 
+the length of the transient from \calc{} is $2^L-1$.
+\QED

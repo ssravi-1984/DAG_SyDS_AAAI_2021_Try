@@ -1,0 +1,148 @@
+\section{Linear Systems}
+\label{sec:linear_functions}
+
+We assume that a linear node transition function is represented by a linear formula,
+consisting either of a constant, or a sum of distinct variables plus an optional constant.
+
+We first consider the reachability problem.
+For convenience, we assume that the question to be resolved
+is whether the given initial configuration reaches the given final configuration in zero or more steps.
+(If the problem formulation requires one or more steps,
+the given problem instance can be modified by asking whether the configuration reached after one step
+reaches the required final configuration after zero or more steps.)
+
+\begin{theorem}\label{thm:linear_systems_reachability}
+The reachability problem is solvable in polynomial time  for DAG linear SyDSs.
+\end{theorem}
+\noindent
+\textbf{Proof:}~ 
+We use an iterative algorithm, 
+where the number of iterations does not exceed the number of levels of the given SyDS.
+
+Let the given problem instance consist of SyDS \cals{} 
+with underlying dag $G(V,E)$ and a linear local transition function $f_v$ for each node $v \in V$;
+and two configurations \calc{} and \cald.
+Let $L$ be the number of levels in dag $G$.
+The algorithm consists of up to $L$ iterations, 
+each of which we refer to as iteration $j$, $1 \leq j \leq L$.
+Each iteration $j$, $1 \leq j \leq L$, processes an instance of the reachability problem, 
+consisting of SyDS $\cals{}^j$
+with underlying dag $G^j(V^j,E^j)$ 
+and a linear local transition function $f^j_v$ for each node $v \in V^j$;
+and two $\cals{}^j$ configurations $\calc^j$ and $\cald^j$.
+Dag $G^j$ will contain at most  $L+1-j$ levels.
+The reachability problem instance for each iteration will be constructed  
+so that it has the same answer as the initial given problem instance.
+
+
+For the first iteration, $\cals{}^1 = \cals{}$, $\calc^1 = \calc$ and $\cald^1 = \cald$.
+
+Consider a given iteration $j$, $1 \leq j \leq L$.
+If $\calc^j =\cald^j $, then the algorithm exits with answer  {\em YES}.
+Otherwise, if $\cald^j $ is reachable from $\calc{}^j$,
+it is reachable via a path requiring at least one transition.
+The algorithm proceeds by constructing the configurations $\calc^j_1$ and $\calc^j_2$,
+the one and two step successor configurations of $\calc^j$.
+Consider $\call_0^j$, the set of level 0 nodes of $G^j$.
+Note that from Lemma \ref{lem:level_zero_nodes},
+at $t=1$ each node in $\call_0^j$ is either stable or alternating.
+If $\calc^j_1[\call_0^j] \neq \cald^j[\call_0^j]$ and $\calc^j_2[\call_0^j] \neq \cald^j[\call_0^j]$,
+then the algorithm exits with answer  {\em NO}.
+
+So assume that $\calc^j_1[\call_0^j] = \cald^j[\call_0^j]$ or $\calc^j_2[\call_0^j] = \cald^j[\call_0^j]$,
+If $G^j$ contains only one level, then $\cald^j = \cald^j[\call_0^j]$,
+so the algorithm exits with answer  {\em YES}.
+
+So assume that $G^j$ contains at least two levels.
+
+We define configuration $\calc'^j$ as follows.
+If $\calc^j_1[\call_0^j] = \cald^j[\call_0^j]$, 
+then let $\calc'^j = \calc^j_1$, so that $\calc'^j_0 = \calc^j_1$;
+otherwise let $\calc'^j = \calc^j_2$, so that $\calc'^j_0 = \calc^j_2$.
+Note that $\cald^j$ is reachable from $\calc^j$ iff 
+$\cald^j$ is reachable from $\calc'^j$.
+
+The reachability problem instance for the next iteration $j+1$ is constructed with
+$V^{j+1} = V^j -\call_0^j$,
+$\cald^{j+1} =\cald^j[V^j -\call_0^j]$, and
+$\calc^{j+1} =\calc'^j[V^j -\call_0^j]$.
+
+
+For each node $v$ in $V^{j+1}$,
+let $g_v$ denote the formula obtained from the formula for $f^j_v$ 
+by replacing each occurrence in the formula of a node in $\call_0^j$
+with the value of that node in $\calc'^j$;
+and let $h_v$ denote the formula obtained from the formula for $f^j_v$ 
+by replacing each occurrence in the formula of a node in $\call_0^j$
+with the value of that node in $\calc'^j_1$.
+%Let $\hat{g_v}$ denote the formula obtained from $g_v$
+%by replacing each occurrence in the formula of a node $u$ in $V^{j+1}$
+%with the formula $h_u$.
+Let $\hat{h_v}$ denote the formula obtained from $h_v$
+by replacing each occurrence in the formula of a node $u$ in $V^{j+1}$
+with the formula $g_u$.
+In the above formulas, 
+we  simplify each formula by combining 
+multiple occurrences of the same variable,
+and combining multiple occurrences of additive constants.
+
+For any $t \geq 0$, consider the configuration  $\calc'^j_t$ 
+of $\cals{}^j$.
+If $t$ is odd, then $\calc'^j_t[\call_0^j] = \calc'^j_1[\call_0^j]$;
+so, for each $v \in V^{j+1} $,
+formula $h_v$ gives the value of $v$ after one step from $\calc'^j_t$.
+If $t$ is even, then $\calc'^j_t[\call_0^j] = \calc'^j[\call_0^j]$;
+so, for each $v \in V^{j+1} $,
+formula $g_v$ gives the value of $v$ after one step from $\calc'^j_t$,
+and formula $\hat{h_v}$ gives the value of $v$ after two steps from $\calc'^j_t$.
+
+For the remainder of the construction of $\cals^{j+1} $,
+we consider the following two cases.
+
+\noindent
+\textbf{Case 1:}~
+Every node in $\call_0^j$ is stable at $t =1$.
+Thus, for all $t \geq 1$, $\calc'^j_t[\call_0^j] = \cald^j[\call_0^j]$.
+In the reachability problem instance for the next iteration,
+for each node $v \in V^{j+1}$,
+we set the formula representing the node transition function $f^{j+1}_v$ 
+to be the formula $g_v$.
+(We observe that $g_v$ and $h_v$ are identical in this case.)
+$E^{j+1}$ is the set of edges of $E^j$ having both endpoints in $V^{j+1}$.
+
+
+\noindent
+\textbf{Case 2:}~
+$\call_0^j$ contains at least one node that is alternating at $t =1$.
+Thus, for all $i \geq 0$,
+$\calc'^j_{2i}[\call_0^j] = \cald^j[\call_0^j]$
+and $\calc'^j_{2i+1}[\call_0^j] \neq \cald^j[\call_0^j]$.
+Thus, $\cald^j$ is reachable from $\calc'^j$ iff
+it is reachable via a path requiring an even number of transitions.
+The node transition functions of $\cals{}^{j+1}$ will be constructed so that 
+starting at initial configuration $\calc^{j+1}$ at time 0,
+for all $ i \geq 0$,
+$\calc^{j+1}_i = \calc'^j_{2i}[V^j -\call_0^j]$.
+This property ensures that the reachability problem instance for iteration $j+1$
+has the same answer as the reachability problem instance for iteration $j$.
+For each node $v \in V^{j+1}$,
+we let the formula representing the local transition function $f^{j+1}_v$ 
+be the formula $\hat{h_v}$.
+Edge set $E^{j+1}$ contains an incoming edge to $v$ from each node $u$
+such that $u \neq v$ and $u$ occurs in formula $f^{j+1}_v$.
+
+In constructing the problem instance for the next iteration,
+each of the new node transition functions only contains variables
+corresponding to nodes of the initial problem instance,
+and so can be constructed and evaluated in time polynomial in
+the size of the initial problem instance.
+Thus, the algorithm runs in polynomial time.
+\QED
+
+We note that the algorithm in Theorem~\ref{thm:linear_systems_reachability} 
+provides a possible template
+for algorithms for other classes of Boolean functions.
+For a given class of Boolean function,
+if the two-step node functions required in Case 2 can be constructed and evaluated in time polynomial
+in the original problem instance,
+then the algorithm would run in polynomial time.

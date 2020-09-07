@@ -1,0 +1,28 @@
+\section{Monotone Systems}
+\label{sec:monotoner_functions}
+
+\begin{theorem}\label{thm:montone_stable}
+For a DAG monotone SyDS, every cycle is a fixed point, 
+and the length of any transient does not exceed the number of levels.
+\end{theorem}
+\noindent
+\textbf{Proof:}~ 
+By induction on the number of levels for each level $i$, 
+each level $i$ node is stable after at most $i$ steps.
+
+From Lemma \ref{lem:level_zero_nodes}, every level 0 node is either stable or alternating  at time 1.
+The complement function is not monotone, so a  level 0 node is cannot be alternating,
+and thus is stable at time 1.
+
+Suppose that all the incoming edges to a given node $v$ have stable values at time $t$.
+From Lemma \ref{lem:all_inputs_stable}, node $v$ is either stable or alternating  at time $t+1$.
+Since the local transition function for node $v$ is monotone, 
+and all the incoming edges have stable values at time $t$, node $v$ is stable at time $t+1$
+\QED
+
+We observe that that for every $L \geq 0$, there exists a DAG monotone SyDS with 
+a transient of length $L$. 
+Consider the SyDS whose underlying graph is a directed chain of $L$ nodes.
+The local transition function of the level 0 node is the constant 1,
+and of every other node is the {\em or} of its value and the value from the incoming edge.
+The configuration of all zeros takes $L$ steps to reach the fixed point of all ones.

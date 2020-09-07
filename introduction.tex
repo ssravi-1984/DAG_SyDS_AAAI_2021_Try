@@ -1,0 +1,130 @@
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Motivation}
+\label{sse:motivation}
+
+
+We consider directed SyDSs whose underlying graph is a directed
+acyclic graph (dag).  We call such a SyDS a {\bf DAG SyDS}.  For
+any class of local transition functions $\Gamma$, we call a dag
+SyDS whose local transition functions are all in  $\Gamma$, a {\bf
+DAG $\Gamma$ SyDS}.  We also call a SyDS whose underlying graph is
+directed (but not necessarily acyclic) a {\bf directed SyDS}.
+
+
+We consider phase space properties of DAG  SyDSs, as well as the
+complexity of several computational problems.  We also study these
+issues for various classes of DAG  SyDSs defined by restrictions
+on the underlying dag of the SyDS and/or on the local transition
+functions.
+
+For a given SyDS, the length of  phase space paths is related to
+the reachability problem.  If a given class of SyDSs has a polynomial
+bound on the length of the longest phase space cycle and longest
+transient, then this bound applies to the number of transitions
+required to solve the reachability problem for this class of SyDSs.
+
+%\bigskip
+
+\subsection{Summary of Results}
+\label{sse:results}
+
+\begin{enumerate}
+
+\item \textbf{Results on the structure of the phase space:}
+\begin{description}
+\item{(a)} For a DAG SyDS,
+the length of every phase space cycle is a power of 2.
+If the number of levels of a given acyclic SyDS is $L$,
+then no phase space cycle is longer than $2^L$,
+and no transient is longer than $2^L-1$
+(Theorem \ref{thm:levels_phase_space}).
+Moreover, for each $L$,
+there is an $L$-level DAG SyDS whose phase space graph is a cycle of length $2^L$
+(Observation \ref{obs:long_phase_space_cycle}).
+
+\item{(b)} For any monotone DAG-SyDS, every cycle is a fixed point, 
+and the length of any transient does not exceed the number of levels
+(Theorem \ref{thm:montone_stable}).
+
+\item{(c)} For a DAG-SyDS \cals{} whose local functions are generalized-NCFs,
+the length of every phase space cycle is at most 2.
+Moreover, if the number of levels of  \cals{} is $L$,
+no transient is longer than $2L-1$
+(Theorem \ref{thm:NCF_phase_space}).
+\end{description}
+
+\item \textbf{Results for the Reachability Problem:}
+\begin{description}
+\item{(a)} The reachability problem is solvable in polynomial time
+for DAG SyDSs with a bounded number of levels
+(Theorem \ref{thm:reachability_bounded_levels}).
+
+\item{(b)} The reachability problem is PSPACE-complete for DAG symmetric SyDSs
+(Theorem~\ref{thm:reachability-PSPACE}).
+
+
+\item{(c)} The reachability problem is efficiently solvable 
+for DAG linear SyDSs
+(Theorem \ref{thm:linear_systems_reachability}).
+
+\item{(d)} We define the concept of an \textbf{embedding} of one SyDS into another,
+and use this concept to show that
+for a fixed value of $r$, the reachability problem for directed $r$-symmetric  SyDSs 
+is polynomial-time reducible to the reachability problem for directed symmetric SyDSs,
+and  the reachability problem for DAG $r$-symmetric  SyDSs 
+is polynomial-time reducible to the reachability problem for DAG  symmetric  SyDSs
+(Corollary \ref{cor:reachability_symmetric}).
+\end{description}
+
+\item \textbf{Results for the Convergence Problem:}
+\begin{description}
+\item{(a)} The convergence problem for DAG SyDSs is efficiently solvable 
+(Corollary \ref{cor:convergence}).
+
+\item{(b)} The convergence guarantee problem for DAG SyDSs is co-NP-complete,
+even when restricted to dags with  three levels and 3-symmetric functions
+(Theorem \ref{thm:convergence_guaranee}).
+\end{description}
+
+\item \textbf{Results for Garden of Eden, Fixed Point and Predecessor Existence
+Problems:}
+
+\begin{description}
+\item{(a)} We define the concept of a local transition function being {\bf balanced},
+and relate this concept to the Garden of Eden problem for DAG SyDSs.
+
+\item{(b)} For fixed $r$, the GE existence problem for DAG SyDSs
+whose local transition functions are specified as $r$-symmetric tables
+can be solved in polynomial time
+(Theorem \ref{thm:GardenEden-r_symmetric}).
+
+\item{(c)} The GE existence problem for DAG SyDSs
+whose local transition functions are specified as Boolean formulas
+is NP-complete,
+even when restricted to DAGs with two levels
+(Theorem \ref{thm:GardenEden-NP}).
+
+\item{(d)} The problem of determining whether a given DAG SyDS 
+has a fixed point is NP-complete,
+even when restricted to dags with two levels and maximum node degree 3
+(Theorem \ref{thm:fixed_point}).
+
+\item{(e)} The predecessor existence problem for DAG SyDSs  is NP-complete,
+even when restricted to dags with two levels and maximum node degree 3
+(Theorem \ref{thm:predecessor_existence}).
+
+\end{description}
+\end{enumerate}
+
+\subsection{Related Work}
+\label{sse:related}
+
+In our earlier paper on Bi-Threshold SyDSs \cite{KKM+2013}, 
+we showed that for DAG bi-threshold SyDSs,
+every phase space cycle is of length at most two, 
+and the length of a transient is at most $2L-1$,
+with the consequence that reachability can be solved in polynomial time.
+We also showed that the predecessor existence problem is NP-complete, 
+even when all threshold values are 1, and there are only three levels in the dag.

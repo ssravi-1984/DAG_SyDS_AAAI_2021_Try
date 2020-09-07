@@ -1,0 +1,101 @@
+\section{Garden of Eden Problem}
+\label{sec:garden_eden}
+
+We now consider the GE problem.
+\smallskip
+\begin{definition}\label{def:balanced_function}
+For a node $v$ of a directed SyDS, an {\bf incoming assignment} is an assignment of a value to 
+each of the variables corresponding to the source node of an incoming edge.
+For a Boolean value $a$ and incoming assignment $\alpha$,
+we use the notation $f_v(a,\alpha)$ to denote the value of 
+local transition function $f_v$ when $x = a$ and the other variables have the values in $\alpha$.
+
+A local transition function $f_v$ of a node $v$ of a given directed SyDS
+is {\bf balanced} if for every incoming assignment $\alpha$, $f_v(0,\alpha) \neq f_v(1,\alpha)$.
+\end{definition}
+
+\smallskip
+\begin{theorem}\label{thm:GardenEden-balanced}
+A DAG SyDS \cals{} has a Garden of Eden configuration iff
+at least one of its local transition functions is unbalanced.
+\end{theorem}
+\noindent
+\textbf{Proof:}~
+{\bf If:} Suppose that \cals{} has at least one unbalanced local transition function.
+Let $v$ be a node such that its local transition function is unbalanced,
+but all its proper predecessors have balanced local transition functions.
+Let $Y$ denote all the predecessors of $v$
+(including $v$ itself.)
+Then there exist two configurations \calc{} and \cald{} of $Y$,
+such that they differ only in the value of $v$,
+but have the same successor configuration on $Y$.
+Since there are two configurations of $Y$ with the same successor,
+there is at least one configuration of $Y$ with no predecessor configuration of $Y$.
+Any extension of this configuration to a full configuration of \cals{} 
+has no predecessor, and so is a GE configuration of \cals{}.
+
+\noindent
+{\bf Only If:}
+Suppose that all local transition functions of  \cals{} are balanced.
+We now argue that every pair of distinct configurations of  \cals{} has distinct successors.
+Let  \calc{} and \cald{} be distinct configurations of \cals{}.
+Let $j$ be the lowest level number of \cals{}
+such that  \calc{} and \cald{} have the same values on all nodes on lower levels.
+Then there is at least one node $v$ in level $j$ such that $\calc[v] \neq \cald[v]$.
+However, the incoming assignment to $v$ is the same in \calc{} and \cald{}.
+Since the local transition function of node $v$ is balanced,
+$\calc_1[v] \neq \cald_1[v]$.
+Thus every pair of distinct configurations of  \cals{} has distinct successors.
+Consequently,  \cals{} has no GE Configurations.
+\QED
+
+\smallskip
+\begin{theorem}\label{thm:GardenEden-r_symmetric}
+For fixed $r$, the GE existence problem for DAG SyDSs
+whose local transition functions are specified as $r$-symmetric tables
+can be solved in polynomial time.
+\end{theorem}
+\noindent
+\textbf{Proof:}~
+Each table can be tested for the property of being balanced.
+The check can be done  in time proportional to the size of the table.
+\QED
+
+\smallskip
+\begin{theorem}\label{thm:GardenEden-NP}
+The GE existence problem for DAG SyDSs
+whose local transition functions are specified as Boolean formulas
+is NP-complete,
+even when restricted to DAGs with two levels.
+\end{theorem}
+\noindent
+\textbf{Proof:}~The proof is via a reduction from 3SAT.
+Let $f$ denote the given 3SAT Boolean formula.
+Let $n$ be the number of variables in $f$.
+For the reduction, we construct a SyDS \cals{} with $n+1$ nodes.
+Let $X$ denote the first $n$ nodes of \cals{}, all of which are in layer zero.
+The local transition function of each of these nodes is the identity function.
+Node $x_{n+1}$ has an incoming edge from each of the other $n$  nodes.
+Its local transition function is:  $x_{n+1} \vee f$.
+
+Note that the local transition function for each node in $X$ is balanced.
+Also note that every assignment to the nodes in $X$ 
+is an incoming assignment to node $x_{n+1}$.
+%Finally, note that the local transition function for $x_{n+1}$ can  change the value of $x_{n+1}$ 
+%only if $x_{n+1} = 0$ and the values of the other variables satisfy $f$.
+
+Suppose that formula $f$ is satisfiable. 
+Let $\alpha$ be a satisfying assignment for $f$.
+Then, $f_{x_{n+1}}(0,\alpha) = f_{x_{n+1}}(1,\alpha) = 1$, so $f_{x_{n+1}}$ is not balanced.
+
+Now suppose that formula $f$ is unsatisfiable. 
+Then, the local transition function for $x_{n+1}$ is the identity function, which is balanced.
+
+Thus, formula $f$ is satisfiable iff the local transition function for $x_{n+1}$ is unbalanced.
+Consequently, from Theorem \ref{thm:GardenEden-balanced},
+ $f$ is satisfiable iff  \cals{} has a Garden of Eden configuration.
+So, GE existence is NP-hard.
+
+We note that the GE existence problem is in NP for all directed or undirected SyDSs,
+since a GE configuration exists iff there are two distinct configurations with a common successor.
+\QED

@@ -1,0 +1,83 @@
+\section{Computationally Hard Problems for  Two-Level DAGs}
+\label{sec:two-levels}
+
+
+\begin{theorem}\label{thm:fixed_point}
+The problem of determining whether a given DAG SyDS has a fixed point is NP-complete,
+even when restricted to dags with two levels and maximum node degree 3.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ 
+We use a reduction from 3SAT.
+The constructed SyDS $S$ has a level zero node for each variable, 
+and a level one node for each clause.
+There is a directed edge from a  level zero node for a given variable 
+to each of  the nodes for the clauses involving that variable.
+The transition function for each level zero node is the identity function.
+The transition function for each level one node is the function that equals 1
+if the value of the node is 0, or if the value of at least one of the incoming edges
+makes the clause true. 
+
+\smallskip
+Suppose the given 3SAT problem instance is satisfiable.
+Then the configuration of $S$ where the level zero nodes 
+have values corresponding to a satisfying assignment,
+and the level one nodes all have value 1,
+is a fixed point.
+
+\smallskip
+
+Suppose that SyDS $S$ has a fixed point.
+In a fixed point, the level one nodes all have value 1,
+and the values of the level zero nodes in each fixed point constitute a satisfying assignment.
+
+\smallskip
+Thus, $S$ has a fixed point iff the given 3SAT problem instance is satisfiable.
+
+\smallskip
+We observe that this reduction also establishes \#P-completeness.
+\QED
+
+\smallskip
+
+\begin{theorem}\label{thm:predecessor_existence}
+The predecessor existence problem for DAG SyDSs  is NP-complete,
+even when restricted to dags with two levels and maximum node degree 3.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ 
+We use a reduction from 3SAT.
+The underlying graph of the constructed SyDS $S$ is the same as the underlying graph constructed 
+in the proof of Theorem \ref{thm:fixed_point}.
+The transition function for each level zero node is the constant function 1.
+The transition function for each level one node is the function that equals 1
+iff  the value of at least one of the incoming edges
+makes the clause true. 
+The configuration $C$ for the constructed predecessor existence problem instance 
+is the configuration where all nodes have value 1.
+
+\smallskip
+Suppose the given 3SAT problem instance is satisfiable.
+Then any configuration of $S$ where the level zero nodes 
+have values corresponding to a satisfying assignment,
+and the level one nodes have arbitrary values,
+is a predecessor of configuration $C$.
+
+\smallskip
+
+Suppose that $C$ has a predecessor, say configuration $C_0$.
+Since all the level one nodes in $C$ have value 1,
+the values of the level zero nodes in $C_0$ constitute a satisfying assignment.
+
+\smallskip
+Thus, $C$ has a predecessor iff the given 3SAT problem instance is satisfiable.
+
+\smallskip
+Suppose the the given 3SAT problem instance contains $m$ clauses,
+so that $S$ contains $q$ level one nodes.
+Then, for any satisfiable assignment for the the given 3SAT problem instance,
+$C$ contains $2^m$ predecessors.
+Thus, the reduction also establishes \#P-completeness.
+\QED
