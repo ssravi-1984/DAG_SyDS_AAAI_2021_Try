@@ -1,0 +1,53 @@
+%% File: supplement.tex
+
+\appendix
+
+\onecolumn
+
+\begin{center}
+\fbox{\textbf{Supplementary Material}}
+\end{center}
+
+\bigskip
+
+\noindent
+\underline{Paper title:}~
+Synchronous Dynamical Systems on Directed Acyclic Graphs (DAGs): 
+Complexity and Algorithms
+
+\bigskip
+
+\noindent
+\section{Proofs of the Results in Section~\ref{sec:bounded-levels}}
+
+\medskip
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+\textbf{Statement and Proof of Proposition~\ref{pro:long_phase_space_cycle}}
+
+\medskip
+
+\underline{Statement of Proposition~\ref{pro:long_phase_space_cycle}:}~
+For every $n  > 1$, there is an $n$ node DAG SyDS
+whose phase space graph is a cycle of length $2^n$.
+
+\medskip
+
+\noindent
+\textbf{Proof:}~
+For a given $n > 1$ we construct the DAG SyDS $S_n$ to be a counter,
+as follows.  The underlying graph contains $n$ levels, one node per
+level.  For each node, there is an incoming edge from the nodes on
+each of the lower levels.  The transition function for each node
+is the function that retains the current value of the node if any
+of the lower order bits is 0, and changes the value of the node if
+all of the lower order bits are 1.
+
+Suppose a given configuration of $S_n$ is interpreted as encoding
+an integer $k$, $0 \leq k < 2^n$.  Then the successor configuration
+encodes the integer $k + 1 \mod 2^n$.  Thus, the phase space of
+$S_n$ is a cycle of length $2^n$.  \QED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
