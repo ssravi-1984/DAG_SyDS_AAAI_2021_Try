@@ -1,0 +1,30 @@
+Title: Synchronous Dynamical Systems on Directed Acyclic Graphs (DAGs): 
+       Complexity and Algorithms 
+
+Authors:  Daniel J. Rosenkrantz, Madhav V. Marathe, S. S. Ravi and
+          Richard E. Stearns
+
+Abstract:
+
+Diffusion problems on directed graphs are used in modeling social
+and biological phenomena. Discrete dynamical systems serve as a
+useful formal model to study such diffusion phenomena. Several
+recent papers study algorithmic and complexity aspects of
+diffusion problems for dynamical systems whose underlying graphs
+are directed, and may contain directed cycles.  In particular,
+[Chistikov et al. (AAAI 2020)] examined two problems related to
+convergence of opinions and showed that the problems are computationally
+intractable for dynamical systems whose underlying directed graphs
+may contain cycles. Such problems can be formally specified as
+reachability problems in the phase space of the corresponding
+dynamical system. We show that computational intractability
+results for reachability problems hold even for dynamical systems
+on directed acyclic graphs (dags). We also identify some versions
+of the reachability problem that are efficiently solvable for
+dynamical systems on dags, even though these problems are intractable 
+when cycles are permitted.  Further, we establish several structural 
+properties of the phase spaces of such dynamical systems.
+
+Keywords:  Diffusion phenomena, Discrete Dynamical Systems, 
+Directed Acyclic Graphs, Reachability Problems, 
+Computational Complexity, Algorithms
