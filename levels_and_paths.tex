@@ -1,12 +1,25 @@
-\section{Number of Levels and Phase Space Paths}
+%\section{Number of Levels and Phase Space Paths}
+\section{Some Properties of Phase Spaces of DAG-SyDSs}
 \label{sec:bounded-levels}
 
+In this section, we present some properties of the
+phase spaces of DAG-SyDSs.
+These properties are independent of the local functions
+at the nodes of the DAG-SyDS.
+More refined versions of these properties when local
+functions are from special classes of Boolean functions
+are established in Section~\ref{sec:reachability}. 
+For space reasons, proofs of some results mentioned
+in this section appear in the supplement.
+
+We begin with a result which points out that the phase spaces
+of DAG-SyDSs may contain exponentially large cycles.
 
 \smallskip
-\begin{observation}\label{obs:long_phase_space_cycle}
+\begin{proposition}\label{pro:long_phase_space_cycle}
 For every $n  > 1$, there is an $n$ node DAG SyDS 
 whose phase space graph is a cycle of length $2^n$.
-\end{observation}
+\end{proposition}
 
 \noindent
 \textbf{Proof:}~ 
@@ -17,40 +30,42 @@ The transition function for each node is the function
 that retains the current value of the node if any of the lower order bits is 0,
 and changes the value of the node if all of the lower order bits are 1.
 
-Suppose a given configuration of $S_n$ is interpreted as encoding an integer $k$, $0 \leq k < 2^n$.
-Then the successor configuration encodes the integer $k + 1 \mod 2^n$.
-Thus, the phase space of $S_n$ is a cycle of length $2^n$.
-\QED
+Suppose a given configuration of $S_n$ is interpreted as encoding
+an integer $k$, $0 \leq k < 2^n$.  Then the successor configuration
+encodes the integer $k + 1 \mod 2^n$.  Thus, the phase space of
+$S_n$ is a cycle of length $2^n$.  \QED
 
-For any SyDS, any infinitely long phase space path consists of a transient (possibly of length 0),
-followed by an infinite number of repetitions of a basic cycle.
-We now show that for any acyclic SyDS, the length of every phase space cycle is a power of 2.
-Moreover, the lengths of the longest transient and the longest 
-phase space cycle are each bounded by an exponential function of the number of levels
-in the underlying graph of the SyDS.
+For any SyDS, any infinitely long phase space path consists of a
+transient (possibly of length 0), followed by an infinite number
+of repetitions of a basic cycle.  We now show that for any 
+DAG-SyDS, the length of every phase space cycle is a power of 2.
+Moreover, the lengths of the longest transient and the longest phase
+space cycle are each bounded by an exponential function of the
+number of levels in the underlying graph of the SyDS.
 
-\medskip
+\smallskip
 
 \begin{lemma}\label{lem:all_inputs_stable}
-For a given DAG SyDS, and a given initial configuration,
-suppose that the node values of all incoming edges to a given node $v$ are stable at time $t$.
-Then node $v$ is either alternating at time $t$, or stable at time $t+1$
+For a given DAG SyDS, and a given initial configuration, suppose
+that the node values of all incoming edges to a given node $v$ are
+stable at time $t$.  Then node $v$ is either alternating at time
+$t$, or stable at time $t+1$.
 \end{lemma}
+
 \noindent
 \textbf{Proof:}~ 
-Given the stable value of each incoming variable,
-the local transition function for node $v$ at any time $t'$, where $t' \geq t$ is a function of 
-only one variable: the self variable $v$.
-The only possible functions of a single variable are a constant function, the identity function, 
-or the complement function.
-If the local transition function for $v$ is a constant function, 
-then the value of $v$ can possibly change between $t$ and $t+1$, but for any $t'  \geq t+1$, 
-remains unchanged.
-If the local transition function for $v$ is the identity function, 
-then the value of $v$ never changes from its value at time $t$.
-If the local transition function for $v$ is the complement function, then
-the value of $v$ alternates between complementary values.
-\QED
+Given the stable value of each incoming variable, the local transition
+function for node $v$ at any time $t'$, where $t' \geq t$ is a
+function of only one variable: the self variable $v$.  The only
+possible functions of a single variable are a constant function,
+the identity function, or the complement function.  If the local
+transition function for $v$ is a constant function, then the value
+of $v$ can possibly change between $t$ and $t+1$, but for any $t'
+\geq t+1$, remains unchanged.  If the local transition function for
+$v$ is the identity function, then the value of $v$ never changes
+from its value at time $t$.  If the local transition function for
+$v$ is the complement function, then the value of $v$ alternates
+between complementary values.  \QED
 
 \begin{lemma}\label{lem:level_zero_nodes}
 For a DAG SyDS, every level 0 node is either alternating at time 0 or stable at time 1.

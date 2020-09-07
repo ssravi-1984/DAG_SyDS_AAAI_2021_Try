@@ -4,6 +4,7 @@
 \subsection{Motivation}
 \label{sse:motivation}
 
+\textcolor{red}{(To be revised)}
 
 We consider directed SyDSs whose underlying graph is a directed
 acyclic graph (dag).  We call such a SyDS a {\bf DAG SyDS}.  For
@@ -27,67 +28,110 @@ required to solve the reachability problem for this class of SyDSs.
 
 %\bigskip
 
-\subsection{Summary of Results}
-\label{sse:results}
+\noindent
+\textbf{Summary of Results and Their Significance:}
 
-\begin{enumerate}
+\smallskip
 
-\item \textbf{Results on the structure of the phase space:}
-\begin{description}
-\item{(a)} For a DAG SyDS,
+\noindent
+\underline{(1) Results on the structure of the phase space:}
+For any DAG-SyDS, we show that
 the length of every phase space cycle is a power of 2.
-If the number of levels of a given acyclic SyDS is $L$,
+If the number of levels in the underlying DAG of a given SyDS is $L$,
 then no phase space cycle is longer than $2^L$,
 and no transient is longer than $2^L-1$
 (Theorem \ref{thm:levels_phase_space}).
-Moreover, for each $L$,
-there is an $L$-level DAG SyDS whose phase space graph is a cycle of length $2^L$
+Moreover, for each $L$, we observe that
+there is an $L$-level DAG SyDS whose phase 
+space graph is a cycle of length $2^L$
 (Observation \ref{obs:long_phase_space_cycle}).
+As discussed in Item~(3) below, we establish more refined versions
+of these structural properties 
+for DAG-SyDSs whose local functions are from
+special calsses of Boolean functions.
 
-\item{(b)} For any monotone DAG-SyDS, every cycle is a fixed point, 
+\smallskip
+
+\noindent
+\underline{(2) Complexity of the Reachability Problem for DAG-}\newline
+\underline{SyDSs:} 
+It was shown in
+\cite{Chistikov-etal-2020} that the Vonvergence problem
+(i.e., given a SyDS \cals{} and an initial configuration,
+does \cals{} reach a fixed point?) is \cpsp-complete
+for SyDSs on directed networks.
+They also showed that the covergence problem can be solved efficiently
+for DAG-SyDSs.
+We show that the reachability problem
+(i.e., given a SyDS \cals{} and two configurations $\cali_1$ and $\cali_2$,
+does \cals{} starting from $\cali_1$ reach $\cali_2$?),
+which is closely related
+to the Convergence problem, is \cpsp-complete for DAG-SyDSs even
+when each local function is symmetric.
+(Please see Section~\ref{sec:defs} for definitions of various classes
+of Boolean functions.)
+It was shown in \cite{OU-2017} that the Reachability
+problem is \cpsp-complete for SyDSs on directed graphs 
+which may contain cycles.
+To our knowledge, no complexity result is currently known for
+the Reachability problem for DAG-SyDSs.
+Our proof of this result involves two major steps.
+The first step uses a reduction from the \textbf{Quantified Boolean Formulas}
+(QBF) problem \cite{GJ-1979} to show that the Reachability problem for DAG-SyDSs is
+\cpsp-complete even when each local function is $r$-symmetric for 
+some constant $r$ (Theorem~\ref{thm:reachability-PSPACE}).
+For the second step,
+we define the concept of an \textbf{embedding} of one SyDS into another,
+and use this concept to show that
+for any fixed value of $r$, 
+the reachability problem for DAG-SyDSs with $r$-symmetric local functions 
+is polynomial-time reducible to the Reachability problem for DAG-SyDSs with
+symmetric  local functions (Corollary \ref{cor:reachability_symmetric}).
+
+\smallskip
+
+\noindent
+\underline{(3) Efficient Solvability of Reachability Problem for Special}\newline
+\underline{Classes of DAG-SyDSs:} 
+We show that the Reachability problem ie efficiently solvable for
+DAG-SyDSs whose local functions are from two specific
+classes of Boolean functions, namely monotone functions and
+nested canalyzing functions (NCFs).
+For any DAG-SyDS whose local functions are monotone,
+we show that every cycle is a fixed point, 
 and the length of any transient does not exceed the number of levels
 (Theorem \ref{thm:montone_stable}).
-
-\item{(c)} For a DAG-SyDS \cals{} whose local functions are generalized-NCFs,
-the length of every phase space cycle is at most 2.
+For a DAG-SyDS \cals{} whose local functions are NCFs, we show
+that the length of every phase space cycle is at most 2.
 Moreover, if the number of levels of  \cals{} is $L$,
 no transient is longer than $2L-1$
 (Theorem \ref{thm:NCF_phase_space}).
-\end{description}
+These properties
+directly imply the efficient solvability of the reachability
+problem for such DAG-SyDSs.
+It is known that the Reachability problem for SyDSs whose local
+functions are NCFs and whose directed graphs which may contain cycles  
+is \cpsp-complete \cite{Rosenkrantz-etal-2018}.
+To our knowledge, the only previous result on the efficient
+solvability of the  Reachability problem for DAG-SyDSs is
+for the case when each local function is a bithreshold
+function \cite{KKM+2013}.
 
-\item \textbf{Results for the Convergence Problem:}
-\begin{description}
-\item{(a)} The convergence problem for DAG SyDSs is efficiently solvable 
-as shown in \cite{Chistikov-etal-2020}.
-%%(Corollary \ref{cor:convergence}).
+\smallskip
 
-\item{(b)} The convergence guarantee problem for DAG SyDSs is co-NP-complete,
+\noindent
+\underline{(4) Results for the Convergence Guarantee Problem:}
+We show that
+the Convergence Guarantee problem (i.e., given a SyDS \cals{} on
+a directed graph, does \cals{} reach a fixed point from every
+initial configuration?)  for DAG SyDSs is \cconp-complete,
 even when restricted to dags with  three levels and 3-symmetric functions
 (Theorem \ref{thm:convergence_guaranee}).
-\end{description}
-
-\item \textbf{Results for the Reachability Problem:}
-\begin{description}
-%\item{(a)} The reachability problem is solvable in polynomial time
-%for DAG SyDSs with a bounded number of levels
-%(Theorem \ref{thm:reachability_bounded_levels}).
-
-\item{(b)} The reachability problem is PSPACE-complete for DAG symmetric SyDSs
-(Theorem~\ref{thm:reachability-PSPACE}).
-
-%\item{(c)} The reachability problem is efficiently solvable 
-%for DAG linear SyDSs
-%(Theorem \ref{thm:linear_systems_reachability}).
-
-\item{(d)} We define the concept of an \textbf{embedding} of one SyDS into another,
-and use this concept to show that
-for a fixed value of $r$, the reachability problem for directed $r$-symmetric  SyDSs 
-is polynomial-time reducible to the reachability problem for directed symmetric SyDSs,
-and  the reachability problem for DAG $r$-symmetric  SyDSs 
-is polynomial-time reducible to the reachability problem for DAG  symmetric  SyDSs
-(Corollary \ref{cor:reachability_symmetric}).
-\end{description}
-
+It was shown in \cite{Chistikov-etal-2020} that
+the Convergence Guarantee problem is \cpsp-complete
+for SyDSs on general directed graphs.
+Our result points out that a different computational intractability
+result holds for the problem even for DAG-SyDSs.
 
 \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +164,6 @@ even when restricted to dags with two levels and maximum node degree 3
 \end{description}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
-\end{enumerate}
 
 \subsection{Related Work}
 \label{sse:related}

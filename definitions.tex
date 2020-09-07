@@ -66,6 +66,8 @@ We say that $f$ is {\bf monotone} if $f$ is either monotone nondecreasing or mon
 A {\bf monotone SyDS} is a SyDS whose local transition functions are all monotone.
 
 
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \medskip
 \noindent
 \textbf{Predecessor Existence} (\pre)
@@ -101,8 +103,13 @@ graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$.
 \smallskip
 \noindent
 \underline{\textsf{Question:}}~ Does \cals{} have a fixed point?  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
-\medskip
+\subsection{Problem Definitions}
+\label{sse:prob_def}
+
+\smallskip
 \noindent
 \textbf{Configuration Reachability} (\textsc{Reach})
 
@@ -113,21 +120,21 @@ by an underlying
 graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$,
 and two configurations \calc{} and \cald{}. 
 
-\smallskip
+%\smallskip
 \noindent
 \underline{\textsf{Question:}}~ Starting from configuration \calc,
 does  \cals{} reach configuration \cald? 
 
-We observe that \textsc{Reach} is solvable in polynomial time for any class of SyDSs
-for which function evaluation can be done in polynomial time and
-there is a polynomial bound on the length of a phase space cycle and the length of a transient.
-In such a case, the given SyDS can be simulated for the required number of steps.
-As will be seen, this approach is applicable to NCFs,
-monotone functions 
-(with both positive and negative monotone functions allowed in \cals{}),
-and bithreshold functions.
+We observe that \textsc{Reach} is solvable in polynomial time for
+any class of SyDSs for which function evaluation can be done in
+polynomial time and there is a polynomial bound on the length of a
+phase space cycle and the length of a transient.  In such a case,
+the given SyDS can be simulated for the required number of steps.
+As will be seen, this approach is applicable to NCFs, monotone
+functions (with both positive and negative monotone functions allowed
+in \cals{}), and bithreshold functions.
 
-\medskip
+\smallskip
 \noindent
 \textbf{Convergence} (\textsc{Convergence})
 
@@ -138,19 +145,20 @@ by an underlying
 graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$,
 and a configuration \calc{}. 
 
-\smallskip
+%\smallskip
 \noindent
 \underline{\textsf{Question:}}~ Starting from configuration \calc,
 does  \cals{} reach a fixed point? 
 
-We observe that similar to \textsc{Reach},
- \textsc{Convergence} is solvable in polynomial time for any class of SyDSs
-for which function evaluation can be done in polynomial time and
-there is a polynomial bound on the length of a phase space cycle and the length of a transient.
-In such a case, the given SyDS can be simulated for the required number of steps.
+We observe that similar to \textsc{Reach}, \textsc{Convergence} is
+solvable in polynomial time for any class of SyDSs for which function
+evaluation can be done in polynomial time and there is a polynomial
+bound on the length of a phase space cycle and the length of a
+transient.  In such a case, the given SyDS can be simulated for the
+required number of steps.
 
 
-\medskip
+\smallskip
 \noindent
 \textbf{Convergence Guarantee} (\textsc{Convergence Guarantee})
 
@@ -160,16 +168,8 @@ In such a case, the given SyDS can be simulated for the required number of steps
 by an underlying
 graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$. 
 
-\smallskip
-\noindent
-\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
-by an underlying
-graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$. 
-
-\smallskip
+%\smallskip
 \noindent
 \underline{\textsf{Question:}}~ Does  \cals{} always reach a fixed point,
 that is, does the phase space of  \cals{} contain a cycle with more than one node? 
-
-
 
