@@ -18,7 +18,7 @@ state value from a domain \bbb.
 In this work, we will assume that the underlying
 graph is directed and that the domain binary (i.e., \bbb{} = \{0,1\}).
 The propagation of the contagion is modeled by a collection
-of local functions, one per node.
+of Boolean local functions, one per node.
 For any node $v$, the inputs to the local function $f_v$ at $v$
 are the current states of $v$ and those of its in-neighbors (i.e., the nodes
 from which $v$ has an incoming edges) and the output of $f_v$
@@ -89,9 +89,9 @@ Very recently, Chistikov et al. (\citeyear{Chistikov-etal-2020})
 studied two reachability problems (called Convergence and Convergence
 Guarantee\footnote{These problems will be defined shortly.}) 
 in the context of opinion propagation.
-It was shown that these problems are \cpsp-complete for general
-directed graphs.
-It was also shown that the Convergence problem can be solved
+They show that these problems are \cpsp-complete for general
+directed graphs and
+that the Convergence problem can be solved
 efficiently when the underlying directed graph is \emph{acylic} (i.e.,
 it does not have any directed cycle) regardless of the local functions
 at each node.
@@ -104,30 +104,6 @@ Thus, it is of interest to study the complexity of reachability problems for
 SyDSs whose underlying graphs are dags.
 We refer to such SyDSs as DAG-SyDSs.
 Our results are summarized below.
-
-\iffalse
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We consider directed SyDSs whose underlying graph is a directed
-acyclic graph (dag).  We call such a SyDS a {\bf DAG SyDS}.  For
-any class of local transition functions $\Gamma$, we call a dag
-SyDS whose local transition functions are all in  $\Gamma$, a {\bf
-DAG $\Gamma$ SyDS}.  We also call a SyDS whose underlying graph is
-directed (but not necessarily acyclic) a {\bf directed SyDS}.
-
-
-We consider phase space properties of DAG  SyDSs, as well as the
-complexity of several computational problems.  We also study these
-issues for various classes of DAG  SyDSs defined by restrictions
-on the underlying dag of the SyDS and/or on the local transition
-functions.
-
-For a given SyDS, the length of  phase space paths is related to
-the reachability problem.  If a given class of SyDSs has a polynomial
-bound on the length of the longest phase space cycle and longest
-transient, then this bound applies to the number of transitions
-required to solve the reachability problem for this class of SyDSs.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fi
 
 \smallskip
 
