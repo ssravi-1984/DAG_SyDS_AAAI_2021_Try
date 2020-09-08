@@ -1,6 +1,7 @@
 \section{Definitions and Notation}
 \label{sec:defs}
 
+\smallskip
 \noindent
 \underline{\textsf{Formal definition of a SyDS on a directed graph:}}
 Let \bbb{} denote the Boolean domain \{0,1\}.
@@ -15,7 +16,7 @@ functions in the system, with
 $f_i$ denoting the \textbf{local transition
 function} associated with node $v_i$, $1 \leq i \leq n$.
 Each node of $G$ has a state value from \bbb.
-Each function $f_i$ specifies the local interaction
+Each Boolean function $f_i$ specifies the local interaction
 between node $v_i$ and its in-neighbors in $G$.
 The inputs to function $f_i$ are the state of $v_i$ and
 those of the in-neighbors of $v_i$ in $G$;
@@ -32,7 +33,7 @@ At any time $\tau$,
 the {\bf configuration} \calc{} of a SyDS
 is the $n$-vector $(s_1^{\tau}, s_2^{\tau}, \ldots, s_n^{\tau})$,
 where $s_i^{\tau} \in \bbb$ is the state of
-node $v_i$ at time $t$ ($1 \leq i \leq n$).
+node $v_i$ at time $\tau$ ($1 \leq i \leq n$).
 A \textbf{DAG-SyDS} is a SyDS whose underlying graph is a dag.
 
 \begin{figure}
@@ -150,8 +151,11 @@ of the xor of its variables.  A {\bf linear SyDS} is a SyDS whose
 local transition functions are all linear.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
-Most of the definitions given here can be found in
-\cite{Crama-Hammer-2011}.  Consider assignments $\alpha$ and $\beta$
+Here, we provide definitions of several classes of
+Boolean functions used in this paper.
+These definitions are from \cite{Crama-Hammer-2011,BH+06}.  
+
+Consider assignments $\alpha$ and $\beta$
 to a set of Boolean variables $X$.  We say that $\alpha \leq \beta$
 if for every variable $x \in X$, $\alpha(x) \leq \beta(x)$.  A
 Boolean function $f$  is {\bf monotone nondecreasing} if for every
@@ -163,6 +167,29 @@ $f(\alpha) \geq f(\beta)$.  We say that $f$ is {\bf monotone} if
 $f$ is either monotone nondecreasing or monotone nonincreasing A
 {\bf monotone SyDS} is a SyDS whose local transition functions are
 all monotone.
+
+A \textbf{symmetric} Boolean function is one whose
+value does not depend on the order in
+which the input bits are specified;
+that is, the function value depends only on how many
+of its inputs are 1.
+%For example, the XOR function is symmetric since the 
+%value of the function is determined by the parity of the number 
+%of 1's in the input.
+
+A Boolean function $f$ is \textbf{$r$-symmetric}
+if the inputs to $f$ can be partitioned into at most $r$ classes
+such that the value of $f$ depends only on how many of the
+inputs in each of the $r$ classes are 1.
+
+A SyDS is $r$-symmetric
+if each of its local transition
+functions is $r'$-symmetric for some $r' \leq r$.
+
+We also consider another class of Boolean
+functions, namely  \textbf{nested canalyzing functions} (NCFs).
+For space reasons, the definition of NCFs and our results for DAG-SyDSs
+where local functions are NCFs are discussed in the supplement.
 
 \smallskip
 \noindent

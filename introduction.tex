@@ -13,10 +13,10 @@ Examples of such phenomena include diffusion of social contagions
 \cite{Adiga-etal-2019,Chistikov-etal-2020,OU-2020,MR-2007}.
 Informally, such a dynamical system\footnote{A formal definition
 is provided in Section~\ref{sec:defs}.}
-consist of an underlying (social or biological) network, with each node having a
+consists of an underlying (social or biological) network, with each node having a
 state value from a domain \bbb.
-In this work, we will assume that the underlying
-graph is directed and that the domain binary (i.e., \bbb{} = \{0,1\}).
+In this paper, we assume that the underlying
+graph is directed and that the domain is binary (i.e., \bbb{} = \{0,1\}).
 The propagation of the contagion is modeled by a collection
 of Boolean local functions, one per node.
 For any node $v$, the inputs to the local function $f_v$ at $v$
@@ -32,7 +32,7 @@ the literature (e.g., \cite{Adiga-etal-2019,Rosenkrantz-etal-2018}).
 In applications involving systems biology, such systems are also
 referred to as \textbf{synchronous Boolean networks}
 (e.g., \cite{Kauffman-etal-2003,OU-2020,Akutsu-etal-2007}).
-Throughout this paper, we will use SyDS to denote such a system.
+Throughout this paper, we will use the term SyDS to denote such a system.
 The local functions may be deterministic (e.g., threshold models
 used in social systems \cite{granovetter-1978}) or stochastic
 (e.g., the SIR model of disease propagation \cite{Easley-Kleinberg-2010}).
@@ -127,8 +127,9 @@ space graph is a cycle of length $2^L$
 (Proposition \ref{pro:long_phase_space_cycle}).
 Such structural properties of phase spaces are useful in the context of
 reachability problems; if the maximum lengths of transients
-and cycles are bounded by polynomial functions of the size of a SyDS,
-then reachability problems can also be solved in polynomial time.
+and cycles are bounded by polynomial functions of the size of a given SyDS,
+then reachability problems for that SyDS can be solved in polynomial time
+by running the SyDS for a polynomial number of steps.
 
 \smallskip
 
@@ -196,7 +197,7 @@ nested canalyzing functions (NCFs).
 For any DAG-SyDS whose local functions are monotone,
 we show that every cycle is a fixed point, 
 and the length of any transient does not exceed the number of levels
-(Theorem \ref{thm:montone_stable}).
+(Theorem \ref{thm:monotone_stable}).
 For a DAG-SyDS \cals{} whose local functions are NCFs, we show
 that the length of every phase space cycle is at most 2.
 Moreover, if the number of levels of  \cals{} is $L$,
@@ -207,7 +208,7 @@ directly imply the efficient solvability of the reachability
 problem for such DAG-SyDSs.
 The results in \cite{Rosenkrantz-etal-2018} readily imply
 that the Reachability problem for SyDSs whose local
-functions are NCFs and whose directed graphs which may contain cycles  
+functions are NCFs and whose directed graphs may contain cycles  
 is \cpsp-complete.
 To our knowledge, the only previous result on the efficient
 solvability of the  Reachability problem for DAG-SyDSs is
