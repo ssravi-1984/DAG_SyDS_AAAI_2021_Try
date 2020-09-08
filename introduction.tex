@@ -43,8 +43,17 @@ vector $(s_1^{\tau}, s_2^{\tau}, \ldots, s_n^{\tau})$, where $s_i^{\tau}$
 is the state value of node $v_i$ at time $\tau$, $1 \leq i \leq n$.
 As the nodes evaluate and update their local functions, the configuration
 of the system evolves over time.
+If a SyDS transitions from a configuration \calc{} to a configuration \calcp{}
+in one time step, we say that \calcp{} is the \textbf{successor} of \calc{} and that
+\calc{} is a \textbf{predecessor} of \calcp.
+A configuration \calc{} which is its own successor is called a
+\textbf{fixed point}.
+Thus, once a SyDS reaches a fixed point, no further state changes
+occur at any node.
+
 When using SyDSs as models of social or biological phenomena, it is of interest 
-to consider whether a given system may reach certain
+to study whether a given SyDS starting from a specified
+initial configuration  may reach certain
 (desirable or undesirable) configurations.
 For example, in the context of information propagation, where the
 state value 1 indicates that a node has received the information
@@ -53,21 +62,25 @@ one may be interested in configurations where many nodes are in state 1.
 On the other hand, in contexts such as disease propagation where
 the state of 1 indicates that a node has been infected,
 configurations where many nodes are in state 1 are undesirable.
-One can study such \textbf{configuration reachability} problems,
+One can study such \textbf{configuration reachability} problems
 by considering another directed graph,
 called the \textbf{phase space}, of the dynamical system \cite{MR-2007}.
 Each node in the phase space is a configuration and there is an
 edge from a node $X$ to node $Y$ if the SyDS can transition from
 the configuration represented by $X$ to that represented by
 $Y$ in one step.
+Thus, the configuration reachability problem becomes a directed
+path problem in phase space.
 For a SyDS with $n$ nodes where the state of each node from $\{0,1\}$,
 the number of possible configurations is $2^n$; thus, the size of
 the phase space of a SyDS is \emph{exponential} in the size of
 the SyDS.
-Thus, there has been a considerable amount of research whose goal is
-to understand when such reachability problems are efficiently solvable
+There has been a considerable amount of research whose goal is
+to understand when such reachability problems are solvable
+in time that is polynomial in the size of the description of SyDS 
 and when they are computationally intractable 
-(see, e.g., \cite{Chistikov-etal-2020,OU-2020,OU-2017,Akutsu-etal-2007}).
+(see, e.g., \cite{Chistikov-etal-2020,OU-2020,OU-2017,Akutsu-etal-2007}
+and the references cited therein).
 
 Several papers (e.g., \cite{OU-2017,Akutsu-etal-2007}) have
 presented computational intractability results for reachability 
@@ -159,7 +172,7 @@ does \cals{} starting from $\cali_1$ reach $\cali_2$?),
 which is similar to the Convergence problem, 
 is \cpsp-complete for DAG-SyDSs even
 when each local function is symmetric.
-(Please see Section~\ref{sec:defs} for definitions of various classes
+(Section~\ref{sec:defs} presents definitions of various classes
 of Boolean functions.)
 It was shown in \cite{OU-2017} that the Reachability
 problem is \cpsp-complete for SyDSs on directed graphs 
@@ -182,7 +195,23 @@ symmetric  local functions (Corollary \ref{cor:reachability_symmetric}).
 \smallskip
 
 \noindent
-\underline{(3) Efficient Solvability of Reachability Problem for Special}\newline
+\underline{(3) Complexity of the Convergence Guarantee Problem:}
+It was shown in \cite{Chistikov-etal-2020} that
+the Convergence Guarantee problem 
+(i.e., given a SyDS \cals{} on
+a directed graph, does \cals{} reach a fixed point from every
+initial configuration?)  
+is \cpsp-complete for SyDSs on general directed graphs.
+For DAG-SyDSs, we show that the problem is \cconp-complete,
+even when restricted to dags with at most  three levels 
+(Theorem \ref{thm:convergence_guaranee}).
+Thus, our result points out that the problem remains 
+computationally intractable even for DAG-SyDSs.
+
+\smallskip
+
+\noindent
+\underline{(4) Efficient Solvability of Reachability Problem for Special}\newline
 \underline{Classes of DAG-SyDSs:} 
 We show that the Reachability problem is efficiently solvable for
 DAG-SyDSs whose local functions are from two specific
@@ -200,29 +229,15 @@ no transient is longer than $2L-1$
 These properties
 directly imply the efficient solvability of the reachability
 problem for such DAG-SyDSs.
-It is known that the Reachability problem for SyDSs whose local
+The results in \cite{Rosenkrantz-etal-2018} readily imply
+that the Reachability problem for SyDSs whose local
 functions are NCFs and whose directed graphs which may contain cycles  
-is \cpsp-complete \cite{Rosenkrantz-etal-2018}.
+is \cpsp-complete.
 To our knowledge, the only previous result on the efficient
 solvability of the  Reachability problem for DAG-SyDSs is
 for the case when each local function is a bithreshold
 function \cite{KKM+2013}.
 
-\smallskip
-
-\noindent
-\underline{(4) Results for the Convergence Guarantee Problem:}
-We show that
-the Convergence Guarantee problem (i.e., given a SyDS \cals{} on
-a directed graph, does \cals{} reach a fixed point from every
-initial configuration?)  for DAG SyDSs is \cconp-complete,
-even when restricted to dags with  three levels 
-(Theorem \ref{thm:convergence_guaranee}).
-It was shown in \cite{Chistikov-etal-2020} that
-the Convergence Guarantee problem is \cpsp-complete
-for SyDSs on general directed graphs.
-Our result points out that a different computational intractability
-result holds for the problem even for DAG-SyDSs.
 
 \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
