@@ -1,5 +1,60 @@
-\section{ Definitions and Notation}
+\section{Definitions and Notation}
 \label{sec:defs}
+
+\noindent
+\textbf{Formal definition of a SyDS on a directed graph:}
+Let \bbb{} denote the Boolean domain \{0,1\}.
+In this paper, a \textbf{Synchronous Dynamical System} (SyDS)~
+\cals{} over \bbb{} is assumed to be specified as
+a pair ${\cals}  = (G, {\calf})$, where
+(i) $G(V,E)$, a directed graph with $|V| = n$,
+represents the underlying graph of the SyDS,
+with node set~$V$ and (directed) edge set~$E$, and
+(ii) ${\calf} = \{f_1, f_2, \ldots, f_n \}$ is a collection of
+functions in the system, with
+$f_i$ denoting the \textbf{local transition
+function} associated with node $v_i$, $1 \leq i \leq n$.
+Each node of $G$ has a state value from \bbb.
+Each function $f_i$ specifies the local interaction
+between node $v_i$ and its in-neighbors in $G$.
+The inputs to function $f_i$ are the state of $v_i$ and
+those of the in-neighbors of $v_i$ in $G$;
+function $f_i$ maps
+each combination of inputs to a value in \bbb.
+This value becomes the next state of node $v_i$.
+In a SyDS, all nodes compute and update their next state
+\emph{synchronously}.
+Other update disciplines (e.g., sequential updates)
+have also been considered in the literature (e.g., \cite{MR-2007}).
+At any time $\tau$,
+the {\bf configuration} \calc{} of a SyDS
+is the $n$-vector $(s_1^{\tau}, s_2^{\tau}, \ldots, s_n^{\tau})$,
+where $s_i^{\tau} \in \bbb$ is the state of
+node $v_i$ at time $t$ ($1 \leq i \leq n$).
+A \textbf{DAG-SyDS} is a SyDS whose underlying graph is a dag.
+
+\begin{figure}
+\begin{center}
+\input{dag_syds_example.pdf_t}
+\end{center}
+\caption{An example of a DAG-SyDS.
+The local functions at nodes $v_1$ through
+$v_6$ are Identity, Complement, Identity, AND, OR and
+XOR respectively.}
+\label{fig:ex_dag_syds}
+\end{figure}
+
+\smallskip
+
+\noindent
+\textbf{Example:}~ An example of a DAG-SyDS is shown in
+Figure~\ref{fig:ex_dag_syds}.
+In this example, the local functions at nodes $v_1$ through
+$v_6$ are Identity, Complement, Identity, AND, OR and
+XOR respectively.
+(The Identity and Complement functions have only one input;
+they return respectively the input value and the complement of
+the input value.)
 
 Given a directed graph, we say that node $u$ {\bf directly precedes} node $v$ 
 if the graph contains an edge from $u$ to $v$,
