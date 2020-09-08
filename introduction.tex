@@ -4,8 +4,96 @@
 \subsection{Motivation}
 \label{sse:motivation}
 
-\textcolor{red}{(To be revised)}
+%\textcolor{red}{(To be revised)}
 
+Discrete dynamical systems provide a formal model
+for the study of many diffusion phenomena.
+Examples of such phenomena include diffusion of social contagions
+(e.g., information, opinions, fads) and epidemics
+\cite{Adiga-etal-2019,Chistikov-etal-2020,OU-2020,MR-2007}.
+Informally, such a dynamical system\footnote{A formal definition
+is provided in Section~\ref{sec:defs}.}
+consist of an underlying (social or biological) network, with each node having a
+state value from a domain \bbb.
+In this work, we will assume that the underlying
+graph is directed and that the domain binary (i.e., \bbb{} = \{0,1\}).
+The propagation of the contagion is modeled by a collection
+of local functions, one per node.
+For any node $v$, the inputs to the local function $f_v$ at $v$
+are the current states of $v$ and those of its in-neighbors (i.e., the nodes
+from which $v$ has an incoming edges) and the output of $f_v$
+is the state of $v$ at the next time instant.
+We consider the \textbf{synchronous} update model, where all
+nodes evaluate their local functions and update their states
+\emph{in parallel}.
+For this reason, these dynamical systems are referred to
+as \textbf{synchronous dynamical systems} (SyDSs) in
+the literature (e.g., \cite{Adiga-etal-2019,Rosenkrantz-etal-2018}).
+In applications involving systems biology, such systems are also
+referred to as \textbf{synchronous Boolean networks}
+(e.g., \cite{Kauffman-etal-2003,OU-2020,Akutsu-etal-2007}).
+Throughout this paper, we will use SyDS to denote such a system.
+The local functions may be deterministic (e.g., threshold models
+used in social systems \cite{granovetter-1978}) or stochastic
+(e.g., the SIR model of disease propagation \cite{Easley-Kleinberg-2010}).
+We consider deterministic local functions throughout this paper.
+
+The \textbf{configuration} of a SyDS with $n$ nodes at at time $\tau$ is a
+vector $(s_1^{\tau}, s_2^{\tau}, \ldots, s_n^{\tau})$, where $s_i^{\tau}$
+is the state value of node $v_i$ at time $\tau$, $1 \leq i \leq n$.
+As the nodes evaluate and update their local functions, the configuration
+of the system evolves over time.
+When using SyDSs as models of social or biological phenomena, it is of interest 
+to consider whether a given system may reach certain
+(desirable or undesirable) configurations.
+For example, in the context of information propagation, where the
+state value 1 indicates that a node has received the information
+propagating through the network,
+one may be interested in configurations where many nodes are in state 1.
+On the other hand, in contexts such as disease propagation where
+the state of 1 indicates that a node has been infected,
+configurations where many nodes are in state 1 are undesirable.
+One can study such \textbf{configuration reachability} problems,
+by considering another directed graph,
+called the \textbf{phase space}, of the dynamical system \cite{MR-2007}.
+Each node in the phase space is a configuration and there is an
+edge from a node $X$ to node $Y$ if the SyDS can transition from
+the configuration represented by $X$ to that represented by
+$Y$ in one step.
+For a SyDS with $n$ nodes where the state of each node from $\{0,1\}$,
+the number of possible configurations is $2^n$; thus, the size of
+the phase space of a SyDS is \emph{exponential} in the size of
+the SyDS.
+Thus, there has been a considerable amount of research whose goal is
+to understand when such reachability problems are efficiently solvable
+and when they are computationally intractable 
+(see, e.g., \cite{Chistikov-etal-2020,OU-2020,OU-2017,Akutsu-etal-2007}).
+
+Several papers (e.g., \cite{OU-2017,Akutsu-etal-2007}) have
+presented computational intractability results for reachability 
+problems for SyDSs over directed graphs.
+Very recently, Chistikov et al. (\citeyear{Chistikov-etal-2020})
+studied two reachability problems (called Convergence and Convergence
+Guarantee\footnote{These problems will be defined shortly.}) 
+in the context of opinion propagation.
+It was shown that these problems are \cpsp-complete for general
+directed graphs.
+It was also shown that the Convergence problem can be solved
+efficiently when the underlying directed graph is \emph{acylic} (i.e.,
+it does not have any directed cycle) regardless of the local functions
+at each node.
+Following standard graph theoretic terminology, we refer to directed
+acylic graphs as \textbf{dags} \cite{CLRS-2009}.
+Many optimization problems (e.g., finding a longest simple directed path) which
+are \cnp-hard for general directed graphs are known to be efficiently
+solvable for dags \cite{GJ-1979}.
+Thus, it is of interest to study the complexity of reachability problems for
+SyDSs whose underlying graphs are dags.
+We refer to such SyDSs as DAG-SyDSs.
+Our results are summarized below.
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We consider directed SyDSs whose underlying graph is a directed
 acyclic graph (dag).  We call such a SyDS a {\bf DAG SyDS}.  For
 any class of local transition functions $\Gamma$, we call a dag
@@ -25,6 +113,8 @@ the reachability problem.  If a given class of SyDSs has a polynomial
 bound on the length of the longest phase space cycle and longest
 transient, then this bound applies to the number of transitions
 required to solve the reachability problem for this class of SyDSs.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
 %\bigskip
 
@@ -39,17 +129,17 @@ For any DAG-SyDS, we show that
 the length of every phase space cycle is a power of 2.
 If the number of levels in the underlying DAG of a given SyDS is $L$,
 then no phase space cycle is longer than $2^L$,
-and no transient is longer than $2^L-1$
+and no transient (i.e., a directed path leading to a directed
+cycle) is longer than $2^L-1$
 (Theorem \ref{thm:levels_phase_space}).
 Moreover, for each $L$, we observe that
 there is an $L$-level DAG SyDS whose phase 
 space graph is a cycle of length $2^L$
 (Proposition \ref{pro:long_phase_space_cycle}).
-We use these properties to establish some of
-the results in subsequent sections.
-As discussed in Item~(3) below, we establish more refined versions
-of these properties for DAG-SyDSs whose local functions are from
-special classes of Boolean functions.
+Such structural properties of phase spaces are useful in the context of
+reachability problems; if the maximum lengths of transients
+and cycles are bounded by polynomial functions of the size of a SyDS,
+then reachability problems can also be solved in polynomial time.
 
 \smallskip
 
