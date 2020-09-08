@@ -116,7 +116,7 @@ required to solve the reachability problem for this class of SyDSs.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
 
-%\bigskip
+\smallskip
 
 \noindent
 \textbf{Summary of Results and Their Significance:}
@@ -259,10 +259,21 @@ even when restricted to dags with two levels and maximum node degree 3
 \subsection{Related Work}
 \label{sse:related}
 
-In our earlier paper on Bi-Threshold SyDSs \cite{KKM+2013}, 
-we showed that for DAG bi-threshold SyDSs,
+\textcolor{red}{(To be revised)}
+
+\textcolor{red}{(Talk briefly about reachability and other problems
+for SyDSs on undirected graphs.)}
+
+To our knowledge, SyDSs whose underlying graphs are dags
+were first considered in \cite{KKM+2013}. 
+In that work, each local function was assumed to be
+a bi-threshold function.
+It was shown that for such DAG-SyDSs,
 every phase space cycle is of length at most two, 
-and the length of a transient is at most $2L-1$,
-with the consequence that reachability can be solved in polynomial time.
-We also showed that the predecessor existence problem is NP-complete, 
-even when all threshold values are 1, and there are only three levels in the dag.
+and that the length of a transient is at most $2L-1$.
+These properties imply that that reachability for such DAG-SyDSs
+can be solved in polynomial time.
+\textcolor{red}{(Briefly discuss the work of Oghihara et al., 
+Chistikov et al.)}
+
+
