@@ -78,6 +78,8 @@ at times $\tau =2$ and $\tau = 3$.
 \smallskip
 \noindent
 \underline{\textsf{Additional definitions regarding SyDSs:}}~
+We now provide definitions of some additional concepts
+related to SyDSs.
 
 \begin{definition}\label{def:variable_typesl}
 For the local transition function $f_v$ of a given node $v$ of a directed  SyDS,
@@ -86,8 +88,11 @@ of each incoming edge to $v$ an {\bf incoming variable} of $f_v$,
 and call the variable corresponding to $v$ the  {\bf self variable} of $f_v$.
 \end{definition}
 
-The {\bf length} of a phase space cycle is the number of edges in the cycle,
-and the {\bf length} of a phase space transient is the number of edges in the transient.
+The \textbf{phase space} of a SyDS was defined in Section~\ref{sec:intro}.
+A \textbf{transient} in phase space is a simple directed path that
+leads to a directed cycle.
+The length of a phase space cycle is the number of edges in the cycle,
+and the length of a phase space transient is the number of edges in the transient.
 
 Let \cals{} be a SyDS.
 For a given configuration \calc{} and node $v$,
@@ -159,7 +164,8 @@ $f$ is either monotone nondecreasing or monotone nonincreasing A
 {\bf monotone SyDS} is a SyDS whose local transition functions are
 all monotone.
 
-
+\smallskip
+\noindent
 \underline{\textsf{Problem Definitions:}}~ We now provide
 formal specifications of the problems considered in this paper.
 %\label{sse:prob_def}
@@ -205,12 +211,13 @@ and a configuration \calc{}.
 \underline{\textsf{Question:}}~ Starting from configuration \calc,
 does  \cals{} reach a fixed point? 
 
-We observe that similar to \textsc{Reach}, \textsc{Convergence} is
-solvable in polynomial time for any class of SyDSs for which function
+Similar to \textsc{Reach}, \textsc{Convergence} is
+solvable in polynomial time for any class of SyDSs for which local function
 evaluation can be done in polynomial time and there is a polynomial
 bound on the length of a phase space cycle and the length of a
-transient.  In such a case, the given SyDS can be simulated for the
-required number of steps.
+transient.  
+%In such a case, the given SyDS can be simulated for the
+%required number of steps.
 
 
 \smallskip
@@ -225,6 +232,5 @@ graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$.
 
 %\smallskip
 \noindent
-\underline{\textsf{Question:}}~ Does  \cals{} always reach a fixed point,
-that is, does the phase space of  \cals{} contain a cycle with more than one node? 
-
+\underline{\textsf{Question:}}~ Does \cals{} reach a fixed point from
+every initial configuration?
