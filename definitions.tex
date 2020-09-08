@@ -2,7 +2,7 @@
 \label{sec:defs}
 
 \noindent
-\textbf{Formal definition of a SyDS on a directed graph:}
+\underline{\textsf{Formal definition of a SyDS on a directed graph:}}
 Let \bbb{} denote the Boolean domain \{0,1\}.
 In this paper, a \textbf{Synchronous Dynamical System} (SyDS)~
 \cals{} over \bbb{} is assumed to be specified as
@@ -22,6 +22,8 @@ those of the in-neighbors of $v_i$ in $G$;
 function $f_i$ maps
 each combination of inputs to a value in \bbb.
 This value becomes the next state of node $v_i$.
+It is assumed that each local function can be evaluated in
+polynomial time.
 In a SyDS, all nodes compute and update their next state
 \emph{synchronously}.
 Other update disciplines (e.g., sequential updates)
@@ -55,10 +57,27 @@ XOR respectively.
 (The Identity and Complement functions have only one input;
 they return respectively the input value and the complement of
 the input value.)
+Suppose the initial configuration of the SyDS is $(1, 0, 1, 0, 0, 0)$;
+that is, at time $\tau = 0$, $v_1$ is in state 1, 
+$v_2$ is in state 0, $\ldots$, $v_6$ is in state 0.
+Recall that the inputs to the local function at a node $v$ are the current
+state of $v$ and those of its in-neighbors (if any).
+Since the local functions at $v_1$ and $v_3$ are Identity functions,
+the states of $v_1$ and $v_3$ will remain 1 in all subsequent time steps.
+Since the local function at $v_2$ is the Complement function, the state of
+$v_2$ at time $\tau = 1$ is 1.
+Using the local functions at $v_4$, $v_5$ and $v_6$, one can verify that
+their states at time $\tau = 1$ are 0, 1 and 0 respectively.
+In other words, the configuration at time $\tau = 1$ is 
+$(1, 1, 1, 0, 1, 0)$.
+Similarly, the configuration at time $\tau = 2$ is $(1, 0, 1, 0, 1, 0)$
+and that at time $\tau = 3$ is $(1, 1, 1, 0, 1, 1)$.
+After these steps, the SyDS cycles between the two configurations
+at times $\tau =2$ and $\tau = 3$.
 
 \smallskip
 \noindent
-\textbf{Additional definitions regarding SyDSs:}~
+\underline{\textsf{Additional definitions regarding SyDSs:}}~
 
 \begin{definition}\label{def:variable_typesl}
 For the local transition function $f_v$ of a given node $v$ of a directed  SyDS,
@@ -94,7 +113,7 @@ and $\calc_{t+2i+1}(v) = \overline{ \calc_t(v)}$
 
 \smallskip
 \noindent
-\textbf{Graph theoretic definitions:}~
+\underline{\textsf{Graph theoretic definitions:}}~
 Given a directed graph, we say that node $u$ {\bf directly precedes}
 node $v$ if the graph contains an edge from $u$ to $v$,
 that $u$ {\bf precedes} $v$ if the graph contains a path (possibly
@@ -117,7 +136,7 @@ and let $\call_j'$ denote the nodes whose level is at most $j$.
 
 \smallskip
 \noindent
-\textbf{Boolean function definitions :}~
+\underline{\textsf{Boolean function definitions:}}~
 \iffalse
 %%%%%%%%%%%%% We don't discuss linear functions in the paper %%%%%%
 A {\bf linear} Boolean function is one that can be expressed as a
@@ -126,37 +145,40 @@ of the xor of its variables.  A {\bf linear SyDS} is a SyDS whose
 local transition functions are all linear.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
-Most of the definitions given here can be found in \cite{Crama-Hammer-2011}. 
-Consider assignments $\alpha$ and $\beta$ to a set of Boolean variables $X$.
-We say that $\alpha \leq \beta$ if for every variable $x \in X$, $\alpha(x) \leq \beta(x)$.
-A Boolean function $f$  is {\bf monotone nondecreasing}
-if for every pair of assignments $\alpha$ and $\beta$ to its variables,
-$\alpha \leq \beta$ implies that $f(\alpha) \leq f(\beta)$,
-and is {\bf monotone nonincreasing}
-if for every pair of assignments $\alpha$ and $\beta$ to its variables,
-$\alpha \leq \beta$ implies that $f(\alpha) \geq f(\beta)$.
-We say that $f$ is {\bf monotone} if $f$ is either monotone nondecreasing or monotone nonincreasing
-A {\bf monotone SyDS} is a SyDS whose local transition functions are all monotone.
+Most of the definitions given here can be found in
+\cite{Crama-Hammer-2011}.  Consider assignments $\alpha$ and $\beta$
+to a set of Boolean variables $X$.  We say that $\alpha \leq \beta$
+if for every variable $x \in X$, $\alpha(x) \leq \beta(x)$.  A
+Boolean function $f$  is {\bf monotone nondecreasing} if for every
+pair of assignments $\alpha$ and $\beta$ to its variables, $\alpha
+\leq \beta$ implies that $f(\alpha) \leq f(\beta)$, and is {\bf
+monotone nonincreasing} if for every pair of assignments $\alpha$
+and $\beta$ to its variables, $\alpha \leq \beta$ implies that
+$f(\alpha) \geq f(\beta)$.  We say that $f$ is {\bf monotone} if
+$f$ is either monotone nondecreasing or monotone nonincreasing A
+{\bf monotone SyDS} is a SyDS whose local transition functions are
+all monotone.
 
 
-\subsection{Problem Definitions}
-\label{sse:prob_def}
+\underline{\textsf{Problem Definitions:}}~ We now provide
+formal specifications of the problems considered in this paper.
+%\label{sse:prob_def}
 
 \smallskip
 \noindent
-\textbf{Configuration Reachability} (\textsc{Reach})
+\textbf{Reachability} (\textsc{Reach})
 
 \smallskip
 \noindent
 \underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
-by an underlying
+by an underlying directed
 graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$,
 and two configurations \calc{} and \cald{}. 
 
 %\smallskip
 \noindent
 \underline{\textsf{Question:}}~ Starting from configuration \calc,
-does  \cals{} reach configuration \cald? 
+does \cals{} reach configuration \cald? 
 
 We observe that \textsc{Reach} is solvable in polynomial time for
 any class of SyDSs for which function evaluation can be done in
