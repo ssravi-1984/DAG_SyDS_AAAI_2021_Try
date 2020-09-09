@@ -238,37 +238,171 @@ the length of the transient from \calc{} is $2^L-1$.
 \section{Reachability Problem for DAG-SyDSs with Nested Canalyzing Local Functions}
 \label{asec:reach_ncf}
 
+\bigskip
+
+\subsection{Definition of Nested Canalyzing Functions}
+
+\medskip
+
+This class of Boolean functions 
+was introduced in \cite{Kauffman-etal-2003} to carry out a detailed
+analysis of the behavior of certain biological systems.
+We follow the presentation in \cite{Layne-2011} in defining NCFs.
+(For a Boolean value $b$,~ the complement is denoted by $\overline{b}$.)
+
+\begin{definition}\label{def:nested_canalyzing}
+Let $X = $ $\{x_1, x_2, \ldots, x_n\}$ denote a set of $n$  Boolean variables.
+Let $\pi$ be a permutation of $\{1, 2, \ldots, n\}$.
+A Boolean function $f(x_1, x_2, \ldots, x_n)$ over $X$ is \textbf{nested canalyzing}
+in the variable order $x_{\pi(1)}, x_{\pi(2)}, \ldots, x_{\pi(n)}$ with
+\textbf{canalyzing values} $a_1, a_2, \ldots, a_n$ and
+\textbf{canalyzed values} $b_1, b_2, \ldots, b_n$
+if $f$ can be expressed in the following form:
+
+\medskip
+\[
+f(x_1, x_2, \ldots, x_n) ~=~ 
+   \begin{cases}
+       \:b_1 & \mathrm{if~~} x_{\pi(1)} ~=~ a_1 \\
+       \:b_2 & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~}
+            x_{\pi(2)} ~=~ a_2 \\
+       \:\vdots & \vdots \\
+       \:b_n & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots~
+             x_{\pi(n-1)} ~\neq~ a_{n-1} \mathrm{~~and~~} x_{\pi(n)} ~=~ a_n \\
+       \:\overline{b_n} & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots~
+            x_{\pi(n)} ~\neq~ a_n \\
+   \end{cases}
+\]
+\end{definition}
+
+For convenience, we will use a notation introduced in \cite{Stearns-etal-2018}
+to represent NCFs.
+For $1 \leq i \leq n$, line $i$ of this representation has the form
+
+\medskip
+
+\noindent
+\hspace*{1.1in} $x_{\pi(i)}:~ a_i ~~\longrightarrow~~ b_i$
+
+\medskip
+
+\noindent
+with $x_{\pi(i)}$ being the \textbf{canalyzing variable} that is
+\textbf{tested} in line $i$,
+and $a_i$ and $b_i$ being respectively the canalyzing and
+canalyzed values in line $i$,~ $1 \leq i \leq n$.
+Each such line is called a \textbf{rule}.
+When none of the conditions ``$x_{\pi(i)} ~=~ a_i$"
+is satisfied, we have line $n+1$ with the ``Default" rule
+for which the canalyzed value is~ $\overline{b_n}$:
+
+\medskip
+
+\noindent
+\hspace*{1.1in} Default:~ $\overline{b_n}$
+
+\medskip
+\noindent
+As in \cite{Stearns-etal-2018}, we will refer to the above specification
+of an NCF as the \textbf{simplified representation} and assume
+(without loss of generality) that each NCF is specified in this manner.
+
+\medskip
+\noindent
+\textbf{Example:}~ Consider the function
+$f(x_1, x_2, x_3) ~=~ x_1 \wedge (\overline{x_2} \vee x_3)$
+used in Example~1.
+This function is nested canalyzing using the identity permutation $\pi$ on $\{1,2,3\}$
+with canalyzing values $0,0,1$ and canalyzed values $0, 1, 1$.
+A simplified representation of this function is as follows.
+
+\medskip
+
+\noindent
+\begin{tabular}{ll}
+\hspace*{1.1in} & $x_1:~$  $0 ~\longrightarrow~ 0$ \\ [1ex]
+\hspace*{1.1in} & $x_2:~$  $0 ~\longrightarrow~ 1$ \\ [1ex]
+\hspace*{1.1in} & $x_3:~$  $1 ~\longrightarrow~ 1$ \\ [1ex]
+\hspace*{1.1in} & Default:~ $0$ \\
+\end{tabular}
+
+\medskip
+
+\noindent
+We will also consider a more general form of NCFs defined in
+\cite{Stearns-etal-2018}.
+
+\begin{definition}\label{def:generalized ncf}
+A {\bf generalized NCF} is a function represented as either a constant
+or an NCF representation of a subset (not necessarily proper)
+of the function's variables.
+\end{definition}
+
+\noindent
+\textbf{Example:}~ Consider a Boolean function $f_1(x_1, x_2, x_3, x_4)$
+whose generalized NCF representation is as follows.
+
+\medskip
+
+\noindent
+\begin{tabular}{ll}
+\hspace*{1.1in} & $x_2:~$  $1 ~\longrightarrow~ 0$ \\ [1ex]
+\hspace*{1.1in} & $x_3:~$  $0 ~\longrightarrow~ 1$ \\ [1ex]
+\hspace*{1.1in} & Default:~ $1$ \\
+\end{tabular}
+
+\smallskip
+
+\noindent
+This definition indicates that that the function $f_1$
+depends only on the variables $x_2$ and $x_3$.
+
+\medskip
+
+\noindent
+\subsection{Reachability Problem for DAG-SyDSs with NCF Local Functions}
+
+\medskip
+
+We are now ready to discuss our result for the Reachability problem
+for DAG-SyDSs where each local function is a generalized NCF.
+We begin with a lemma that points out a timing property of certain nodes.
 
 \begin{lemma}\label{lem:ncf_plus_two}
-Let \cals{} be a DAG generalized-NCF SyDS.
+Let \cals{} be a DAG-SyDS where each local function is a generalized-NCF.
 For a given initial configuration,
 let $v$ be a node such that the node values of all incoming edges to $v$
 are  either stable or alternating at time $t$.
 Then  $v$ is either stable or alternating at time $t+2$.
 \end{lemma}
 
-%\medskip
+\medskip
+
 \noindent
-\textbf{Proof:}~ Let $g_v$ be the generalized-NCF obtained from $f_v$  
-by replacing those variables corresponding to incoming edges 
-whose node values are stable at time $t$,
-with these stable values,
-shortening and deleting lines from the representation of the NCF as appropriate.. 
-Note that $g_v$ determines the transitions of node $v$ for all times $t'$ such that $t' \geq t$.
+\textbf{Proof:}~ Let $g_v$ be the generalized-NCF obtained from
+$f_v$ by replacing those variables corresponding to incoming edges
+whose node values are stable at time $t$, with these stable values,
+shortening and deleting lines from the representation of the NCF
+as appropriate..  Note that $g_v$ determines the transitions of
+node $v$ for all times $t'$ such that $t' \geq t$.
 
-Let $V'$ be the set of nodes with incoming edges to $v$, such that they are alternating at time $t$.
-Let $\alpha$  be the assignment of Boolean values to $V'$ 
-where each node  is assigned its value at time $t$.
-Let $\overline{\alpha}$  be the assignment of Boolean values to $V'$ 
-where each node  is assigned the complement of its value in $\alpha$.
-Note that $\overline{\alpha}$ corresponds to the values of the nodes in $V'$ at time $t+1$.
-
+Let $V'$ be the set of nodes with incoming edges to $v$, such that
+they are alternating at time $t$.  Let $\alpha$  be the assignment
+of Boolean values to $V'$ where each node  is assigned its value
+at time $t$.  Let $\overline{\alpha}$  be the assignment of Boolean
+values to $V'$ where each node  is assigned the complement of its
+value in $\alpha$.  Note that $\overline{\alpha}$ corresponds to
+the values of the nodes in $V'$ at time $t+1$.
 
 The proof proceeds by a case analysis of $g_v$.
+
+\medskip
 
 \noindent
 \textbf{Case 1:}~ Suppose $g_v$ is a constant function.
 Then node $v$ is stable at time $t+1$.
+
+\medskip
 
 \noindent
 \textbf{Case 2:}~ Suppose $g_v$ contains at least one canalyzing variable, 
@@ -277,36 +411,42 @@ If $g_v(\overline{\alpha}) = g_v(\alpha)$, then node $v$ is stable at time $t+1$
 and if $g_v(\overline{\alpha}) \neq g_v(\alpha)$, 
 then node $v$ is alternating at time $t+1$.
 
-\noindent
-\textbf{Case 3:}~ Suppose that $v$ is a canalyzing variable of $g_v$, 
-but not is not the canalyzing variable in the first line of $g_v$.
-We say that a given assignment to the nodes in $V'$ is {\bf dominating} 
-if in the assignment, at least one of the variables occurring in a line prior to the line for $v$ in $g_v$
-is equal to its canalyzing value.
-Since assignments $\alpha$  and $\overline{\alpha}$ are complementary,
-at least one of these assignments is dominating.
-If assignment $\alpha$  is dominating, then $C_{t+1}(v)$ and $C_{t+3}(v)$ are equal,
-so $v$ is either stable or alternating at time $t+1$.
-If assignment $\overline{\alpha}$  is dominating, then $C_{t+2}(v)$ and $C_{t+4}(v)$ are equal,
-so $v$ is either stable or alternating at time $t+2$.
+\medskip
 
 \noindent
-\textbf{Case 4:}~ Suppose that the first line of $g_v$ has $v$ as the canalyzing variable.
+\textbf{Case 3:}~ Suppose that $v$ is a canalyzing variable of
+$g_v$, but not is not the canalyzing variable in the first line of
+$g_v$.  We say that a given assignment to the nodes in $V'$ is {\bf
+dominating} if in the assignment, at least one of the variables
+occurring in a line prior to the line for $v$ in $g_v$ is equal to
+its canalyzing value.  Since assignments $\alpha$  and $\overline{\alpha}$
+are complementary, at least one of these assignments is dominating.
+If assignment $\alpha$  is dominating, then $C_{t+1}(v)$ and
+$C_{t+3}(v)$ are equal, so $v$ is either stable or alternating at
+time $t+1$.  If assignment $\overline{\alpha}$  is dominating, then
+$C_{t+2}(v)$ and $C_{t+4}(v)$ are equal, so $v$ is either stable
+or alternating at time $t+2$.
+
+\noindent \textbf{Case 4:}~ Suppose that the first line of $g_v$
+has $v$ as the canalyzing variable.
 
 \begin{description}
-\item{\textsf{Case 4A:}}~ The first line of $g_v$ is the following, for some canalyzing value $a$,
+\item{\textsf{Case 4A:}}~ The first line of $g_v$ is the following, 
+for some canalyzing value $a$:
 %\medskip
 
 \noindent
 \hspace*{1.1in} $v:~ a ~~\longrightarrow~~ a$
 
+\medskip
 
-If $C_t(v)$ or $C_{t+2}(v)$ equals $a$,
-then node $v$ is stable with value $a$ at time $t+2$.
-If  $C_t(v)$  and $C_{t+2}(v)$ both equal $\overline{a}$,
-then $C_{t+1}(v)$ also equals $\overline{a}$, and $v$ is stable with value $\overline{a}$ at time $t$
+If $C_t(v)$ or $C_{t+2}(v)$ equals $a$, then node $v$ is stable
+with value $a$ at time $t+2$.  If  $C_t(v)$  and $C_{t+2}(v)$ both
+equal $\overline{a}$, then $C_{t+1}(v)$ also equals $\overline{a}$,
+and $v$ is stable with value $\overline{a}$ at time $t$.
 
-\item{\textsf{Case 4B:}}~ The first line of $g_v$ is the following, for some canalyzing value $a$,
+\item{\textsf{Case 4B:}}~ The first line of $g_v$ is the following,
+for some canalyzing value $a$:
 
 \noindent
 \hspace*{1.1in} $v:~ a ~~\longrightarrow~~ \overline{a}$
@@ -329,26 +469,38 @@ and $v$ is alternating at time $t$.
 If $C_{t+1}(v) = \overline{a}$ and $C_{t+2}(v) = a$, then node $v$ is alternating at time $t+1$.
 If $C_{t+1}(v) = \overline{a}$ and $C_{t+2}(v) =  \overline{a}$, then node $v$ is stable at time $t$.
 \end{description} % of Case4B
-
 \end{description}
-\QED
+
+This completes all the cases and the lemma follows. \QED
+
+\medskip
+
+The above lemma enables us to prove bounds on the maximum
+lengths of transients and cycles in the phase space of a DAG-SyDS
+where each local function is a generalized NCF.
+
+\medskip
 
 \begin{theorem}\label{thm:NCF_phase_space}
-For a DAG generalized-NCF \cals{},
+For a DAG-SyDS \cals{} where each local function is a generalized NCF,
 the length of every phase space cycle is at most 2.
 Moreover if the number of levels of  \cals{} is $L$,
 no transient is longer than $2L-1$.
 \end{theorem}
+
 \noindent
 \textbf{Proof:}~ 
 From Lemma \ref{lem:level_zero_nodes},
 each level 0 node is either stable or alternating at $t=1$.
 
+\medskip
 
 From Lemma \ref{lem:ncf_plus_two},
 for each subsequent level, each node at that level 
 is either stable or alternating at most two steps after
 all the nodes at lower levels have become stable or alternating.
+
+\medskip
 
 Since each node of  \cals{} eventually becomes either stable or alternating,
  the length of every phase space cycle is at most 2.
@@ -358,3 +510,17 @@ Since  \cals{} contains $L$ levels,
 any directed path leading to a fixed point or a cycle of length 2
 can contain at most $2L-1$ configurations.
 \QED
+
+\medskip
+
+Since Theorem~\ref{thm:NCF_phase_space} provides a polynomial bounds
+on the lengths of transients and cycles in the phase space of any
+DAG-SyDS whose local functions are generalized NCFs,
+the following corollary is immediate.
+
+\medskip
+
+\begin{corollary}\label{cor:poly_ncf_dag_syds}
+The Reachability problem is efficiently solvable for 
+DAG-SyDSs where each local functions is a generalized NCF.
+\end{corollary}
