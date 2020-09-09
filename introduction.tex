@@ -206,14 +206,12 @@ For any DAG-SyDS whose local functions are monotone,
 we show that every cycle is a fixed point, 
 and the length of any transient does not exceed the number of levels
 (Theorem \ref{thm:monotone_stable}).
-For a DAG-SyDS \cals{} whose local functions are NCFs, we show
-that the length of every phase space cycle is at most 2.
-Moreover, if the number of levels of  \cals{} is $L$,
-no transient is longer than $2L-1$
-(Theorem \ref{thm:NCF_phase_space}).
 These properties
 directly imply the efficient solvability of the reachability
 problem for such DAG-SyDSs.
+A similar approach allows us to show that the reachability
+problem for DAG-SyDSs whose local functions are NCFs can
+also be solved efficiently. 
 The results in \cite{Rosenkrantz-etal-2018} readily imply
 that the Reachability problem for SyDSs whose local
 functions are NCFs and whose directed graphs may contain cycles  
@@ -222,6 +220,20 @@ To our knowledge, the only previous result on the efficient
 solvability of the  Reachability problem for DAG-SyDSs is
 for the case when each local function is a bithreshold
 function \cite{KKM+2013}.
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%
+ we show
+that the length of every phase space cycle is at most 2.
+Moreover, if the number of levels of  \cals{} is $L$,
+no transient is longer than $2L-1$
+(Theorem \ref{thm:NCF_phase_space}).
+These properties
+directly imply the efficient solvability of the reachability
+problem for such DAG-SyDSs.
+%%%%%%%%%%%%%%%%%%%%
+\fi
+
 
 %\subsection{Related Work}
 %\label{sse:related}
