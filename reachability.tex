@@ -1,15 +1,35 @@
 \section{Reachability Problem for DAG-SyDSs}
 \label{sec:reachability}
 
+In this section, we show that the Reachability problem for
+DAG-SyDSs is \cpsp-complete even when each local function is symmetric.
+This involves two major steps.
+In the first step (Section~\ref{sse:hardness_six_sym}),
+we show that the \cpsp-hardness for DAG-SyDSs whose local
+functions are $r$-symmetric for a constant value of $r$.
+In the second step (Section~\ref{sse:embedding}) we show
+that the Reachability problem resulting from the first step
+can be reduced to the same problem for DAG-SyDSs where each
+local function is symmetric.
+We begin with first step.
+
+\subsection{Reachability Problem for DAG-SyDSs with $r$-Symmetric
+Local Functions}
+\label{sse:hardness_six_sym}
+
+This section establishes the following result.
+
 %\smallskip
-\begin{theorem}\label{thm:reachability-PSPACE}
+\begin{theorem}\label{thm:reach-six-sym}
 The reachability problem is \cpsp-complete for DAG-SyDSs
-where each local function is symmetric.
+where each local function is $r$-symmetric for some $r \leq 6$.
 \end{theorem}
 
 \noindent
-\textbf{Proof:}~ 
-The proof is via a reduction from Quantified Boolean Formulas (QBF).
+\textbf{Proof:}~ It is easy to see that the problem is in \cpsp. 
+The proof of \cpsp-hardness is via a reduction from 
+the Quantified Boolean Formulas (QBF) problem
+which is known to be \cpsp-complete \cite{GJ-1979}.
 Let $F$ denote the given quantified Boolean formula.
 Let $f$ denote the Boolean expression that is quantified.
 Without loss of generality, we can assume that $f$ is a 3SAT formula.
@@ -18,7 +38,8 @@ and $\{c_0, c_1, \dots , c_{m-1}\}$ be the set of clauses of $f$.
 Let $F$ be $(Q_ {n-1} x_{n-1}) \cdots (Q_1 x_1) (Q_0 x_0) f$,
 where each $Q_i$ is either $\forall$ or $\exists$.       
 
-We first give a reduction where the constructed DAG SyDS is 6-symmetric.
+We first give a reduction where the constructed DAG SyDS is 6-symmetric
+(i.e., each local function is $r$-symmetric for some $r \leq 6$.
 
 For each $i$, $0 \leq i <n$,
  we use the notation $o_i$ to denote a binary Boolean operation as follows.
@@ -116,10 +137,14 @@ $$F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1}) = (Q_ i x_i)
 \smallskip
 
 %\noindent
-Table~\ref{tab:dag_syds_trans}
-illustrates the dataflow as the constructed SyDS \cals{}  
-for $n =4$ goes through its initial sequence of transitions.
+\textbf{Note:}~
+For space reasons,
+a table that illustrates the dataflow as the constructed SyDS \cals{}  
+for $n =4$ goes through its initial sequence of transitions is shown
+in Section~\ref{asec:reach} of the supplement.
 
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\bigskip
 
 %\bigskip
@@ -159,6 +184,8 @@ $\calc_{21}$ & $F_3$ & 0 & 0 & 0 & $W(0100)$ & 1 & 1 & 0 & 1 & 0 & 1 \\ \hline
 as the DAG-SyDS \cals{} goes through the initial sequence of transitions}
 \label{tab:dag_syds_trans}
 \end{table*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
 \bigskip
 We now establish the correctness of the reduction.
@@ -335,10 +362,10 @@ $F_{j(\beta)}(\beta) =\calc_{t(\beta)}[r_{j(\beta)}]$.
 Note that $l(\beta) = 0$, $k(\beta) = 0$, $j(\beta) = n-1$,
 and $t(\beta) = (k(\beta)+1) 2^{n-l(\beta)} +n -l(\beta) = 2^n+n$. 
 Thus, $\calc_{2^n+n}(r_{n-1}) = F_{n-1}$, which is the value of the given quantified Boolean formula $F$.
-Thus $F$ is true iff $\cald$ is reachable from $\calc$.
+Thus $F$ is true iff $\cald$ is reachable from $\calc$,
+and this completes our proof of Theorem~\ref{thm:reach-six-sym}. \QED
 
-\smallskip
-
-The reduction from DAG $r$-symmetric to DAG symmetric SyDSs 
-follows from Corollary \ref{cor:reachability_symmetric}.
-\QED
+%\smallskip
+%The reduction from DAG $r$-symmetric to DAG symmetric SyDSs 
+%follows from Corollary \ref{cor:reachability_symmetric}.
+%\QED

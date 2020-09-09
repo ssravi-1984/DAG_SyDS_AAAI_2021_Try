@@ -17,6 +17,8 @@ Complexity and Algorithms
 
 \bigskip
 
+%% Section 3
+
 \noindent
 \section{Proofs of the Results in Section~\ref{sec:bounded-levels}}
 
@@ -238,6 +240,234 @@ $\calc_j(y_i)$ equals 0 if $j < 2^{i+1} -1$, and equals 1 if $j \geq 2^{i+1} -1$
 Since $y_{L-1}$ does not change from 0 to 1 until configuration $C_{2^L-1}$, 
 the length of the transient from \calc{} is $2^L-1$.
 \QED
+
+\bigskip
+
+%% Section 4.
+
+\section{Material for Section~\ref{sec:reachability}}
+\label{asec:reach}
+
+\medskip
+
+\noindent
+\textbf{Table mentioned in the Proof of Theorem~\ref{thm:reach-six-sym}:}
+
+\medskip
+
+In the proof of Theorem~\ref{thm:reach-six-sym}, we mentioned a table
+to illustrates the dataflow as the constructed SyDS \cals{}  
+for $n =4$ goes through its initial sequence of transitions.
+This is shown as Table~\ref{tab:dag_syds_trans} above.
+
+\bigskip
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{|l | c c c c c c c c c c c |} \hline
+\multicolumn{12}{|c|}{{\bf Initial Configuration Sequence of 
+Constructed SyDS for Four Variables}}\\ \hline
+
+$C_i$ &$r_3$ & $r_2$ & $r_1$ & $r_0$ & $W$ & $h$ & $y_4$ & $y_3$ & $y_2$ & $y_1$ & $y_0$ \\ \hline
+$\calc_0$ & 0 & 0 & 0 & 0 & $--0--$ & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+$\calc_1$ & 0 & 0 & 0 & 0 & $W(0000)$ & 0 & 0 & 0 & 0 & 0 & 1 \\ 
+$\calc_2$ & 0 & 0 & 0 & $f(0000)$ & $W(0001)$ & 0 & 0 & 0 & 0 & 1 & 0 \\ 
+$\calc_3$ & 0 & 0 & 0 & $F_0(000)$ & $W(0010)$ & 0 & 0 & 0 & 0 & 1 & 1 \\ 
+$\calc_4$ & 0 & 0 & $F_0(000)$ & $f(0010)$ & $W(0011)$ & 0 & 0 & 0 & 1 & 0 & 0 \\ 
+$\calc_5$ & 0 & 0 & $F_0(000)$ & $F_0(001)$ & $W(0100)$ & 0 & 0 & 0 & 1 & 0 & 1 \\ 
+$\calc_6$ & 0 & 0 & $F_1(00)$ & $f(0100)$ & $W(0101)$ & 0 & 0 & 0 & 1 & 1 & 0 \\ 
+$\calc_7$ & 0 & $F_1(00)$ &$F_1(00)$ & $F_0(010)$ & $W(0110)$ & 0 & 0 & 0 & 1 & 1 & 1 \\ 
+$\calc_8$ & 0 & $F_1(00)$ & $F_0(010)$ & $f(0110)$ & $W(0111)$ & 0 & 0 & 1 & 0 & 0 & 0 \\ 
+$\calc_9$ & 0 & $F_1(00)$ & $F_0(010)$ & $F_0(011)$ & $W(1000)$ & 0 & 0 & 1 & 0 & 0 & 1 \\ 
+$\calc_{10}$ & 0 & $F_1(00)$ & $F_1(01)$ & $f(1000)$ & $W(1001)$ & 0 & 0 & 1 & 0 & 1 & 0 \\ 
+$\calc_{11}$ & 0 & $F_2(0)$ & $F_1(01)$ & $F_0(100)$ & $W(1010)$ & 0 & 0 & 1 & 0 & 1 & 1 \\ 
+$\calc_{12}$ & $F_2(0)$& $F_2(0)$ & $F_0(100)$ & $f(1010)$ & $W(1011)$ & 0 & 0 & 1 & 1 & 0 & 0 \\ 
+$\calc_{13}$ & $F_2(0)$& $F_2(0)$ & $F_0(100)$ & $F_0(101)$ & $W(1100)$ & 0 & 0 & 1 & 1 & 0 & 1 \\ 
+$\calc_{14}$ & $F_2(0)$ & $F_2(0)$ & $F_1(10)$ & $f(1100)$ & $W(1101)$ & 0 & 0 & 1 & 1 & 1 & 0 \\ 
+$\calc_{15}$ & $F_2(0)$ & $F_1(10)$ & $F_1(10)$ & $F_0(110)$ & $W(1110)$ & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+$\calc_{16}$ & $F_2(0)$ & $F_1(10)$ & $F_0(110)$ & $f(1110)$ & $W(1111)$ & 0 & 1 & 0 & 0 & 0 & 0 \\ 
+$\calc_{17}$ & $F_2(0)$ & $F_1(10)$ & $F_0(110)$ & $F_0(111)$ & $W(0000)$ & 0 & 1 & 0 & 0 & 0 & 1 \\ 
+$\calc_{18}$ & $F_2(0)$ & $F_1(10)$ & $F_1(11)$ & $f(0000)$ & $W(0001)$ & 0 & 1 & 0 & 0 & 1 & 0 \\ 
+$\calc_{19}$ & $F_2(0)$ & $F_2(1)$ & $F_1(11)$ & $F_0(000)$ & $W(0010)$ & 0 & 1 & 0 & 0 & 1 & 1 \\ 
+$\calc_{20}$ & $F_3$ & $F_2(1)$ & $F_1(11)$ & $f(0010)$ & $W(0011)$ & 1 & 1 & 0 & 1 & 0 & 0 \\ 
+$\calc_{21}$ & $F_3$ & 0 & 0 & 0 & $W(0100)$ & 1 & 1 & 0 & 1 & 0 & 1 \\ \hline
+\end{tabular}
+\end{center}
+\caption{Table illustrating the data flow for $n = 4$ 
+as the DAG-SyDS \cals{} goes through the initial sequence of transitions}
+\label{tab:dag_syds_trans}
+\end{table*}
+
+\medskip
+
+\noindent
+\textbf{Statement and Proof of Theorem~\ref{thm:r_symmetric_directed}:}
+
+\medskip
+
+\noindent
+\underline{Statement Theorem~\ref{thm:r_symmetric_directed}:}
+For a fixed value of $r$, there is a polynomial time algorithm that
+given a directed $r$-symmetric SyDSs $\cals = (G(V,E), \calf)$,
+constructs a directed symmetric SyDSs $\cals' = (G'(V',E'), \calf')$
+and an embedding $h$ of $\cals$ into $\cals'$.  Moreover, if  $G$
+is acyclic, then so is $G'$.  
+
+\medskip
+
+\noindent
+\textbf{Proof:}~ 
+For a given node $v \in V$, 
+suppose that local transition function $f_v$ contains $m^v$ classes.
+Note that $1 \leq m^v \leq r$.
+Let $\nu_0^v, \nu_1^v, \ldots ,\nu_{m^v-1}^v$ be these classes,
+where $\nu_0^v$ is the class that contains self variable $v$.
+
+We assume that function $f_v$  is represented 
+as a $m^v$-dimensional table,
+accompanied by a list of which nodes are in each class.
+This table gives the value of $f_v$ for each tuple
+of the form $j_0,  j_1, \ldots , j_{m^v -1}$,
+where for each $i$, $0 \leq j_i \leq |\nu_i^v|$.
+
+We construct $\cals'$ as follows.
+Let $\Delta$ be the cardinality of the largest class in $\calf$.
+Let $q =  \Delta + 1$.
+
+Node set $V'$ and function $h$ are constructed as follows.
+For each node $v \in V$,
+node set $V'$ contains $q^{r-1}$ nodes, each of which is mapped into $v$ by $h$.
+
+ Edge set $E'$ is constructed as follows.
+For a given node $v' \in V'$,
+suppose that $h(v') = v$.
+Consider an incoming edge $(u,v) \in E$.
+Suppose that $u \in \nu_i^v$.
+Then $q^i$ nodes in $h^{-1}(u)$ are selected,
+and an incoming edge to $v'$ from each of these nodes is added to $E'$.
+Note that $v$  lies in class  $\nu_0^v$,
+so no incoming edges are added from nodes in $h^{-1}(v) - \{v'\}$.
+Thus, if $G$ is a DAG, then so is $G'$.
+
+The set of symmetric local transition functions $\calf'$ is constructed as follows.
+Consider a given node $v' \in V'$. Let $v = h(v')$.
+Let $c_v = \sum_{i=0}^{m^v-1} q^i \, |\nu_i^v|$.
+Note that the number of incoming edges into $v'$ is 
+$c_v -1$.
+Thus, the table specifying symmetric function $f_{v'}$
+has an entry for each value $j$ such that $0 \leq j \leq c_v$.
+Consider the entry for a given $j$.
+For each $i$ such that $0 \leq i < m_v$,
+we compute values $k_i$ and $j_i$ as follows.
+We set $k_0 =j$, and then for $1 \leq i < m_v$,
+set $k_i = \lfloor k_{i-1}/q \rfloor$.
+Then, for $0 \leq i < m_v$, set $j_i = k_i \mod q$.
+If each $j_i$ satisfies the requirement that $j_i \leq | \nu_i^v |$,
+we let $\hat{j}$ be the $m^v$-tuple $j_0,  j_1, \ldots , j_{m^v -1}$,
+and set the table entry for $j$ in $f_{v'}$ equal to the entry for $\hat{j}$ 
+ in the table for $f_v$.
+Otherwise we set the table entry for $i$ in $f_{v'}$ equal to an arbitrary value.
+Note that all nodes $v'$ such that $h(v')=v$ have the same table.
+
+Since $r$ is fixed, the above construction can be done in polynomial time.
+
+We now argue that $h$ is indeed an embedding of $\cals$ into $\cals'$.
+Consider a given configuration $\calc$ of $\cals$.
+Let $\cald$  be the configuration such that $\calc \longrightarrow \cald$.
+Let $\calc' =\hat{h}(\calc)$, 
+and let $\cald$  be the configuration such that $\calc' \longrightarrow \cald'$.
+
+Consider a given node $v' \in V'$.
+Suppose that $h(v') = v$.
+Suppose that for $0 \leq i < m^v$,
+class $\nu_i^v$ contains $j_i$ generalized neighbors of $v$ that are 1 in $\calc$.
+Then $\cald(v) = f_v(j_0,  j_1, \ldots , j_{m^v -1})$.
+Consider a given class $\nu_i^v$ of $f_v$.
+Let $u$ be a generalized neighbor of $v$ such that $ u \in \nu_i^v$.
+Then node $v'$ has $q^i$ generalized neighbors $u'$ such that $h(u') = u$.
+Since $\calc' =\hat{h}(\calc)$, for each of these $q^i$ nodes $u'$,
+$\calc'(u') = \calc(u)$.
+Since the number of generalized neighbors of $v$ from class $\nu_i^v$ 
+with value 1 in $\calc$ is $j_i$,
+the number of generalized neighbors of $v'$ 
+that map into members of $\nu_i^v$ under $h$ and have value 1 in $\calc'$ is $q^i j_i$.
+Considering all the classes of $f_v$,
+the number of generalized neighbors of $v'$ that have value 1 in $\calc'$ is 
+$j = \sum_{i=0}^{m^v-1} q^i \, j_i$.
+But, by the construction of $\cals'$,
+$f_{v'}(j) = f_v(j_0,  j_1, \ldots , j_{m^v -1})$.
+Thus, $\cald'(v') = \cald(v)$.
+
+Since the above applies to every node $v' \in V'$,  $\cald' =\hat{h}(\cald)$.
+Thus, $h$ is an embedding of $\cals$ into $\cals'$.
+\QED
+
+\bigskip
+
+%% Section 5.
+
+\section{Proof of a Result in Section~\ref{sec:conv_guarantee}}
+
+\medskip
+
+\noindent
+\textbf{Statement and Proof of Theorem~\ref{thm:convergence_guaranee}:}
+
+\medskip
+
+\noindent
+\underline{Statement of Theorem~\ref{thm:convergence_guaranee}:}
+The convergence guarantee problem for DAG SyDSs is co-NP-complete,
+even when restricted to dags with three levels and 3-symmetric functions.
+
+\medskip
+
+\noindent
+\textbf{Proof:}~ The problem is in \cconp{} since when the answer to the
+convergence guarantee is ``NO", one can guess a specific initial configuration,
+run the DAG SyDS for a number of steps equal to the number of levels, and
+thus demonstrate efficiently that the system has not reached a fixed point.
+To prove \cnp-hardness, we use a reduction from 3SAT.
+
+Given an instance of 3SAT,
+the constructed DAG-SyDS $\cals$ has a level zero node for each variable, 
+a level one node for each clause, and a single node at level two.
+We denote these three sets of nodes as $\{x_1, x_2, \ldots , x_n\}$,
+$\{c_1,c_2, \ldots , c_m\}$, and $\{y\}$, respectively.
+
+There is a directed edge from a  level zero node for a given variable
+to each of  the nodes for the clauses involving that variable.
+There is a directed edge from each level one node to node $y$.  The
+local transition function for each level zero node is the identity
+function.  The local transition function for each level one node
+is the function that equals 1
+if the value of at least one of the incoming edges
+makes the clause true.  (This transition function is 3-symmetric
+because at least two of the literals are positive or negative.) The
+local transition function for $y$ is the function 
+$\bar{y} \, \wedge \, c_1 c_2 \cdots  c_{m}$.
+
+Note that for every initial configuration, the level zero nodes are
+all stable at time 0, and the level one nodes are all stable at
+time 1.
+
+\smallskip
+
+Suppose the given 3SAT instance is satisfiable.
+Then any initial configuration of $\cals$ where the level zero nodes 
+have values corresponding to a satisfying assignment
+results in node $y$ being alternating at time 1.
+Suppose the given 3SAT problem instance is unsatisfiable.
+Then for every initial configuration, node $y$ is stable with value 0 at time 2.
+
+\smallskip
+
+Thus, $\cals$ reaches a fixed point from every initial configuration, 
+i.e.,  convergence is guaranteed for $\cals$,
+iff the given 3SAT problem instance is unsatisfiable.
+The theorem follows.  \QED
+
+
 
 \section{Proofs of Results in Section~\ref{sec:reach_special}}
 

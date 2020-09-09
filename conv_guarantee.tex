@@ -5,9 +5,9 @@ As mentioned earlier, \cite{Chistikov-etal-2020}
 showed that the convergence
 guarantee problem is \cpsp-complete for 
 SyDSs on general directed graphs.
-However, they did not address the convergence guarantee problem
-for DAG SyDSs.
-In this section, we show that this problem 
+%However, they did not address the convergence guarantee problem
+%for DAG SyDSs.
+Here, we show that this problem 
 remains computationally intractable even for
 DAG SyDSs. 
 
@@ -17,11 +17,20 @@ even when restricted to dags with three levels and 3-symmetric functions.
 \end{theorem}
 
 \noindent
-\textbf{Proof:}~ The problem is in \cconp{} since when the answer to the
+\textbf{Proof (idea):}~ The reduction is from 3SAT \cite{GJ-1979}.
+The details are in the supplement.
+
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+\textbf{Proof (sketch):}~ The problem is in \cconp{} since when the answer to the
 convergence guarantee is ``NO", one can guess a specific initial configuration,
 run the DAG SyDS for a number of steps equal to the number of levels, and
 thus demonstrate efficiently that the system has not reached a fixed point.
 To prove \cnp-hardness, we use a reduction from 3SAT.
+The details are included in the supplement. \QED
+
 % similar to that used in the proof of Theorem \ref{thm:fixed_point}.
 Given an instance of 3SAT,
 the constructed DAG-SyDS $\cals$ has a level zero node for each variable, 
@@ -59,3 +68,5 @@ i.e.,  convergence is guaranteed for $\cals$,
 iff the given 3SAT problem instance is unsatisfiable.
 The theorem follows.
 \QED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
