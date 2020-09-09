@@ -56,8 +56,7 @@ Here, the local functions at nodes $v_1$ through
 $v_6$ are Identity, Complement, Identity, AND, OR and
 XOR respectively.
 (The Identity and Complement functions have only one input;
-they return respectively the input value and the complement of
-the input value.)
+they return respectively the input value and its complement.) 
 Suppose the initial configuration of the SyDS is $(1, 0, 1, 0, 0, 0)$;
 that is, at time $\tau = 0$, $v_1$ is in state 1, 
 $v_2$ is in state 0, $\ldots$, $v_6$ is in state 0.
@@ -95,7 +94,7 @@ A \textbf{transient} in phase space is a simple directed path $P$ whose
 last node is part of a directed cycle which does not 
 contain any other node of $P$.
 The length of a phase space cycle is the number of edges in the cycle,
-and the length of a phase space transient is the number of edges in the transient.
+and the length of a transient is the number of edges in the transient.
 
 Let \cals{} be a SyDS.
 For a given configuration \calc{} and node $v$,
@@ -166,8 +165,9 @@ pair of assignments $\alpha$ and $\beta$ to its variables, $\alpha
 monotone nonincreasing} if for every pair of assignments $\alpha$
 and $\beta$ to its variables, $\alpha \leq \beta$ implies that
 $f(\alpha) \geq f(\beta)$.  We say that $f$ is {\bf monotone} if
-$f$ is either monotone nondecreasing or monotone nonincreasing A
-{\bf monotone SyDS} is a SyDS whose local transition functions are
+$f$ is either monotone nondecreasing or monotone nonincreasing. 
+Common examples of monotone functions are OR and AND.
+A {\bf monotone SyDS} is a SyDS whose local transition functions are
 all monotone.
 
 A \textbf{symmetric} Boolean function is one whose
@@ -200,7 +200,7 @@ functions is $r'$-symmetric for some $r' \leq r$.
 %functions, namely  \textbf{nested canalyzing functions} (NCFs).
 For space reasons, the definition of nested canalyzing
 functions (NCFs) and our results for DAG-SyDSs
-with NSF local functions appear in the supplement
+with NCF local functions appear in the supplement
 (Section~\ref{asec:reach_ncf}).
 
 \smallskip
