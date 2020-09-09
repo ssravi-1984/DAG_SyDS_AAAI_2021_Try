@@ -6,9 +6,9 @@ In this section, we present some properties of the
 phase spaces of DAG-SyDSs.
 These properties are independent of the local functions
 at the nodes of the DAG-SyDS.
-More refined versions of these properties when local
-functions are from special classes of Boolean functions
-are established in Section~\ref{sec:reachability}. 
+%More refined versions of these properties when local
+%functions are from special classes of Boolean functions
+%are established in Section~\ref{sec:reachability}. 
 For space reasons, proofs of several results 
 in this section appear in the supplement.
 
@@ -17,13 +17,13 @@ of DAG-SyDSs may contain exponentially large cycles.
 
 \smallskip
 \begin{proposition}\label{pro:long_phase_space_cycle}
-For every $n  > 1$, there is an $n$ node DAG SyDS 
+For any $n  > 1$, there is an $n$ node DAG-SyDS 
 whose phase space graph is a cycle of length $2^n$.
 \end{proposition}
 
 \noindent
 \textbf{Proof:}~ 
-For a given $n > 1$ we construct the DAG SyDS $S_n$ to be a counter, as follows.
+For a given $n > 1$ we construct the DAG-SyDS $S_n$ to be a counter, as follows.
 The underlying graph contains $n$ levels, one node per level. 
 For each node, there is an incoming edge from the nodes on each of the lower levels.
 The transition function for each node is the function 
@@ -34,6 +34,8 @@ Suppose a given configuration of $S_n$ is interpreted as encoding
 an integer $k$, $0 \leq k < 2^n$.  Then the successor configuration
 encodes the integer $k + 1 \mod 2^n$.  Thus, the phase space of
 $S_n$ is a cycle of length $2^n$.  \QED
+
+\smallskip
 
 For any SyDS, any infinitely long phase space path consists of a
 transient (possibly of length 0), followed by an infinite number
@@ -47,7 +49,7 @@ We begin with a lemma whose proof appears in the supplement.
 \smallskip
 
 \begin{lemma}\label{lem:all_inputs_stable}
-For a given DAG SyDS, and a given initial configuration, suppose
+For a given DAG-SyDS, and a given initial configuration, suppose
 that the node values of all incoming edges to a given node $v$ are
 stable at time $t$.  Then node $v$ is either alternating at time
 $t$, or stable at time $t+1$.
@@ -73,7 +75,7 @@ between complementary values.  \QED
 \fi
 
 \begin{lemma}\label{lem:level_zero_nodes}
-For a DAG SyDS, every level 0 node is either 
+For a DAG-SyDS, every level 0 node is either 
 alternating at time 0 or stable at time 1.
 \end{lemma}
 \noindent
@@ -86,7 +88,7 @@ of Proposition~1 in \cite{Chistikov-etal-2020}.
 
 
 \begin{proposition}\label{pro:transient_fixed_point}
-For a DAG SyDS,
+For a DAG-SyDS,
 the length of a transient leading to a fixed point does not 
 exceed the number of levels of the SyDS.
 \end{proposition}
@@ -123,10 +125,10 @@ so  $\calc_L$ is the fixed point reached from $\calc$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{corollary}\label{cor:convergence}
-For a DAG SyDS, the convergence problem can be solved in polynomial time.
+For a DAG-SyDS, the convergence problem can be solved in polynomial time.
 \end{corollary}
 \noindent
-\textbf{Proof:}~ Given a DAG SyDS $\calc$ with $L$ and configuration $\calc$,
+\textbf{Proof:}~ Given a DAG-SyDS $\calc$ with $L$ and configuration $\calc$,
 from Theorem \ref{thm:transient_fixed_point},
 if $\calc$ converges, i.e., leads to a fixed point,
 it does so after at most $L$ transitions.
@@ -134,7 +136,7 @@ In polynomial time, we can find $\calc_L$, and see if it is a fixed point.
 \QED
 
 \begin{theorem}\label{thm:convergence_guaranee}
-The convergence guarantee problem for DAG SyDSs is co-NP-complete,
+The convergence guarantee problem for DAG-SyDSs is co-NP-complete,
 even when restricted to dags with  three levels and 3-symmetric functions.
 \end{theorem}
 \noindent
@@ -178,7 +180,7 @@ We can now state our result on the lengths of cycles and
 transients in DAG-SyDSs.
 
 \begin{theorem}\label{thm:levels_phase_space}
-For a DAG SyDS,
+For a DAG-SyDS,
 the length of every phase space cycle is a power of 2.
 Moreover if the number of levels of a given acyclic SyDS is $L$,
 then no phase space cycle is longer than $2^L$,
@@ -186,8 +188,8 @@ and no transient is longer than $2^L-1$.
 \end{theorem}
 
 \noindent
-\textbf{Proof:}~ The proof, which is by induction on the number of levels,
-is given in the supplement.
+\textbf{Proof (idea):}~ We use induction on the number of levels.
+The details appear in the supplement.
 
 \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,8 +201,8 @@ either all phase cycles are of length 1 or all are of length 2.
 Also, no transient is of length greater than 1.
 
 {\bf Induction Step}: Suppose that the result holds for a given value of $L$,
-and consider a DAG SyDS \cals{} with $L+1$ levels (numbered as levels 0 through $L$).
-Let $\cals_L$ be the DAG SyDS with $L$ levels obtained 
+and consider a DAG-SyDS \cals{} with $L+1$ levels (numbered as levels 0 through $L$).
+Let $\cals_L$ be the DAG-SyDS with $L$ levels obtained 
 by deleting $\call_L$ (the nodes in level $L$) from \cals{}.
 Let \calc{} be a given configuration of \cals{}.
 
@@ -258,8 +260,7 @@ We now present a result that presents matching
 lower bounds on cycle and transient lengths.  
 
 \begin{theorem}\label{thm:path_length_lower_bounds}
-For every $L  \geq 1$,
-there is a a DAG SyDS with $L$ levels
+For every $L  \geq 1$, there is a DAG-SyDS with $L$ levels
 whose phase space contains a transient of length $2^L-1$,
 leading to a cycle of length $2^L$.
 \end{theorem}
@@ -269,7 +270,7 @@ leading to a cycle of length $2^L$.
 
 \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We show this by constructing a DAG SyDS that
+We show this by constructing a DAG-SyDS that
 incorporates the counter from Proposition \ref{pro:long_phase_space_cycle}
 to produce a long cycle, and repeated applications of Case 3 from
 the proof of Theorem \ref{thm:levels_phase_space} to produce a long
