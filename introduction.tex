@@ -162,8 +162,13 @@ the Reachability problem for DAG-SyDSs.
 Our proof of this result involves two major steps.
 The first step uses a reduction from the \textbf{Quantified Boolean Formulas}
 (QBF) problem \cite{GJ-1979} to show that the Reachability problem for DAG-SyDSs is
-\cpsp-complete even when each local function is $r$-symmetric for 
-some constant $r$ (Theorem~\ref{thm:reachability-PSPACE}).
+\cpsp-complete even when each local function is $r$-symmetric
+\footnote{The definition of $r$-symmetric functions is given in
+Section~\ref{sec:defs}. Symmetric Boolean functions
+are 1-symmetric. As will be explained in Section~\ref{sec:defs},
+the local functions used in \cite{Chistikov-etal-2020} are
+2-symmetric.}
+for some constant $r$ (Theorem~\ref{thm:reachability-PSPACE}).
 For the second step,
 we define the concept of an \textbf{embedding} of one SyDS into another,
 and use this concept to show that
