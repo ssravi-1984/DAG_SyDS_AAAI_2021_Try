@@ -2,16 +2,14 @@
 \label{sec:conv_guarantee}
 
 As mentioned earlier, \cite{Chistikov-etal-2020}
-showed that the convergence problem and the convergence
-guarantee problem are \cpsp-complete for SyDSs on general directed
-graphs.
-They also showed that the convergence problem is efficiently
-solvable for DAG SyDSs.
+showed that the convergence
+guarantee problem is \cpsp-complete for 
+SyDSs on general directed graphs.
 However, they did not address the convergence guarantee problem
 for DAG SyDSs.
 In this section, we show that this problem 
 remains computationally intractable even for
-DAG SyDSs with three levels.
+DAG SyDSs. 
 
 \begin{theorem}\label{thm:convergence_guaranee}
 The convergence guarantee problem for DAG SyDSs is co-NP-complete,
@@ -48,7 +46,7 @@ all stable at time 0, and the level one nodes are all stable at
 time 1.
 
 %\smallskip
-Suppose the given 3SAT problem instance is satisfiable.
+Suppose the given 3SAT instance is satisfiable.
 Then any initial configuration of $\cals$ where the level zero nodes 
 have values corresponding to a satisfying assignment
 results in node $y$ being alternating at time 1.
