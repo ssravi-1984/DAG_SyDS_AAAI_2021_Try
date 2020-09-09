@@ -262,3 +262,11 @@ graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$.
 \noindent
 \underline{\textsf{Question:}}~ Does \cals{} reach a fixed point from
 every initial configuration?
+
+The formulation of the Convergence Guarantee problem used 
+in \cite{Chistikov-etal-2020} considers the negation of the above
+question (i.e., is there a configuration \calc{} from which
+the SyDS does not reach a fixed point?).
+However, since the complexity class \cpsp{} is closed under
+complement \cite{Papadimitriou-1993}, there is no difference in
+the complexity of the two versions of the problem.

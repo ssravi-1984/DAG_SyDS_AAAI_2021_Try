@@ -218,61 +218,42 @@ solvability of the  Reachability problem for DAG-SyDSs is
 for the case when each local function is a bithreshold
 function \cite{KKM+2013}.
 
-
-\iffalse
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item \textbf{Results for Garden of Eden, Fixed Point and Predecessor Existence
-Problems:}
-
-\begin{description}
-\item{(a)} We define the concept of a local transition function being {\bf balanced},
-and relate this concept to the Garden of Eden problem for DAG SyDSs.
-
-\item{(b)} For fixed $r$, the GE existence problem for DAG SyDSs
-whose local transition functions are specified as $r$-symmetric tables
-can be solved in polynomial time
-(Theorem \ref{thm:GardenEden-r_symmetric}).
-
-\item{(c)} The GE existence problem for DAG SyDSs
-whose local transition functions are specified as Boolean formulas
-is NP-complete,
-even when restricted to DAGs with two levels
-(Theorem \ref{thm:GardenEden-NP}).
-
-\item{(d)} The problem of determining whether a given DAG SyDS 
-has a fixed point is NP-complete,
-even when restricted to dags with two levels and maximum node degree 3
-(Theorem \ref{thm:fixed_point}).
-
-\item{(e)} The predecessor existence problem for DAG SyDSs  is NP-complete,
-even when restricted to dags with two levels and maximum node degree 3
-(Theorem \ref{thm:predecessor_existence}).
-\end{description}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fi
-
 %\subsection{Related Work}
 %\label{sse:related}
 
 \smallskip
 
 \noindent
-\textbf{Related Work:}~
-\textcolor{red}{(To be revised)}
+\textbf{Related Work:}~ Reachability problems for various
+models of discrete dynamical systems have been widely studied
+in the AI literature.
+For example, Orponen 
+(\citeyear{Orponen-1993} and \citeyear{Orponen-1994}) presented
+complexity results for  reachability problems for Hopfield neural nets.
+Problems related to the diffusion of opinions and other contagions have
+also been studied under various discrete dynamical systems
+models (see e.g., \cite{Auletta-etal-2018,Botan-etal-2019,Chistikov-etal-2020}
+and the references contained therein).
 
-\textcolor{red}{(Talk briefly about reachability and other problems
-for SyDSs on undirected graphs.)}
-
+Motivated by dynamical system models for large-scale simulations,
+Barrett et al. (\citeyear{BH+06}) studied the reachability problem
+for discrete dynamical systems where the underlying graph is 
+undirected and the update model is sequential (i.e., nodes compute 
+and update their state values in a specified order). 
+Synchronous dynamical systems where the underlying graphs
+are directed serve as useful models for biological
+phenomena \cite{Kauffman-etal-2003}.
+Many researchers have studied reachability and related 
+problems for such dynamical systems (see e.g., 
+\cite{OU-2020,OU-2017,Akutsu-etal-2007} and
+the references cited therein).
 To our knowledge, SyDSs whose underlying graphs are dags
 were first considered in \cite{KKM+2013}. 
 In that work, each local function was assumed to be
-a bi-threshold function.
-It was shown that for such DAG-SyDSs,
-every phase space cycle is of length at most two, 
-and that the length of a transient is at most $2L-1$.
-These properties imply that that reachability for such DAG-SyDSs
-can be solved in polynomial time.
-\textcolor{red}{(Briefly discuss the work of Oghihara et al., 
-Chistikov et al.)}
-
+a bi-threshold function (i.e., each node has two threshold
+values to control the $0 ~\rightarrow~  1$ and $1 \rightarrow 0$
+transitions).
+By establishing bounds on the lengths of cycles and transients,
+they showed that the reachability problem can be efficiently
+solved for such DAG-SyDSs.
 
