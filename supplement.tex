@@ -235,12 +235,54 @@ Since $y_{L-1}$ does not change from 0 to 1 until configuration $C_{2^L-1}$,
 the length of the transient from \calc{} is $2^L-1$.
 \QED
 
-\section{Reachability Problem for DAG-SyDSs with Nested Canalyzing Local Functions}
+\section{Proofs of Results in Section~\ref{sec:reach_special}}
+
+\medskip
+
+\noindent
+\textbf{Statement and Proof of Theorem~\ref{thm:monotone_stable}:}
+
+\medskip
+
+\noindent
+\underline{Statement of Theorem~\ref{thm:monotone_stable}:}~
+For a DAG monotone SyDS, every cycle is a fixed point, 
+and the length of any transient does not exceed the number of levels.
+
+\medskip
+
+\noindent
+\textbf{Proof:}~ 
+By induction on the number of levels for each level $i$, 
+each level $i$ node is stable after at most $i$ steps.
+
+From Lemma \ref{lem:level_zero_nodes}, every level 0 node is either
+stable or alternating  at time 1.  The complement function is not
+monotone, so a  level 0 node is cannot be alternating, and thus is
+stable at time 1.
+
+Suppose that all the incoming edges to a given node $v$ have stable
+values at time $t$.  From Lemma \ref{lem:all_inputs_stable}, node
+$v$ is either stable or alternating  at time $t+1$.  Since the local
+transition function for node $v$ is monotone, and all the incoming
+edges have stable values at time $t$, node $v$ is stable at time
+$t+1$. \QED
+
+We note that that for every $L \geq 0$, there exists a DAG
+monotone SyDS with a transient of length $L$.  Consider the SyDS
+whose underlying graph is a directed chain of $L$ nodes.  The local
+transition function of the level 0 node is the constant 1, and of
+every other node is the {\em or} of its value and the value from
+the incoming edge.  The configuration of all zeros takes $L$ steps
+to reach the fixed point of all ones.
+
+
+\subsection{Reachability Problem for DAG-SyDSs with Nested Canalyzing Local Functions}
 \label{asec:reach_ncf}
 
 \bigskip
 
-\subsection{Definition of Nested Canalyzing Functions}
+\subsubsection{Definition of Nested Canalyzing Functions}
 
 \medskip
 
@@ -360,7 +402,7 @@ depends only on the variables $x_2$ and $x_3$.
 \medskip
 
 \noindent
-\subsection{Reachability Problem for DAG-SyDSs with NCF Local Functions}
+\subsubsection{Reachability Problem for DAG-SyDSs with NCF Local Functions}
 
 \medskip
 
