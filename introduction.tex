@@ -10,7 +10,7 @@
 
 \textbf{Background and Motivation:}~
 Discrete dynamical systems provide a formal model
-for the study of many diffusion phenomena.
+for the study of diffusion phenomena in networks.
 Examples of such phenomena include diffusion of social contagions
 (e.g., information, opinions, fads) and epidemics
 \cite{Adiga-etal-2019,Chistikov-etal-2020,OU-2020,MR-2007}.
@@ -29,7 +29,7 @@ is the state of $v$ at the next time instant.
 We consider the \textbf{synchronous} update model, where all
 nodes evaluate their local functions and update their states
 \emph{in parallel}.
-For this reason, these dynamical systems are referred to
+These dynamical systems are referred to
 as \textbf{synchronous dynamical systems} (SyDSs) in
 the literature (e.g., \cite{Adiga-etal-2019,Rosenkrantz-etal-2018}).
 In applications involving systems biology, such systems are also
@@ -47,8 +47,8 @@ is the state value of node $v_i$ at time $\tau$, $1 \leq i \leq n$.
 As the nodes evaluate and update their local functions, the configuration
 of the system evolves over time.
 If a SyDS transitions from a configuration \calc{} to a configuration \calcp{}
-in one time step, we say that \calcp{} is the \textbf{successor} of \calc{} and that
-\calc{} is a \textbf{predecessor} of \calcp.
+in one time step, we say that \calcp{} is the \textbf{successor} of \calc. 
+%and that \calc{} is a \textbf{predecessor} of \calcp.
 A configuration \calc{} which is its own successor is called a
 \textbf{fixed point}.
 Thus, once a SyDS reaches a fixed point, no further state changes
@@ -82,7 +82,7 @@ There has been a considerable amount of research whose goal is
 to understand when such reachability problems are solvable
 in time that is polynomial in the size of the description of SyDS 
 and when they are computationally intractable 
-(see, e.g., \cite{Chistikov-etal-2020,OU-2020,OU-2017,Akutsu-etal-2007}
+(see, e.g., \cite{Chistikov-etal-2020,BH+06,OU-2020,OU-2017,Akutsu-etal-2007}
 and the references cited therein).
 
 Several papers (e.g., \cite{OU-2017,Akutsu-etal-2007}) have
@@ -128,11 +128,12 @@ Moreover, for each $L$, we observe that
 there is an $L$-level DAG SyDS whose phase 
 space graph is a cycle of length $2^L$
 (Proposition \ref{pro:long_phase_space_cycle}).
-Such structural properties of phase spaces are useful in the context of
+As discussed in Item~(4) below,
+such structural properties of phase spaces are useful in solving 
 reachability problems; if the maximum lengths of transients
 and cycles are bounded by polynomial functions of the size of a given SyDS,
-then reachability problems for that SyDS can be solved in polynomial time
-by running the SyDS for a polynomial number of steps.
+then reachability problems for that SyDS can be solved efficiently
+(by running the SyDS for a polynomial number of steps).
 
 \smallskip
 
@@ -157,13 +158,13 @@ of Boolean functions.)
 %It was shown in \cite{OU-2017} that the Reachability
 %problem is \cpsp-complete for SyDSs on directed graphs 
 %which may contain cycles.
-To our knowledge, no complexity result is currently known for
+To our knowledge, no hardness result is currently known for
 the Reachability problem for DAG-SyDSs.
 Our proof of this result involves two major steps.
-The first step uses a reduction from the \textbf{Quantified Boolean Formulas}
+The first step uses a reduction from the Quantified Boolean Formulas
 (QBF) problem \cite{GJ-1979} to show that the Reachability problem for DAG-SyDSs is
-\cpsp-complete even when each local function is $r$-symmetric
-\footnote{The definition of $r$-symmetric functions is given in
+\cpsp-complete even when each local function is 
+$r$-symmetric\footnote{The definition of $r$-symmetric functions is given in
 Section~\ref{sec:defs}. Symmetric Boolean functions
 are 1-symmetric. As will be explained in Section~\ref{sec:defs},
 the local functions used in \cite{Chistikov-etal-2020} are
@@ -176,7 +177,7 @@ for any fixed value of $r$,
 the reachability problem for DAG-SyDSs with $r$-symmetric local functions 
 is polynomial-time reducible to the Reachability problem for DAG-SyDSs with
 symmetric  local functions (Theorem \ref{thm:reachability_symmetric}).
-The \cpsp-hardness of the Reachability problem for DAG-SyDSs with 
+The \cpsp-completeness of the Reachability problem for DAG-SyDSs with 
 symmetric local function (Theorem~\ref{thm:dag_syds_sym_hard})
 follows directly from Theorems~\ref{thm:reach-six-sym} and 
 \ref{thm:reachability_symmetric}.
@@ -184,16 +185,17 @@ follows directly from Theorems~\ref{thm:reach-six-sym} and
 \smallskip
 The difference between the complexities of Convergence
 and Reachability problems for DAG-SyDSs is due to the following.
-For any DAG-SyDS, with $L$ levels, regardless of the local functions,
+For any DAG-SyDS with $L$ levels, regardless of the local functions,
 the length of any transient leading to a fixed point is bounded
 by $L$. (This is a slight restatement of Proposition~1 
 in \cite{Chistikov-etal-2020}.)
 Thus, the Convergence problem for DAG-SyDSs is efficiently solvable.
 On the other hand, we show that one can construct DAG-SyDSs with specific local
-functions such that the length of transient and that of 
+functions such that the length of a transient and that of 
 the cycle the transient leads to are both exponential in $L$
-(see Theorem~\ref{thm:path_length_lower_bounds}).
-This idea enables us to establish \cpsp-hardness result for
+(Theorem~\ref{thm:path_length_lower_bounds}).
+The idea behind this construction enables us 
+to establish \cpsp-hardness result for
 the reachability problem for DAG-SyDSs.
 
 \smallskip
@@ -264,12 +266,13 @@ problem for such DAG-SyDSs.
 \textbf{Related Work:}~ Reachability problems for various
 models of discrete dynamical systems have been widely studied
 in the AI literature.
-For example, Orponen 
-(\citeyear{Orponen-1993} and \citeyear{Orponen-1994}) presented
-complexity results for  reachability problems for Hopfield neural nets.
+For example, complexity results for reachability and related problems 
+for Hopfield neural nets were studied in 
+\cite{FO-1989, Orponen-1993,Orponen-1994}. 
 Problems related to the diffusion of opinions and other contagions have
 also been studied under various discrete dynamical systems
-models (see e.g., \cite{Auletta-etal-2018,Botan-etal-2019,Chistikov-etal-2020}
+models (see e.g., 
+\cite{Auletta-etal-2018,Botan-etal-2019,Chistikov-etal-2020,BE-2017}
 and the references contained therein).
 
 Motivated by dynamical system models for large-scale simulations,
@@ -277,8 +280,8 @@ Barrett et al. (\citeyear{BH+06}) studied the reachability problem
 for discrete dynamical systems where the underlying graph is 
 undirected and the update model is sequential (i.e., nodes compute 
 and update their state values in a specified order). 
-Synchronous dynamical systems where the underlying graphs
-are directed serve as useful models for biological
+Synchronous dynamical systems over 
+directed graphs serve as useful models for biological
 phenomena \cite{Kauffman-etal-2003}.
 Many researchers have studied reachability and related 
 problems for such dynamical systems (see e.g., 
@@ -288,7 +291,7 @@ The results in \cite{Rosenkrantz-etal-2018} readily imply
 that the Reachability problem for SyDSs whose local
 functions are NCFs and whose directed graphs may contain cycles
 is \cpsp-complete.
-To our knowledge, reachability problem for DAG-SyDSs 
+To our knowledge, the reachability problem for DAG-SyDSs 
 was first considered in \cite{KKM+2013}. 
 They showed that when each local function is 
 a bi-threshold function (i.e., each node has two threshold
