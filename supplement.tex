@@ -58,6 +58,7 @@ $S_n$ is a cycle of length $2^n$.  \QED
 
 \medskip
 
+\noindent
 \underline{Statement of Lemma~\ref{lem:all_inputs_stable}:}~
 For a given DAG SyDS, and a given initial configuration, suppose
 that the node values of all incoming edges to a given node $v$ are
@@ -88,12 +89,15 @@ between complementary values.  \QED
 
 \medskip
 
+\noindent
 \underline{Statement of Theorem~\ref{thm:levels_phase_space}:}~
 For a DAG SyDS,
 the length of every phase space cycle is a power of 2.
 Moreover if the number of levels of a given acyclic SyDS is $L$,
 then no phase space cycle is longer than $2^L$,
 and no transient is longer than $2^L-1$.
+
+\medskip
 
 \noindent
 \textbf{Proof:}~ We use induction on the number of levels.
@@ -268,6 +272,8 @@ transition function for node $v$ is monotone, and all the incoming
 edges have stable values at time $t$, node $v$ is stable at time
 $t+1$. \QED
 
+\medskip
+
 We note that that for every $L \geq 0$, there exists a DAG
 monotone SyDS with a transient of length $L$.  Consider the SyDS
 whose underlying graph is a directed chain of $L$ nodes.  The local
@@ -280,7 +286,7 @@ to reach the fixed point of all ones.
 \subsection{Reachability Problem for DAG-SyDSs with Nested Canalyzing Local Functions}
 \label{asec:reach_ncf}
 
-\bigskip
+\medskip
 
 \subsubsection{Definition of Nested Canalyzing Functions}
 

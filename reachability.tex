@@ -102,16 +102,23 @@ If $h =0$ and  the $n$ incoming edges from $Y$ encode the integer $n-1$,
 then operation $o_0$ applied to $r_{n-1}$ and $r_{n-2}$.
 Otherwise, $r_{n-1}$.
 
-Note that SyDS \cals{} is 6-symmetric; 
-the local transition functions for nodes $r_i$ , $1 \leq i \leq n-1$, contain 6 symmetry classes.
+Note that SyDS \cals{} is 6-symmetric; the local transition functions
+for nodes $r_i$ , $1 \leq i \leq n-1$, contain 6 symmetry classes.
 
 For $0 \leq i < n$, we let $F_i$ be a Boolean function of $n-i-1$ variables, 
-as follows.
+as follows:
+
+\smallskip
+\noindent
 $$F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1}) = (Q_ i x_i) 
 \cdots (Q_1 x_1) (Q_0 x_0) f(X)$$
+
+\smallskip
+
+%\noindent
 Table~\ref{tab:dag_syds_trans}
-illustrates the dataflow as the constructed SyDS \cals{}  for $n =4$ goes through
-its initial sequence of transitions.
+illustrates the dataflow as the constructed SyDS \cals{}  
+for $n =4$ goes through its initial sequence of transitions.
 
 %\bigskip
 
@@ -154,7 +161,7 @@ as the DAG-SyDS \cals{} goes through the initial sequence of transitions}
 \end{table*}
 
 \bigskip
-We now consider the correctness of the reduction.
+We now establish the correctness of the reduction.
 
 Let $\beta$ be a tuple, possibly empty, of Boolean values. 
 Let  $l(\beta)$ denote the degree of $\beta$,
@@ -201,13 +208,25 @@ Consider any $\beta$ such that $j(\beta) = 0$.
 Then $l(\beta) = n-1$, $t(\beta) = 2k(\beta) + 3$,
 and the variables in $\beta$ are $(x_{n-1}, x_{n-2}, \ldots , x_1)$.
 By definition,
+
+\smallskip
+
 $$F_0(x_{n-1}, x_{n-2}, \ldots, x_1) 
 = (Q_0 x_0) \, f(x_{n-1}, x_{n-2}, \ldots , x_1, x_0).$$
-Thus,\\
+
+\smallskip
+
+\noindent
+Thus,\\ \smallskip
+
 $F_0(x_{n-1}, x_{n-2}, \ldots , x_1) ~=~$ \\
 \hspace*{0.1in}
 $f(x_{n-1}, x_{n-2}, \ldots , x_1, 0) \; o_0 \; 
 f(x_{n-1}, x_{n-2}, \ldots , x_1, 1).$ \\
+
+\smallskip
+
+\noindent
 Let $\gamma^0 = (x_{n-1}, x_{n-2}, \ldots , x_1, 0)$ and\\
 $\gamma^1 = (x_{n-1}, x_{n-2}, \ldots , x_1, 1)$.
 Then, $F_0(\beta) =  
@@ -320,5 +339,6 @@ Thus $F$ is true iff $\cald$ is reachable from $\calc$.
 
 \smallskip
 
-The reduction from DAG $r$-symmetric to DAG symmetric SyDSs follows from Corollary \ref{cor:reachability_symmetric}.
+The reduction from DAG $r$-symmetric to DAG symmetric SyDSs 
+follows from Corollary \ref{cor:reachability_symmetric}.
 \QED
