@@ -1,17 +1,18 @@
 \section{Reachability Problem for DAG-SyDSs}
 \label{sec:reachability}
 
-In this section, we show that the Reachability problem for
-DAG-SyDSs is \cpsp-complete even when each local function is symmetric.
-This involves two major steps.
+Here, we establish the complexity
+of the Reachability problem for
+DAG-SyDSs with symmetric local functions. 
+Our proof uses two major steps.
 In the first step (Section~\ref{sse:hardness_six_sym}),
 we show that the \cpsp-hardness for DAG-SyDSs whose local
 functions are $r$-symmetric for a constant value of $r$.
-In the second step (Section~\ref{sse:embedding}) we show
+In the second step (Section~\ref{sse:embedding}), we show
 that the Reachability problem resulting from the first step
 can be reduced to the same problem for DAG-SyDSs where each
 local function is symmetric.
-We begin with first step.
+We begin with the first step.
 
 \subsection{Reachability Problem for DAG-SyDSs with $r$-Symmetric
 Local Functions}
@@ -39,7 +40,7 @@ Let $F$ be $(Q_ {n-1} x_{n-1}) \cdots (Q_1 x_1) (Q_0 x_0) f$,
 where each $Q_i$ is either $\forall$ or $\exists$.       
 
 We first give a reduction where the constructed DAG SyDS is 6-symmetric
-(i.e., each local function is $r$-symmetric for some $r \leq 6$.
+(i.e., each local function is $r$-symmetric for some $r \leq 6$).
 
 For each $i$, $0 \leq i <n$,
  we use the notation $o_i$ to denote a binary Boolean operation as follows.
@@ -136,7 +137,7 @@ $$F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1}) = (Q_ i x_i)
 
 \smallskip
 
-%\noindent
+\noindent
 \textbf{Note:}~
 For space reasons,
 a table that illustrates the dataflow as the constructed SyDS \cals{}  
@@ -187,14 +188,16 @@ as the DAG-SyDS \cals{} goes through the initial sequence of transitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
 
-\bigskip
+\medskip
 We now establish the correctness of the reduction.
+
+\smallskip
 
 Let $\beta$ be a tuple, possibly empty, of Boolean values. 
 Let  $l(\beta)$ denote the degree of $\beta$,
 i.e. the number of variables in $\beta$.
 Let  $k(\beta)$ denote the integer encoded by $\beta$.
-(If  $\beta$ is empty, then $k(\beta) = 0$.
+(If  $\beta$ is empty, then $k(\beta) = 0$.)
 For $\beta$ such that $l(\beta) < n$, 
 let $j(\beta) = n - l(\beta) -1$,
 and let $t(\beta) = (k(\beta)+1) 2^{n-l(\beta)} +n -l(\beta)$. 
@@ -321,8 +324,8 @@ $\calc_{t(\gamma^1)+1}[r_{j'+1}] =
  \calc_{t(\gamma^1)}[r_{j'+1}]  \; o_{j'+1} \; \calc_{t(\gamma^1)}[r_{j'}] 
 = F_{j'}(\gamma^0)  \; o_{j'+1} \; F_{j'}(\gamma^1) = F_{j'+1}(\beta)$.
 However, note that $t(\beta) = (k(\beta) + 1)2^{j'+2}+j'+2 =  t(\gamma^1)+1$.
-Thus, $F_{j'+1}(\beta) = \calc_{t(\beta)}[r_{j'+1}]$.
-This completes the proof of the claim.
+Thus, $F_{j'+1}(\beta) = \calc_{t(\beta)}[r_{j'+1}]$, and
+the claim follows. 
 
 \smallskip
 

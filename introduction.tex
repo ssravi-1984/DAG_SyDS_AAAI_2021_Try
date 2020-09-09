@@ -168,14 +168,18 @@ Section~\ref{sec:defs}. Symmetric Boolean functions
 are 1-symmetric. As will be explained in Section~\ref{sec:defs},
 the local functions used in \cite{Chistikov-etal-2020} are
 2-symmetric.}
-for some constant $r$ (Theorem~\ref{thm:reachability-PSPACE}).
+for some constant $r$ (Theorem~\ref{thm:reach-six-sym}).
 For the second step,
 we define the concept of an \textbf{embedding} of one SyDS into another,
 and use this concept to show that
 for any fixed value of $r$, 
 the reachability problem for DAG-SyDSs with $r$-symmetric local functions 
 is polynomial-time reducible to the Reachability problem for DAG-SyDSs with
-symmetric  local functions (Corollary \ref{cor:reachability_symmetric}).
+symmetric  local functions (Theorem \ref{thm:reachability_symmetric}).
+The \cpsp-hardness of the Reachability problem for DAG-SyDSs with 
+symmetric local function (Theorem~\ref{thm:dag_syds_sym_hard})
+follows directly from Theorems~\ref{thm:reach-six-sym} and 
+\ref{thm:reachability_symmetric}.
 
 \smallskip
 

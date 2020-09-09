@@ -1,5 +1,5 @@
 \subsection{Reducing the Number of Symmetry Classes}
-\label{sse:r_symmetric}
+\label{sse:embedding}
 
 In this section, we show how the reachability problem for
 $r$-symmetric SyDSs can be reduced to the same problem for
@@ -21,7 +21,8 @@ letting $\cald$  be the configuration such that $\calc \longrightarrow \cald$ in
 $\hat{h}(\calc) \longrightarrow \hat{h}(\cald)$ in $\cals'$.
 \end{definition}
 
-The following lemma provides a property of an embedding.
+\noindent
+The next lemma shows a property of an embedding.
 
 \begin{lemma}\label{lem:embedding_reachability}
  Given SyDSs $\cals$ and $\cals'$, and an embedding $h$ from $\cals$ into  $\cals'$,
@@ -150,14 +151,23 @@ Thus, $h$ is an embedding of $\cals$ into $\cals'$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
 
-\begin{corollary}\label{cor:reachability_symmetric}
-For a fixed value of $r$, the reachability problem for directed $r$-symmetric  SyDSs 
-is polynomial-time reducible to the reachability problem for directed symmetric SyDSs,
-and  the reachability problem for DAG $r$-symmetric  SyDSs 
-is polynomial-time reducible to the reachability problem for DAG  symmetric  SyDSs.
-\end{corollary}
-\noindent
-\textbf{Proof:}~ 
-From Lemma \ref{lem:embedding_reachability} and Theorem  \ref{thm:r_symmetric_directed}.
-\QED
+\begin{theorem}\label{thm:reachability_symmetric}
+For a fixed value of $r$, the reachability problem for directed
+$r$-symmetric  SyDSs is polynomial-time reducible to the reachability
+problem for directed symmetric SyDSs, and  the reachability problem
+for DAG $r$-symmetric  SyDSs is polynomial-time reducible to the
+reachability problem for DAG  symmetric  SyDSs.  
+\end{theorem}
+
+\noindent 
+\textbf{Proof:}~ From Lemma~\ref{lem:embedding_reachability}
+and Theorem~\ref{thm:r_symmetric_directed}.  \QED
+
+Theorems~\ref{thm:reach-six-sym} and \ref{thm:reach-six-sym}
+together imply the following result.
+
+\begin{theorem}\label{thm:dag_syds_sym_hard}
+The Reachability problem for DAG-SyDs where each local function is
+symmetric is \cpsp-complete. \QED
+\end{theorem}
 
