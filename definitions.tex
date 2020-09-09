@@ -175,15 +175,22 @@ value does not depend on the order in
 which the input bits are specified;
 that is, the function value depends only on how many
 of its inputs are 1.
-%For example, the XOR function is symmetric since the 
-%value of the function is determined by the parity of the number 
-%of 1's in the input.
+For example, the XOR function is symmetric since the 
+value of the function is determined by the parity of the number 
+of 1's in the input.
 
 A Boolean function $f$ is \textbf{$r$-symmetric}
 if the inputs to $f$ can be partitioned into at most $r$ classes
 such that the value of $f$ depends only on how many of the
 inputs in each of the $r$ classes are 1.
 Note that symmetric functions defined above are 1-symmetric.
+For each node $v$, the local (majority-like) function 
+used in \cite{Chistikov-etal-2020}
+to study opinion diffusion can be seen to be 2-symmetric:
+one class contains just the node $v$ and the other class
+contains all the in-neighbors of $v$.
+The value of the function is determined by the number
+of 1's in these two classes.
 
 A SyDS is $r$-symmetric
 if each of its local transition
