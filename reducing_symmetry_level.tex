@@ -2,8 +2,8 @@
 \label{sse:embedding}
 
 In this section, we show how the reachability problem for
-$r$-symmetric SyDSs can be reduced to the same problem for
-symmetric SyDSs.
+$r$-symmetric SyDSs (for any fixed $r$)
+can be reduced to the same problem for symmetric SyDSs.
 In particular, this reduction ensures that when we start
 with a DAG-SyDS, the reduction also produces a DAG-SyDS.
 Our approach uses the idea of embedding, which is defined below.
@@ -46,8 +46,9 @@ A {\bf generalized neighbor} of a given node $v$ in a directed graph is a node t
 is either the source node of an incoming edge to $v$, or the node $v$  itself.
 \end{definition}
 
-We can now state the main result of this subsection.
-For space reasons, its proof appears in the supplement.
+We can now state a result which shows that a suitable embedding
+can be constructed efficiently.
+%For space reasons, its proof appears in the supplement.
 
 \begin{theorem}\label{thm:r_symmetric_directed}
 For a fixed value of $r$, there is a polynomial time algorithm that
@@ -151,6 +152,10 @@ Thus, $h$ is an embedding of $\cals$ into $\cals'$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
 
+\smallskip
+
+The following is the main result of Section~\ref{sse:embedding}.
+
 \begin{theorem}\label{thm:reachability_symmetric}
 For a fixed value of $r$, the reachability problem for directed
 $r$-symmetric  SyDSs is polynomial-time reducible to the reachability
@@ -163,8 +168,11 @@ reachability problem for DAG  symmetric  SyDSs.
 \textbf{Proof:}~ From Lemma~\ref{lem:embedding_reachability}
 and Theorem~\ref{thm:r_symmetric_directed}.  \QED
 
+\smallskip
+
 Theorems~\ref{thm:reach-six-sym} and \ref{thm:reach-six-sym}
-together imply the following result.
+together imply the following main result
+of Section~\ref{sec:reachability}.
 
 \begin{theorem}\label{thm:dag_syds_sym_hard}
 The Reachability problem for DAG-SyDS with symmetric local functions is

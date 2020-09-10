@@ -33,19 +33,20 @@ the Quantified Boolean Formulas (QBF) problem
 which is known to be \cpsp-complete \cite{GJ-1979}.
 Let $F$ denote the given quantified Boolean formula.
 Let $f$ denote the Boolean expression that is quantified.
-Without loss of generality, we can assume that $f$ is a 3SAT formula.
+Without loss of generality, we can assume that $f$ 
+is a 3SAT formula \cite{GJ-1979}.
 Let $X = \{x_0, x_1, \dots , x_{n-1}\}$ be the set of variables of $f$,
 and $\{c_0, c_1, \dots , c_{m-1}\}$ be the set of clauses of $f$.
 Let $F$ be $(Q_ {n-1} x_{n-1}) \cdots (Q_1 x_1) (Q_0 x_0) f$,
 where each $Q_i$ is either $\forall$ or $\exists$.       
 
-We first give a reduction where the constructed DAG SyDS is 6-symmetric
+We give a reduction where the constructed DAG-SyDS is 6-symmetric
 (i.e., each local function is $r$-symmetric for some $r \leq 6$).
 
 For each $i$, $0 \leq i <n$,
  we use the notation $o_i$ to denote a binary Boolean operation as follows.
- If $Q_i$ is $\forall$, then $o_i$ is {\em AND};
- if $Q_i$ is $\exists$, then $o_i$ is {\em OR}.
+ If $Q_i$ is $\forall$, then $o_i$ is {\em and};
+ if $Q_i$ is $\exists$, then $o_i$ is {\em or}.
 
 For the reduction, we construct a reachability problem instance whose SyDS \cals{} 
 has an underlying graph with $2n+m+2$ nodes, on $2n+2$ layers. 
@@ -57,7 +58,7 @@ $W = \{w_0, w_1, \dots , w_{m-1}\}$ be a set of $m$ nodes,
  and $h$ be an extra node.
  
 The initial configuration \calc{} for the constructed problem instance
- has all nodes equal to 0.
+ has the states of all nodes equal to 0.
 
 The goal configuration \cald{} for the constructed problem instance 
 has $h =1$, $r_{n-1} = 1$,  each  $r_i= 0$ for $0 \leq i  < n-1$, 
@@ -66,7 +67,8 @@ and each $w_j$ equal to 1 iff the corresponding clause $c_j$ contains a positive
 
 Node set $Y$ will function as a cyclical counter,
 with incoming edges and local transition functions similar to those for
-the $n$ nodes in the construction of Proposition \ref{pro:long_phase_space_cycle}.
+the $n$ nodes in the construction presented in our
+proof of Proposition \ref{pro:long_phase_space_cycle}.
 For each $i$, $0 \leq i < n$,
 node $y_i$ will correspond to the variable $x_i$ in $f$.
 
@@ -135,7 +137,7 @@ as follows:
 $$F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1}) = (Q_ i x_i) 
 \cdots (Q_1 x_1) (Q_0 x_0) f(X)$$
 
-\smallskip
+\smallskip\smallskip
 
 \noindent
 \textbf{Note:}~
@@ -188,14 +190,15 @@ as the DAG-SyDS \cals{} goes through the initial sequence of transitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
 
-\medskip
+\smallskip
+
 We now establish the correctness of the reduction.
 
 \smallskip
 
 Let $\beta$ be a tuple, possibly empty, of Boolean values. 
 Let  $l(\beta)$ denote the degree of $\beta$,
-i.e. the number of variables in $\beta$.
+i.e., the number of variables in $\beta$.
 Let  $k(\beta)$ denote the integer encoded by $\beta$.
 (If  $\beta$ is empty, then $k(\beta) = 0$.)
 For $\beta$ such that $l(\beta) < n$, 
@@ -226,9 +229,13 @@ $k(\beta) 2^{n-l(\beta)}$ through $(k(\beta)+1) 2^{n-l(\beta)}-1$.
 
 \smallskip
 \noindent
-{\bf Claim:} We claim that for all $j'$, $0 \leq j' < n$,
+{\bf Claim 1:} For all $j'$, $0 \leq j' < n$,
 for all $\beta$ such that $j(\beta) = j'$,
 $F_{j(\beta)}(\beta) =\calc_{t(\beta)}[r_{j(\beta)}]$.
+
+\smallskip
+
+\noindent
 We prove the claim by induction on $j'$.
 
 \smallskip
@@ -325,7 +332,7 @@ $\calc_{t(\gamma^1)+1}[r_{j'+1}] =
 = F_{j'}(\gamma^0)  \; o_{j'+1} \; F_{j'}(\gamma^1) = F_{j'+1}(\beta)$.
 However, note that $t(\beta) = (k(\beta) + 1)2^{j'+2}+j'+2 =  t(\gamma^1)+1$.
 Thus, $F_{j'+1}(\beta) = \calc_{t(\beta)}[r_{j'+1}]$, and
-the claim follows. 
+Claim~1 follows. 
 
 \smallskip
 
