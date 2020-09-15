@@ -32,14 +32,14 @@ Complexity and Algorithms
 \medskip
 
 \underline{Statement of Proposition~\ref{pro:long_phase_space_cycle}:}~
-For every $n  > 1$, there is an $n$ node DAG SyDS
+For every $n  > 1$, there is an $n$ node DAG-SyDS
 whose phase space graph is a cycle of length $2^n$.
 
 \medskip
 
 \noindent
 \textbf{Proof:}~
-For a given $n > 1$ we construct the DAG SyDS $S_n$ to be a counter,
+For a given $n > 1$ we construct the DAG-SyDS $S_n$ to be a counter,
 as follows.  The underlying graph contains $n$ levels, one node per
 level.  For each node, there is an incoming edge from the nodes on
 each of the lower levels.  The transition function for each node
@@ -62,7 +62,7 @@ $S_n$ is a cycle of length $2^n$.  \QED
 
 \noindent
 \underline{Statement of Lemma~\ref{lem:all_inputs_stable}:}~
-For a given DAG SyDS, and a given initial configuration, suppose
+For a given DAG-SyDS, and a given initial configuration, suppose
 that the node values of all incoming edges to a given node $v$ are
 stable at time $t$.  Then node $v$ is either alternating at time
 $t$, or stable at time $t+1$.
@@ -93,9 +93,9 @@ between complementary values.  \QED
 
 \noindent
 \underline{Statement of Theorem~\ref{thm:levels_phase_space}:}~
-For a DAG SyDS,
+For a DAG-SyDS,
 the length of every phase space cycle is a power of 2.
-Moreover if the number of levels of a given acyclic SyDS is $L$,
+Moreover, if the number of levels of a given acyclic SyDS is $L$,
 then no phase space cycle is longer than $2^L$,
 and no transient is longer than $2^L-1$.
 
@@ -117,8 +117,8 @@ Also, no transient is of length greater than 1.
 
 \noindent
 {\bf Induction Step}: Suppose that the result holds for a given value of $L$,
-and consider a DAG SyDS \cals{} with $L+1$ levels (numbered as levels 0 through $L$).
-Let $\cals_L$ be the DAG SyDS with $L$ levels obtained 
+and consider a DAG-SyDS \cals{} with $L+1$ levels (numbered as levels 0 through $L$).
+Let $\cals_L$ be the DAG-SyDS with $L$ levels obtained 
 by deleting $\call_L$ (the nodes in level $L$) from \cals{}.
 Let \calc{} be a given configuration of \cals{}.
 
@@ -204,7 +204,7 @@ leading to a cycle of length $2^L$.
 
 \noindent
 \textbf{Proof:}~ 
-We show this by constructing a DAG SyDS that
+We show this by constructing a DAG-SyDS that
 incorporates the counter from Proposition \ref{pro:long_phase_space_cycle}
 to produce a long cycle, and repeated applications of Case 3 from
 the proof of Theorem \ref{thm:levels_phase_space} to produce a long
@@ -419,7 +419,7 @@ Thus, $h$ is an embedding of $\cals$ into $\cals'$.
 
 \noindent
 \underline{Statement of Theorem~\ref{thm:convergence_guaranee}:}
-The convergence guarantee problem for DAG SyDSs is co-NP-complete,
+The convergence guarantee problem for DAG-SyDSs is co-NP-complete,
 even when restricted to dags with three levels and 3-symmetric functions.
 
 \medskip
@@ -427,7 +427,7 @@ even when restricted to dags with three levels and 3-symmetric functions.
 \noindent
 \textbf{Proof:}~ The problem is in \cconp{} since when the answer to the
 convergence guarantee is ``NO", one can guess a specific initial configuration,
-run the DAG SyDS for a number of steps equal to the number of levels, and
+run the DAG-SyDS for a number of steps equal to the number of levels, and
 thus demonstrate efficiently that the system has not reached a fixed point.
 To prove \cnp-hardness, we use a reduction from 3SAT.
 
