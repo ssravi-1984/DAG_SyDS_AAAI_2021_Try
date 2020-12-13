@@ -179,10 +179,20 @@ For example, the XOR function is symmetric since the
 value of the function is determined by the parity of the number 
 of 1's in the input.
 
-Symmetric SyDSs
-can be thought of as anonymous pure strategy
-games with two strategies.  In this sense, the convergence
-problem relates to the problem Nash equilibria in such games and
+In symmetric Boolean functions, we don't know whether a specific
+input is 0 or 1; we only know the number of 1s in the input.
+A similar situation arises in anonymous symmetric pure strategy
+graphical games where each player's strategy is one of 0 and 1.
+A player $X$ doesn't know whether a specific neighbor chose 0 or 1; 
+$X$ knows how many neighbors chose 1.
+Convergence in SyDSs corresponds to reaching
+a fixed point where everyone is satisfied with the outcome. 
+This is similar to a Nash equilibrium in the game theoretic setting.
+%Symmetric SyDSs
+%can be thought of as anonymous pure strategy
+%games with two strategies.  
+In this sense, the convergence
+problem relates to the problem of Nash equilibria in such games and
 reachability is useful in understanding whether players can achieve
 certain equilibria (see e.g.,
 ~\cite{blonski1999anonymous,daskalakis2007computing,daskalakis2015approximate,jackson2010social}).
