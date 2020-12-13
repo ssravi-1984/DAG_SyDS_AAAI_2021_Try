@@ -1,0 +1,31 @@
+\section{Results for Monotone DAG-SyDSs}
+\label{sec:monotone_functions}
+
+The class of monotone Boolean functions were defined in
+Section~\ref{sec:defs}.
+A monotone DAG-SyDS is a DAG-SyDS in which every local
+function is monotone.
+In this section, we show that the reachability problem
+for monotone DAG-SyDSs can be solved efficiently.
+This result is based on the following theorem. 
+
+\begin{theorem}\label{thm:monotone_stable}
+For a DAG monotone SyDS, every phase space cycle is a fixed point, 
+and the length of any transient does not exceed the number of levels.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ See \cite{Rosenkrantz-etal-2020}.
+
+\smallskip
+
+%Theorem~\ref{thm:monotone_stable} provides polynomial bounds
+%on the lengths of transients and cycles in the phase space of any
+%monotone DAG-SyDS. 
+The following is a direct corollary of
+Theorem~\ref{thm:monotone_stable}. 
+
+\begin{corollary}\label{cor:poly_monotone_dag_syds}
+The Reachability problem is efficiently solvable for monotone
+DAG-SyDSs.
+\end{corollary}

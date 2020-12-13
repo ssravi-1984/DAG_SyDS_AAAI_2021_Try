@@ -1,0 +1,25 @@
+\begin{picture}(0,0)%
+\includegraphics{dag_syds_example.pdf}%
+\end{picture}%
+\setlength{\unitlength}{1776sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(5280,3451)(2611,-4445)
+\put(5026,-1261){\makebox(0,0)[lb]{\smash{{\SetFigFont{9}{10.8}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_2$}%
+}}}}
+\put(5101,-4336){\makebox(0,0)[lb]{\smash{{\SetFigFont{9}{10.8}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_6$}%
+}}}}
+\put(6601,-3136){\makebox(0,0)[lb]{\smash{{\SetFigFont{9}{10.8}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_5$}%
+}}}}
+\put(3901,-3136){\makebox(0,0)[lb]{\smash{{\SetFigFont{9}{10.8}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_4$}%
+}}}}
+\put(2626,-1261){\makebox(0,0)[lb]{\smash{{\SetFigFont{9}{10.8}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_1$}%
+}}}}
+\put(7426,-1261){\makebox(0,0)[lb]{\smash{{\SetFigFont{9}{10.8}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_3$}%
+}}}}
+\end{picture}%

@@ -1,0 +1,331 @@
+\section{Reachability Problem for DAG-SyDSs}
+\label{sec:reachability}
+
+Here, we establish the complexity
+of the Reachability problem for
+DAG-SyDSs with symmetric local functions. 
+Our proof uses two major steps.
+In the first step (Section~\ref{sse:hardness_six_sym}),
+we show that the \cpsp-hardness for DAG-SyDSs whose local
+functions are $r$-symmetric for a constant value of $r$.
+In the second step (Section~\ref{sse:embedding}), we show
+that the Reachability problem resulting from the first step
+can be reduced to the same problem for DAG-SyDSs where each
+local function is symmetric.
+We begin with the first step.
+
+\subsection{Reachability Problem for DAG-SyDSs with $r$-Symmetric
+Local Functions}
+\label{sse:hardness_six_sym}
+
+This section establishes the following result.
+
+%\smallskip
+\begin{theorem}\label{thm:reach-six-sym}
+The reachability problem is \cpsp-complete for DAG-SyDSs
+where each local function is $r$-symmetric for some $r \leq 6$.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ It is easy to see that the problem is in \cpsp. 
+The proof of \cpsp-hardness is via a reduction from 
+the Quantified Boolean Formulas (QBF) problem
+which is known to be \cpsp-complete \cite{GJ-1979}.
+Let $F$ denote the given quantified Boolean formula.
+Let $f$ denote the Boolean expression that is quantified.
+Without loss of generality, we can assume that $f$ 
+is a 3SAT formula \cite{GJ-1979}.
+Let $X = \{x_0, x_1, \dots , x_{n-1}\}$ be the set of variables of $f$,
+and $\{c_0, c_1, \dots , c_{m-1}\}$ be the set of clauses of $f$.
+Let $F$ be $(Q_ {n-1} x_{n-1}) \cdots (Q_1 x_1) (Q_0 x_0) f$,
+where each $Q_i$ is either $\forall$ or $\exists$.       
+
+We give a reduction where the constructed DAG-SyDS is 6-symmetric
+(i.e., each local function is $r$-symmetric for some $r \leq 6$).
+
+For each $i$, $0 \leq i <n$,
+ we use the notation $o_i$ to denote a binary Boolean operation as follows.
+ If $Q_i$ is $\forall$, then $o_i$ is {\em and};
+ if $Q_i$ is $\exists$, then $o_i$ is {\em or}.
+
+For the reduction, we construct a reachability problem instance whose SyDS \cals{} 
+has an underlying graph with $2n+m+2$ nodes, on $2n+2$ layers. 
+
+SyDS \cals{} contains the following nodes.
+We let $Y = \{y_0, y_1, \dots , y_n\}$ be a set of $n+1$ nodes,
+$R = \{r_0, r_1, \dots , r_{n-1}\}$ be a set of $n$ nodes,
+$W = \{w_0, w_1, \dots , w_{m-1}\}$ be a set of $m$ nodes,
+ and $h$ be an extra node.
+ 
+The initial configuration \calc{} for the constructed problem instance
+ has the states of all nodes equal to 0.
+
+The goal configuration \cald{} for the constructed problem instance 
+has $h =1$, $r_{n-1} = 1$,  each  $r_i= 0$ for $0 \leq i  < n-1$, 
+each  $y_i= 0$, 
+and each $w_j$ equal to 1 iff the corresponding clause $c_j$ contains a positive literal.
+
+Node set $Y$ will function as a cyclical counter,
+with incoming edges and local transition functions similar to those for
+the $n$ nodes in the construction presented in our
+proof of Proposition \ref{pro:long_phase_space_cycle}.
+For each $i$, $0 \leq i < n$,
+node $y_i$ will correspond to the variable $x_i$ in $f$.
+
+Each node $w_i \in W$ will correspond to clause $c_i$.
+
+Each node $r_i \in R$ will correspond to the quantified Boolean formula
+$(Q_i x_i) \cdots  (Q_0 x_0) f$.
+In particular, at some point in the operation of \cals{},
+node $r_{n-1}$ will have the value of the quantified Boolean formula $F$.
+
+Node $h$ will serve as a control node.
+Once the value of node $h$ equals 1,  it remains 1 forever more,
+forces node $r_{n-1}$ to retain its value, and forces all the other nodes in $R$ to have value 0.
+
+The underlying graph of \cals{} has directed edges
+$(y_i, y_j)$ for each $i$ and $j$ such that $0 \leq i < j \leq n$.
+For each node $w_j$, there are incoming edges from those $Y$ nodes
+corresponding to the variables occurring in clause $c_j$.
+Node $h$ has incoming edges from the $n+1$ nodes in $Y$.
+Node $r_0$ has an incoming edge from $y_0$, $h$, and from each node in $W$.
+For each node $r_i$, $1 \leq i < n$,
+there are incoming edges from $r_{i-1}$, $h$, and each $y_j$ where $0 \leq j \leq i$.
+
+
+The local transition function for each node in $Y$ is the function 
+that retains the current value of the node if any of the incoming variables equals 0,
+and changes the value of the node otherwise.
+
+The local transition function for each node $w_i \in W$ is the same as clause $c_i$,
+but using the values of the incoming variables.
+
+The local transition function for $h$ is as follows.
+If $h=1$, then 1.
+If $h =0$ and  the $n+1$ incoming edges from $Y$ encode the integer $2^n+n-1$, then 1.
+Otherwise, $0$.
+
+The local transition function for $r_0$ is as follows.
+If $h =1$, then 0.
+Otherwise, if $y_0 = 1$, then the {\em and} of the incoming variables from $W$.
+Otherwise, operation $o_0$ 
+applied to $r_0$ and the {\em and} of the incoming variables from $W$.
+
+The local transition function for $r_i$ , $1 \leq i < n-1$, is as follows.
+If $h =1$, then 0.
+Otherwise, if the $i+1$ incoming edges from $Y$ encode the integer $2^i+i$, 
+then $r_{i-1}$.
+Otherwise,  if the incoming edges from $Y$ encode the integer $i$, 
+then operation $o_0$ applied to $r_i$ and $r_{i-1}$.
+Otherwise, $r_i$.
+
+The local transition function for $r_{n-1}$ is as follows.
+If $h=0$ and the $n$ incoming edges from $Y$ encode the integer $2^{n-1}+n-1$, 
+then $r_{n-2}$.
+If $h =0$ and  the $n$ incoming edges from $Y$ encode the integer $n-1$, 
+then operation $o_0$ applied to $r_{n-1}$ and $r_{n-2}$.
+Otherwise, $r_{n-1}$.
+
+Note that SyDS \cals{} is 6-symmetric; the local transition functions
+for nodes $r_i$ , $1 \leq i \leq n-1$, contain 6 symmetry classes.
+
+For $0 \leq i < n$, we let $F_i$ be a Boolean function of $n-i-1$ variables, 
+as follows:
+
+\smallskip
+\noindent
+$$F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1}) = (Q_ i x_i) 
+\cdots (Q_1 x_1) (Q_0 x_0) f(X)$$
+
+\smallskip%\smallskip
+
+We now establish the correctness of the reduction.
+
+\smallskip
+
+Let $\beta$ be a tuple, possibly empty, of Boolean values. 
+Let  $l(\beta)$ denote the degree of $\beta$,
+i.e., the number of variables in $\beta$.
+Let  $k(\beta)$ denote the integer encoded by $\beta$.
+(If  $\beta$ is empty, then $k(\beta) = 0$.)
+For $\beta$ such that $l(\beta) < n$, 
+let $j(\beta) = n - l(\beta) -1$,
+and let $t(\beta) = (k(\beta)+1) 2^{n-l(\beta)} +n -l(\beta)$. 
+
+For any $ t \geq 0$,
+let  $X^t$ be the assignment to the variables $X$ of $f$ where 
+$X^t(x_i) = \calc _t(y_i)$, $ 0 \leq i \leq n-1$.
+From the proof in Theorem \ref{pro:long_phase_space_cycle}, 
+the first $n$ nodes of $\cals$ undergo a phase space cycle whose length is $2^n$.
+Thus, all $2^n$ possible assignments to $X$ occur during this cycle.
+In particular, all $2^n$ assignments to $X$ are in the set $\{  X^t \, | \, 0 \leq t < 2^n \}$.
+Specifically, for any assignment $\alpha$ to $X$, $X^{k(\alpha)} = \alpha$.
+
+
+For any assignment $\alpha$ to $X$, 
+let $W(\alpha)$ be the assignment of values to the nodes set $W$ 
+where $w_i$ equals the value of clause $c_i$ for assignment $\alpha$, $ 0 \leq i \leq m-1$.
+Then,  for all $t \geq 0$, $\calc_{t+1}[W] = W(X^t)$.
+
+For any given tuple $\beta$ of  $n-i-1$ Boolean values 
+corresponding to values of the variables $x_{n-1}, x_{n-2}, \ldots , x_{i+1}$,
+note that $j(\beta) = i$.
+Moreover, the value of $F_{j(\beta)}(\beta) = F_i(x_{n-1}, x_{n-2}, \ldots , x_{i+1})$
+is determined by the $2^{i+1}$ assignments to $X$  occurring at times 
+$k(\beta) 2^{n-l(\beta)}$ through $(k(\beta)+1) 2^{n-l(\beta)}-1$.
+
+\smallskip
+\noindent
+{\bf Claim 1:} For all $j'$, $0 \leq j' < n$,
+for all $\beta$ such that $j(\beta) = j'$,
+$F_{j(\beta)}(\beta) =\calc_{t(\beta)}(r_{j(\beta)})$.
+
+\smallskip
+
+\noindent
+We prove the claim by induction on $j'$.
+
+\smallskip
+\noindent
+{\bf Basis Step:} Suppose that $j' = 0$.
+Consider any $\beta$ such that $j(\beta) = 0$.
+Then $l(\beta) = n-1$, $t(\beta) = 2k(\beta) + 3$,
+and the variables in $\beta$ are $(x_{n-1}, x_{n-2}, \ldots , x_1)$.
+By definition,
+
+\smallskip
+
+$$F_0(x_{n-1}, x_{n-2}, \ldots, x_1) 
+= (Q_0 x_0) \, f(x_{n-1}, x_{n-2}, \ldots , x_1, x_0).$$
+
+\smallskip
+
+\noindent
+Thus,\\ \smallskip
+
+$F_0(x_{n-1}, x_{n-2}, \ldots , x_1) ~=~$ \\
+\hspace*{0.1in}
+$f(x_{n-1}, x_{n-2}, \ldots , x_1, 0) \; o_0 \; 
+f(x_{n-1}, x_{n-2}, \ldots , x_1, 1).$ \\
+
+\smallskip
+
+\noindent
+Let $\gamma^0 = (x_{n-1}, x_{n-2}, \ldots , x_1, 0)$ and\\
+$\gamma^1 = (x_{n-1}, x_{n-2}, \ldots , x_1, 1)$.
+Then, $F_0(\beta) =  
+f(\gamma^0) \; o_0 \; f(\gamma^1)$.
+Note that $\gamma^0 = X^{k(\gamma^0)}$ and $\gamma^1 = X^{k(\gamma^1)}$.
+Also, $k(\gamma^0) = 2k(\beta)$ and $k(\gamma^1) = 2k(\beta)+1$.
+Thus, at time $2k(\beta)+1$, $W = W[\gamma^0]$;
+and at time $2k(\beta)+2$, $W = W[\gamma^1]$.
+Since at time $2k(\beta)+1$, $h=0$, and $y_0 = 0$, 
+the local transition function for $r_0$ sets $\calc_{2k(\beta)+2}(r_0)$ to be 
+the {\em and} of the values of the incoming edges from $W$ at time $2k(\beta)+1$.
+Thus, $\calc_{2k(\beta)+2}(r_0) = f(\gamma^0)$.
+Since at time $2k(\beta)+2$, $h=0$, and $y_0 = 0$, 
+the local transition function for $r_0$ sets $\calc_{2k(\beta)+3}(r_0)$ 
+to be result of $0_i$
+applied to $\calc_{2k(\beta)+2}(r_0)$ and
+the {\em and} of the values of the incoming edges from $W$ at time $2k(\beta)+2$.
+Thus, $\calc_{2k(\beta)+3}(r_0) = f(\gamma^0) \; o_i \; f(\gamma^1) = F_0(\beta)$.
+This proves the claim for $j' = 0$.
+
+\smallskip
+\noindent
+{\bf Inductive Step:} 
+Now assume that the claim holds for a given value of $j'$, $0 \leq j' < n-1$.
+We want to prove that the claim holds for $j'+1$.
+Consider any $\beta$ such that $j(\beta) = j'+1$.
+We need to show that $F_{j'+1}(\beta) = \calc_{t(\beta)}(r_{j'+1})$.
+We first note that $l(\beta) = n-j'-2$, 
+$t(\beta) = (k(\beta) + 1)2^{j'+2}+j'+2$,
+and the variables in $\beta$ are $(x_{n-1}, x_{n-2}, \ldots , x_{j'+2})$.
+(If $j' = n-2$, then $\beta$ contains no variables.)
+By definition, 
+$F_{j'+1}(\beta) =  (Q_{j'+1} x_{j'+1}) \cdots (Q_1 x_1) (Q_0 x_0) f(X)$.
+Thus,\\
+$F_{j'+1}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}) = $\\
+\hspace*{0.1in}
+$F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 0) \; o_{j'+1} \;$\\
+\hspace*{0.1in} $F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 1).$\\
+Let $\gamma^0 = (x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 0)$
+and $\gamma^1 = (x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 1)$.
+Then, $F_{j'+1}(\beta) =$  
+$F_{j'}(\gamma^0) \; o_{j'+1} \; F_{j'}(\gamma^1)$.
+Note that
+$t(\gamma^0) = (k(\gamma^0)+1)2^{j'+1}+j'+1$.
+Since $k(\gamma^0)= 2k(\beta)$,
+$t(\gamma^0) = (2k(\beta)+1)2^{j'+1}+j'+1 = k(\beta)2^{j'+2}+2^{j'+1}+j'+1$.
+Also, $k(\gamma^1)= 2k(\beta)+1$, and
+$t(\gamma^1) = (k(\gamma^1)+1)2^{j'+1}+j'+1= 
+(2k(\beta)+2)2^{j'+1}+j'+1 =  (k(\beta)+1)2^{j'+2}+j'+1$.
+By the inductive hypothesis,
+$F_{j'}(\gamma^0) = \calc_{t(\gamma^0)}(r_{j(\gamma^0)}) 
+= \calc_{t(\gamma^0)}(r_{j'})$,
+and $F_{j'}(\gamma^1) = \calc_{t(\gamma^1)}(r_{j(\gamma^1)}) 
+= \calc_{t(\gamma^1)}(r_{j'})$.
+
+At time $t(\gamma^0) = k(\beta)2^{j'+2}+2^{j'+1}+j'+1$,
+the $j'+2$ incoming edges to $r_{j'+1}$ from $Y$ encode the integer $2^{j'+1}+j'+1$,
+so the local transition function for $r_{j'+1}$ evaluates to be the value of $r_{j'}$.
+Thus, $\calc_{t(\gamma^0)+1}(r_{j'+1}) = \calc_{t(\gamma^0)}(r_{j'}) = F_{j'}(\gamma^0)$.
+The local transition function for $r_{j'+1}$ has $r_{j'+1}$ retain its current value until 
+$t(\gamma^1) = (k(\beta)+1)2^{j'+2}+j'+1$.
+At time $t(\gamma^1) =  (k(\beta)+1)2^{j'+2}+j'+1$,
+the $j'+2$ incoming edges to $r_{j'+1}$ from $Y$ encode the integer $j'+1$,
+so the local transition function for $r_{j'+1}$ evaluates to be the result
+of applying operation $o_{j'+1}$ to  $r_{j'+1}$ and $r_{j'}$.
+Thus, 
+$\calc_{t(\gamma^1)+1}(r_{j'+1}) = 
+ \calc_{t(\gamma^1)}(r_{j'+1})  \; o_{j'+1} \; \calc_{t(\gamma^1)}(r_{j'}) 
+= F_{j'}(\gamma^0)  \; o_{j'+1} \; F_{j'}(\gamma^1) = F_{j'+1}(\beta)$.
+However, note that $t(\beta) = (k(\beta) + 1)2^{j'+2}+j'+2 =  t(\gamma^1)+1$.
+Thus, $F_{j'+1}(\beta) = \calc_{t(\beta)}(r_{j'+1})$, and
+Claim~1 follows. 
+
+\smallskip
+
+Note that each node in $Y$ and $W$ cycles with a period that divides $2^{n+1}$.
+Since $\cald$ has all nodes in $Y$ equal to 0, 
+and this only occurs at a time that is a multiple of $2^{n+1}$,
+$\cald$ is reachable  iff it is reachable at a time that is a multiple of $2^{n+1}$.
+
+Note that $\calc(h)=0$ and $\cald(h)=1$.  Furthermore, node $h$ is
+stable with value 1 at time $2^n+n$, and $h$ is equal to 0 at all
+prior times.  Thus $\cald$ is reachable iff it is reachable at a
+time $t$ such that $t \geq 2^n+n$.  Considering node set $Y$, $\cald$
+is reachable iff it is reachable  at a time that is a nonzero
+multiple of $2^{n+1}$.
+
+Note that every node of $\cals$ 
+has the same value for every time that is a  nonzero multiple of $2^{n+1}$.
+Thus, $\cald$ is reachable  iff it is reachable at time $2^{n+1}$,
+i.e., iff $\cald = \calc_{2^{n+1}}$.
+
+Recall that $\cald(h) = \calc_{2^{n+1}}(h)$ and $\cald[Y] = \calc_{2^{n+1}}[Y]$.
+Since $\calc_{2^{n+1}-1}[Y]$ consists of all 1's,
+each $\calc_{2^{n+1}}(w_j)$ equals 1 iff the corresponding clause $c_j$ contains a positive literal.
+Thus, $\cald[W] = \calc_{2^{n+1}}[W]$.
+The nodes in $R - \{r_{n-1}\}$ are stable with value 0 at time $2^n+n+1$,
+and so have the same value in $\cald$ and $\calc_{2^{n+1}}$.
+Thus, $\cald = \calc_{2^{n+1}}$ iff $\cald(r_{n-1}) = \calc_{2^{n+1}}(r_{n-1})$.
+Since $\cald(r_{n-1}) = 1$, $\cald = \calc_{2^{n+1}}$ iff
+$\calc_{2^{n+1}}(r_{n-1}) = 1$.
+
+Note that node $r_{n-1}$ is stable at  time $2^n+n$,
+so $ \calc_{2^{n+1}}(r_{n-1}) = \calc_{2^n+n}(r_{n-1})$.
+Thus  $\cald$ is reachable iff $\calc_{2^n+n}(r_{n-1}) = 1$.
+Let $\beta$ be the empty tuple.
+As has been shown above,
+$F_{j(\beta)}(\beta) =\calc_{t(\beta)}(r_{j(\beta)})$.
+Note that $l(\beta) = 0$, $k(\beta) = 0$, $j(\beta) = n-1$,
+and $t(\beta) = (k(\beta)+1) 2^{n-l(\beta)} +n -l(\beta) = 2^n+n$. 
+Thus, $\calc_{2^n+n}(r_{n-1}) = F_{n-1}$, which is the value of the given quantified Boolean formula $F$.
+Thus $F$ is true iff $\cald$ is reachable from $\calc$,
+and this completes our proof of Theorem~\ref{thm:reach-six-sym}. \QED
+
+%\smallskip
+%The reduction from DAG $r$-symmetric to DAG symmetric SyDSs 
+%follows from Corollary \ref{cor:reachability_symmetric}.
+%\QED

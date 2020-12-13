@@ -1,0 +1,93 @@
+\subsection{Reducing the Number of Symmetry Classes}
+\label{sse:embedding}
+
+In this section, we show how the reachability problem for
+$r$-symmetric SyDSs (for any fixed $r$)
+can be reduced to the same problem for symmetric SyDSs.
+In particular, this reduction ensures that when we start
+with a DAG-SyDS, the reduction also produces a DAG-SyDS.
+Our approach uses the idea of embedding, which is defined below.
+In this definition, we use the notation
+$\calc{} \longrightarrow \cald$ to indicate that \cald{} is
+the successor of \calc.
+
+\begin{definition}\label{def:SyDS_homomorphisml}
+Given a pair of SyDSs $\cals = (G(V,E), \calf)$ and $\cals' = (G'(V',E'), \calf')$,
+let $h$ be an onto function from $V'$ to $V$.
+Let $\hat{h}$ be the function that maps each configuration $\calc$ of $\cals$
+into the configuration $\calc'$ of $\cals'$ 
+such that for each node $v' \in V'$, 
+$\calc'(v') = \calc(h(v'))$.
+We say that $h$ is an \textbf{embedding} of $\cals$ into $\cals'$
+if for each configuration $\calc$ of $\cals$,
+letting $\cald$  be the configuration such that 
+$\calc \longrightarrow \cald$ in $\cals$,
+$\hat{h}(\calc) \longrightarrow \hat{h}(\cald)$ in $\cals'$.
+\end{definition}
+
+\noindent
+The next lemma shows a property of an embedding.
+
+\begin{lemma}\label{lem:embedding_reachability}
+ Given SyDSs $\cals$ and $\cals'$, and an embedding $h$ from $\cals$ into  $\cals'$,
+the reachability problem for $\cals$ is polynomially reducible
+to the reachability problem for $\cals'$.
+\end{lemma}
+
+\noindent
+\textbf{Proof:}~
+In Definition~\ref{def:SyDS_homomorphisml},
+since $h$ is an onto function, $\hat{h}$  is injective.
+For every configuration $\calc$ of $\cals$ and every $t \geq 0$,
+by induction on $t$,
+$\hat{h}(\calc_t) = (\hat{h}(\calc))_t $.
+Thus, $\calc$ reaches a given configuration $\cald$
+iff $\hat{h}(\calc)$ reaches the configuration $\hat{h}(\cald)$.
+\QED
+
+\begin{definition}\label{tdef:generalized_neighbor}
+A {\bf generalized neighbor} of a given node $v$ in a directed graph is a node that
+is either the source node of an incoming edge to $v$, or the node $v$  itself.
+\end{definition}
+
+We can now state a result which shows that a suitable embedding
+can be constructed efficiently.
+
+\begin{theorem}\label{thm:r_symmetric_directed}
+For a fixed value of $r$, there is a polynomial time algorithm that
+given a directed $r$-symmetric SyDSs $\cals = (G(V,E), \calf)$,
+constructs a directed symmetric SyDSs $\cals' = (G'(V',E'), \calf')$
+and an embedding $h$ of $\cals$ into $\cals'$.  Moreover, if  $G$
+is acyclic, then so is $G'$.  
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ See \cite{Rosenkrantz-etal-2020}..
+
+\smallskip
+
+The following is the main result of Section~\ref{sse:embedding}.
+
+\begin{theorem}\label{thm:reachability_symmetric}
+For a fixed value of $r$, the reachability problem for directed
+$r$-symmetric  SyDSs is polynomial-time reducible to the reachability
+problem for directed symmetric SyDSs, and  the reachability problem
+for DAG $r$-symmetric  SyDSs is polynomial-time reducible to the
+reachability problem for DAG  symmetric  SyDSs.  
+\end{theorem}
+
+\noindent 
+\textbf{Proof:}~ From Lemma~\ref{lem:embedding_reachability}
+and Theorem~\ref{thm:r_symmetric_directed}.  \QED
+
+\smallskip
+
+Theorems~\ref{thm:reach-six-sym} and \ref{thm:reach-six-sym}
+together imply the following main result
+of Section~\ref{sec:reachability}.
+
+\begin{theorem}\label{thm:dag_syds_sym_hard}
+The Reachability problem for DAG-SyDS with symmetric local functions is
+\cpsp-complete. \QED
+\end{theorem}
+
