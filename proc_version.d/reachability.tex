@@ -44,9 +44,9 @@ We give a reduction where the constructed DAG-SyDS is 6-symmetric
 (i.e., each local function is $r$-symmetric for some $r \leq 6$).
 
 For each $i$, $0 \leq i <n$,
- we use the notation $o_i$ to denote a binary Boolean operation as follows.
- If $Q_i$ is $\forall$, then $o_i$ is {\em and};
- if $Q_i$ is $\exists$, then $o_i$ is {\em or}.
+ we use the notation $\ourop_i$ to denote a binary Boolean operation as follows.
+ If $Q_i$ is $\forall$, then $\ourop_i$ is {\em and};
+ if $Q_i$ is $\exists$, then $\ourop_i$ is {\em or}.
 
 For the reduction, we construct a reachability problem instance whose SyDS \cals{} 
 has an underlying graph with $2n+m+2$ nodes, on $2n+2$ layers. 
@@ -108,7 +108,7 @@ Otherwise, $0$.
 The local transition function for $r_0$ is as follows.
 If $h =1$, then 0.
 Otherwise, if $y_0 = 1$, then the {\em and} of the incoming variables from $W$.
-Otherwise, operation $o_0$ 
+Otherwise, operation $\ourop_0$ 
 applied to $r_0$ and the {\em and} of the incoming variables from $W$.
 
 The local transition function for $r_i$ , $1 \leq i < n-1$, is as follows.
@@ -116,14 +116,14 @@ If $h =1$, then 0.
 Otherwise, if the $i+1$ incoming edges from $Y$ encode the integer $2^i+i$, 
 then $r_{i-1}$.
 Otherwise,  if the incoming edges from $Y$ encode the integer $i$, 
-then operation $o_0$ applied to $r_i$ and $r_{i-1}$.
+then operation $\ourop_0$ applied to $r_i$ and $r_{i-1}$.
 Otherwise, $r_i$.
 
 The local transition function for $r_{n-1}$ is as follows.
 If $h=0$ and the $n$ incoming edges from $Y$ encode the integer $2^{n-1}+n-1$, 
 then $r_{n-2}$.
 If $h =0$ and  the $n$ incoming edges from $Y$ encode the integer $n-1$, 
-then operation $o_0$ applied to $r_{n-1}$ and $r_{n-2}$.
+then operation $\ourop_0$ applied to $r_{n-1}$ and $r_{n-2}$.
 Otherwise, $r_{n-1}$.
 
 Note that SyDS \cals{} is 6-symmetric; the local transition functions
@@ -205,7 +205,7 @@ Thus,\\ \smallskip
 
 $F_0(x_{n-1}, x_{n-2}, \ldots , x_1) ~=~$ \\
 \hspace*{0.1in}
-$f(x_{n-1}, x_{n-2}, \ldots , x_1, 0) \; o_0 \; 
+$f(x_{n-1}, x_{n-2}, \ldots , x_1, 0) \; \ourop_0 \; 
 f(x_{n-1}, x_{n-2}, \ldots , x_1, 1).$ \\
 
 \smallskip
@@ -214,7 +214,7 @@ f(x_{n-1}, x_{n-2}, \ldots , x_1, 1).$ \\
 Let $\gamma^0 = (x_{n-1}, x_{n-2}, \ldots , x_1, 0)$ and\\
 $\gamma^1 = (x_{n-1}, x_{n-2}, \ldots , x_1, 1)$.
 Then, $F_0(\beta) =  
-f(\gamma^0) \; o_0 \; f(\gamma^1)$.
+f(\gamma^0) \; \ourop_0 \; f(\gamma^1)$.
 Note that $\gamma^0 = X^{k(\gamma^0)}$ and $\gamma^1 = X^{k(\gamma^1)}$.
 Also, $k(\gamma^0) = 2k(\beta)$ and $k(\gamma^1) = 2k(\beta)+1$.
 Thus, at time $2k(\beta)+1$, $W = W[\gamma^0]$;
@@ -225,10 +225,10 @@ the {\em and} of the values of the incoming edges from $W$ at time $2k(\beta)+1$
 Thus, $\calc_{2k(\beta)+2}(r_0) = f(\gamma^0)$.
 Since at time $2k(\beta)+2$, $h=0$, and $y_0 = 0$, 
 the local transition function for $r_0$ sets $\calc_{2k(\beta)+3}(r_0)$ 
-to be result of $0_i$
+to be result of $\ourop_i$
 applied to $\calc_{2k(\beta)+2}(r_0)$ and
 the {\em and} of the values of the incoming edges from $W$ at time $2k(\beta)+2$.
-Thus, $\calc_{2k(\beta)+3}(r_0) = f(\gamma^0) \; o_i \; f(\gamma^1) = F_0(\beta)$.
+Thus, $\calc_{2k(\beta)+3}(r_0) = f(\gamma^0) \; \ourop_i \; f(\gamma^1) = F_0(\beta)$.
 This proves the claim for $j' = 0$.
 
 \smallskip
@@ -247,12 +247,12 @@ $F_{j'+1}(\beta) =  (Q_{j'+1} x_{j'+1}) \cdots (Q_1 x_1) (Q_0 x_0) f(X)$.
 Thus,\\
 $F_{j'+1}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}) = $\\
 \hspace*{0.1in}
-$F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 0) \; o_{j'+1} \;$\\
-\hspace*{0.1in} $F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 1).$\\
+$F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 0) \; \ourop_{j'+1} \;$\\
+\hspace*{0.2in} $F_{j'}(x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 1).$\\
 Let $\gamma^0 = (x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 0)$
 and $\gamma^1 = (x_{n-1}, x_{n-2}, \ldots , x_{j'+2}, 1)$.
 Then, $F_{j'+1}(\beta) =$  
-$F_{j'}(\gamma^0) \; o_{j'+1} \; F_{j'}(\gamma^1)$.
+$F_{j'}(\gamma^0) \; \ourop_{j'+1} \; F_{j'}(\gamma^1)$.
 Note that
 $t(\gamma^0) = (k(\gamma^0)+1)2^{j'+1}+j'+1$.
 Since $k(\gamma^0)= 2k(\beta)$,
@@ -275,11 +275,11 @@ $t(\gamma^1) = (k(\beta)+1)2^{j'+2}+j'+1$.
 At time $t(\gamma^1) =  (k(\beta)+1)2^{j'+2}+j'+1$,
 the $j'+2$ incoming edges to $r_{j'+1}$ from $Y$ encode the integer $j'+1$,
 so the local transition function for $r_{j'+1}$ evaluates to be the result
-of applying operation $o_{j'+1}$ to  $r_{j'+1}$ and $r_{j'}$.
+of applying operation $\ourop_{j'+1}$ to  $r_{j'+1}$ and $r_{j'}$.
 Thus, 
 $\calc_{t(\gamma^1)+1}(r_{j'+1}) = 
- \calc_{t(\gamma^1)}(r_{j'+1})  \; o_{j'+1} \; \calc_{t(\gamma^1)}(r_{j'}) 
-= F_{j'}(\gamma^0)  \; o_{j'+1} \; F_{j'}(\gamma^1) = F_{j'+1}(\beta)$.
+ \calc_{t(\gamma^1)}(r_{j'+1})  \; \ourop_{j'+1} \; \calc_{t(\gamma^1)}(r_{j'}) 
+= F_{j'}(\gamma^0)  \; \ourop_{j'+1} \; F_{j'}(\gamma^1) = F_{j'+1}(\beta)$.
 However, note that $t(\beta) = (k(\beta) + 1)2^{j'+2}+j'+2 =  t(\gamma^1)+1$.
 Thus, $F_{j'+1}(\beta) = \calc_{t(\beta)}(r_{j'+1})$, and
 Claim~1 follows. 
