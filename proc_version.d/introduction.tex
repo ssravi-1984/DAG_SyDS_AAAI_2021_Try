@@ -13,7 +13,7 @@ Discrete dynamical systems provide a formal model
 for the study of diffusion phenomena in networks.
 Examples of such phenomena include diffusion of social contagions
 (e.g., information, opinions, fads) and epidemics
-\cite{Adiga-etal-2019,Chistikov-etal-2020,OU-2020,MR-2007}.
+\cite{Adiga-etal-2019,Chistikov-etal-2020,OU-2020}.
 Informally, such a dynamical system\footnote{A formal definition
 is provided in Section~\ref{sec:defs}.}
 consists of an underlying (social or biological) network, with each node having a
@@ -36,7 +36,7 @@ In applications involving systems biology, such systems are also
 referred to as \textbf{synchronous Boolean networks}
 (e.g., \cite{Kauffman-etal-2003,OU-2020,Akutsu-etal-2007}).
 Throughout this paper, we will use the term SyDS to denote such a system.
-The local functions may be deterministic (e.g., threshold models
+In general, the local functions may be deterministic (e.g., threshold models
 used in social systems \cite{granovetter-1978}) or stochastic
 (e.g., the SIR model of disease propagation \cite{Easley-Kleinberg-2010}).
 We consider deterministic local functions throughout this paper.
@@ -79,24 +79,20 @@ the number of possible configurations is $2^n$; thus, the size of
 the phase space of a SyDS is \emph{exponential} in the size of
 the SyDS.
 There has been a considerable amount of research whose goal is
-to understand when such reachability problems are solvable
-in time that is polynomial in the size of the description of SyDS 
-and when they are computationally intractable 
-(see, e.g., \cite{Chistikov-etal-2020,BH+06,OU-2020,OU-2017,Akutsu-etal-2007}
-and the references cited therein).
-
-Several papers (e.g., \cite{OU-2017,Akutsu-etal-2007}) have
+to understand when such reachability problems are efficiently solvable
+and when they are computationally intractable.
+Specifically, several papers (e.g., \cite{OU-2017,Akutsu-etal-2007}) have
 presented computational intractability results for reachability 
 problems for SyDSs over directed graphs.
-Very recently, Chistikov et al. (\citeyear{Chistikov-etal-2020})
+Recently, Chistikov et al. (\citeyear{Chistikov-etal-2020})
 studied two reachability problems (called Convergence and Convergence
 Guarantee\footnote{These problems will be defined shortly.}) 
 in the context of opinion propagation.
 They show that these problems are \cpsp-complete for general
-directed graphs and
+directed graphs. They also show
 that the Convergence problem can be solved
 efficiently when the underlying directed graph is \emph{acylic} (i.e.,
-it does not have any directed cycle) regardless of the local functions
+it does not have any directed cycle), regardless of the local functions
 at each node.
 Following standard graph theoretic terminology, we refer to directed
 acylic graphs as \textbf{dags} \cite{CLRS-2009}.
@@ -131,8 +127,7 @@ Moreover, for each $L$, we observe that
 there is an $L$-level DAG SyDS whose phase 
 space graph is a cycle of length $2^L$
 (Proposition \ref{pro:long_phase_space_cycle}).
-As discussed in Item~(4) below,
-such structural properties of phase spaces are useful in solving 
+Such structural properties are useful in solving 
 reachability problems; if the maximum lengths of transients
 and cycles are bounded by polynomial functions of the size of a given SyDS,
 then reachability problems for that SyDS can be solved efficiently
@@ -154,9 +149,7 @@ We show that the reachability problem
 does \cals{} starting from \calc{} reach \cald{}?),
 which is similar to the Convergence problem, 
 is \cpsp-complete for DAG-SyDSs even
-when each local function is symmetric.
-(Section~\ref{sec:defs} presents definitions of various classes
-of Boolean functions.)
+when each local function is symmetric \cite{Crama-Hammer-2011}.
 %It was shown in \cite{OU-2017} that the Reachability
 %problem is \cpsp-complete for SyDSs on directed graphs 
 %which may contain cycles.
@@ -197,7 +190,7 @@ functions such that the length of a transient and that of
 the cycle the transient leads to are both exponential in $L$
 (Theorem~\ref{thm:path_length_lower_bounds}).
 The idea behind this construction enables us 
-to establish \cpsp-hardness result for
+to establish our \cpsp-hardness result for
 the reachability problem for DAG-SyDSs.
 
 \smallskip
@@ -271,14 +264,13 @@ and Petri Nets \cite{Esparza-etal-1994}.
 Problems related to the diffusion of opinions and other contagions have
 also been studied under various discrete dynamical systems
 models (see e.g., 
-\cite{Auletta-etal-2018,Botan-etal-2019,Chistikov-etal-2020,BE-2017}
-and the references contained therein).
+\cite{Auletta-etal-2018,Botan-etal-2019,Chistikov-etal-2020,BE-2017}).
 
 %Barrett et al. (\citeyear{BH+06}) studied the reachability problem
 %for discrete dynamical systems where the underlying graph is 
 %undirected and the update model is sequential (i.e., nodes compute 
 %and update their state values in a specified order). 
-Synchronous dynamical systems over 
+As stated earlier, synchronous dynamical systems over 
 directed graphs serve as useful models for biological
 phenomena \cite{Kauffman-etal-2003}.
 Many researchers have studied reachability and related 
@@ -288,13 +280,13 @@ Even though the \cpsp-completeness result for the reachability problem
 considered in \cite{Rosenkrantz-etal-2018} is stated in terms of undirected
 graphs, it can be readily extended to general directed graphs.
 
-Many researchers have considered various computational
+Many researchers have presented results for various computational
 problems for dynamical systems on dags.
-Akutsu et al. (\citeyear{Akutsu-etal-2007}) considered the problem
+We now provide a summary of these results.
+Akutsu et al. (\citeyear{Akutsu-etal-2007}) showed that the problem
 of controlling a tree-structured directed network so that it
-reaches a desired configuration and established \cnp-hardness
-results. This problem 
-is different from the reachability problem
+reaches a desired configuration is \cnp-hard.
+This problem is different from the reachability problem
 considered in our paper; in particular, the variables that are used to
 control a network are external to the network and the goal of the controller
 is to choose appropriate values for those variables at each time step.
@@ -310,14 +302,15 @@ on dags provide a unifying framework for studying fairness issues that
 arise when a learning algorithm must interact with a dynamically
 changing environment.
 Arnold et al. (\citeyear{Arnold-etal-2019}) discuss methods
-for comparing several modeling approaches when the underlying causal model
+for comparing the effectiveness of several modeling approaches 
+when the underlying causal model
 for an epidemic can be represented as a dag.
 To our knowledge, the reachability problem for DAG-SyDSs 
 was first considered in \cite{KKM+2013}. 
-They showed that when each local function is 
+They showed that for DAG-SyDSs, when each local function is 
 a bi-threshold function (i.e., each node has two threshold
 values to control the $0 ~\rightarrow~  1$ and $1 \rightarrow 0$
-transitions), the problem can be solved efficiently.
+transitions), the reachability problem can be solved efficiently.
 %By establishing bounds on the lengths of cycles and transients,
 %they showed that the reachability problem can be efficiently
 %solved for such DAG-SyDSs.
