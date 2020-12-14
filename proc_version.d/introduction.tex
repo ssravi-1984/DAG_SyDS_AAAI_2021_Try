@@ -284,10 +284,12 @@ Many researchers have presented results for various computational
 problems for dynamical systems on dags.
 We now provide a summary of these results.
 Akutsu et al. (\citeyear{Akutsu-etal-2007}) showed that the problem
-of controlling a tree-structured directed network so that it
-reaches a desired configuration is \cnp-hard.
+of controlling a synchronous Boolean network so that it
+reaches a desired configuration is \cnp-hard for 
+general directed graphs but is efficiently solvable 
+when the underlying graph is a directed tree.
 This problem is different from the reachability problem
-considered in our paper; in particular, the variables that are used to
+considered here; in particular, the variables that are used to
 control a network are external to the network and the goal of the controller
 is to choose appropriate values for those variables at each time step.
 Materassi and Salapaka (\citeyear{Materassi-etal-2013}) considered the
