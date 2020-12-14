@@ -3,7 +3,7 @@
 
 \smallskip
 \noindent
-\underline{\textsf{Formal definition of a SyDS on a directed graph:}}
+\underline{\textsf{SyDSs on directed graphs:}}
 Let \bbb{} denote the Boolean domain \{0,1\}.
 In this paper, a \textbf{Synchronous Dynamical System} (SyDS)~
 \cals{} over \bbb{} is assumed to be specified as
@@ -182,7 +182,7 @@ of 1's in the input.
 In symmetric Boolean functions, we don't know whether a specific
 input is 0 or 1; we only know the number of 1s in the input.
 A similar situation arises in anonymous symmetric pure strategy
-graphical games where each player's strategy is one of 0 and 1.
+graphical games where each player's strategy is from \{0,1\}. 
 A player $X$ doesn't know whether a specific neighbor chose 0 or 1; 
 $X$ knows how many neighbors chose 1.
 Convergence in SyDSs corresponds to reaching
@@ -192,7 +192,7 @@ This is similar to a Nash equilibrium in the game theoretic setting.
 %can be thought of as anonymous pure strategy
 %games with two strategies.  
 In this sense, the convergence
-problem relates to the problem of Nash equilibria in such games and
+problem is related to the problem of Nash equilibria in such games and
 reachability is useful in understanding whether players can achieve
 certain equilibria (see e.g.,
 ~\cite{blonski1999anonymous,daskalakis2007computing,daskalakis2015approximate,jackson2010social}).
@@ -216,7 +216,7 @@ functions is $r'$-symmetric for some $r' \leq r$.
 
 \smallskip
 \noindent
-\underline{\textsf{Problem Definitions:}}~ We now provide
+\underline{\textsf{Problem definitions:}}~ We now provide
 formal specifications of the problems considered in this paper.
 %\label{sse:prob_def}
 
@@ -228,7 +228,7 @@ formal specifications of the problems considered in this paper.
 \noindent
 \underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
 by an underlying directed
-graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$,
+graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$
 and two configurations \calc{} and \cald{}. 
 
 %\smallskip
@@ -257,7 +257,7 @@ in \cals{}), and bithreshold functions.
 \noindent
 \underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
 by a directed graph $G(V,E)$, a local function $f_v$ 
-for each $v \in V$, and a configuration \calc{}. 
+for each $v \in V$ and a configuration \calc{}. 
 
 %\smallskip
 \noindent
@@ -282,12 +282,12 @@ does  \cals{} reach a fixed point?
 \noindent
 \underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
 by a directed
-graph $G(V,E)$, a local function $f_v$ for each $v \in V$. 
+graph $G(V,E)$ and a local function $f_v$ for each $v \in V$. 
 
 %\smallskip
 \noindent
 \underline{\textsf{Question:}}~ Does \cals{} reach a fixed point from
-every initial configuration?
+\emph{every} initial configuration?
 
 The formulation of the Convergence Guarantee problem 
 in \cite{Chistikov-etal-2020} considers the negation of the above
