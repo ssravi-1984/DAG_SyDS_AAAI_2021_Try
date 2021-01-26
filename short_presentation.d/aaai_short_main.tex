@@ -1,0 +1,144 @@
+\documentclass[11pt]{beamer}
+%\usetheme{Warsaw}
+\usetheme{Antibes}
+\usepackage{fancybox}
+\usepackage{beamerthemesplit}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{ulem} % Needed to produce double underlining using \uuline.
+\setbeamertemplate{footline}[page number]{}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{footline}[text line]{}
+
+\definecolor{olive}{rgb}{0.3, 0.4, .1}
+\definecolor{fore}{RGB}{249,242,215}
+\definecolor{back}{RGB}{51,51,51}
+\definecolor{title}{RGB}{255,0,90}
+\definecolor{dgreen}{rgb}{0.,0.6,0.}
+\definecolor{gold}{rgb}{1.,0.84,0.}
+\definecolor{JungleGreen}{cmyk}{0.99,0,0.52,0}
+\definecolor{BlueGreen}{cmyk}{0.85,0,0.33,0}
+\definecolor{RawSienna}{cmyk}{0,0.72,1,0.45}
+\definecolor{Magenta}{cmyk}{0,1,0,0}
+
+
+\title{{Synchronous Dynamical Systems on}\\ \smallskip
+       {Directed Acyclic Graphs (DAGs):} \\ \smallskip  
+       {Complexity and Algorithms}
+}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Symbols needed for dynamical system definitions.
+%%%
+\newcommand{\cals}{\mbox{$\mathcal{S}$}}
+\newcommand{\calc}{\mbox{$\mathcal{C}$}}
+\newcommand{\calcp}{\mbox{$\mathcal{C'}$}}
+
+%% \newcommand{\QED}{\hfill\mbox{\hfill\rule{2mm}{2mm}}}
+\newcommand{\bbb}{\mbox{$\mathbb{B}$}}
+\newcommand{\cala}{\mbox{$\mathcal{A}$}}
+\newcommand{\calcdp}{\mbox{$\mathcal{C}^{''}$}}
+\newcommand{\calco}{\mbox{$\mathcal{C}_1$}}
+\newcommand{\calct}{\mbox{$\mathcal{C}_2$}}
+\newcommand{\calcv}{\mbox{$\mathcal{C}_v$}}
+\newcommand{\calf}{\mbox{$\mathcal{F}$}}
+\newcommand{\calp}{\mbox{$\mathcal{P}$}}
+\newcommand{\calso}{\mbox{$\mathcal{S}_1$}}
+
+\newcommand{\tupv}{\mbox{$t_{\mathrm{up}}(v)$}}
+\newcommand{\tdownv}{\mbox{$t_{\mathrm{down}}(v)$}}
+
+\newcommand{\pre}{\textsc{Pre}}
+\newcommand{\npre}{\textsc{\#Pre}}
+
+\newcommand{\fpe}{\textsc{Fpe}}
+\newcommand{\nfpe}{\textsc{\#Fpe}}
+
+\newcommand{\majd}{\mbox{$\lceil (d+1)/2 \rceil$}}
+
+\newcommand{\cpsp}{\mbox{\textbf{PSPACE}}}
+\newcommand{\ccnp}{\mbox{\textbf{Co-NP}}}
+
+
+%%%
+%%% End of symbols needed for dynamical system definitions.
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%% \newcommand{\rgreen}[1]{{\color{green!80}#1}}
+
+\frame[squeeze,containsverbatim]{
+%\titlepage
+\vspace*{-0.25in}
+\begin{center}
+\textcolor{blue}{\large{\textbf{Synchronous Dynamical Systems 
+                 on Directed}}} \\ \smallskip
+\textcolor{blue}{\large{\textbf{Acyclic Graphs (DAGs): Complexity and Algorithms}}}
+\end{center}
+
+\begin{center}
+\textbf{Daniel J. Rosenkrantz$^{1,2}$~~~ Madhav V. Marathe$^{1,3}$}\\ \smallskip
+\textcolor{dgreen}{\textbf{S. S. Ravi}}$^{1,2}$~~~ 
+\textbf{Richard E. Stearns$^{1,2}$} \\ \smallskip
+\end{center}
+
+%\smallskip
+
+\footnotesize{
+\textcolor{blue}{
+%$^1$Network System Science and Advanced Computing (NSSAC) Division,
+$^1$Bioinformatics Institute and Initiative,
+University of Virginia,\newline
+Charlottesville, VA} %%\smallskip
+}
+
+\medskip
+
+\footnotesize{
+\textcolor{blue}{
+$^2$Department of Computer Science,
+University Albany -- State University of New York,
+Albany, NY}  %%\smallskip
+}
+
+\medskip
+
+\footnotesize{
+\textcolor{blue}{
+$^3$Department of Computer Science,
+University of Virginia, Charlottesville, VA} %%\smallskip
+}
+
+\medskip%%\bigskip
+
+\noindent
+\footnotesize{
+\textcolor{magenta}{\textbf{Email:}}~
+    {\texttt{drosenkrantz@gmail.com, marathe@virginia.edu}},\\
+   \hspace*{0.5in}{\texttt{ssravi0@gmail.com,  thestearns2@gmail.com}}
+}
+
+\bigskip
+
+\noindent
+\footnotesize{
+\textbf{Acknowledgment:}~ This work was partially supported by NSF Grants
+IIS-1633028 (BIG DATA),
+CMMI-1745207 (EAGER),
+OAC-1916805 (CINES),
+CCF-1918656 (Expeditions) and
+IIS-1908530.
+}
+
+} %%End of title page.
+
+\input{slides}
+
+\end{document}
