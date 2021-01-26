@@ -1,0 +1,43 @@
+\begin{picture}(0,0)%
+\includegraphics{sat_reduction.pdf}%
+\end{picture}%
+\setlength{\unitlength}{1184sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(11498,4626)(2161,-6259)
+\put(5326,-6061){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,1}(Special Node)}%
+}}}}
+\put(5401,-2161){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}...}%
+}}}}
+\put(6826,-3961){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}...}%
+}}}}
+\put(3226,-4336){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$C_1$}%
+}}}}
+\put(4876,-4336){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$C_2$}%
+}}}}
+\put(6076,-4336){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$C_3$}%
+}}}}
+\put(2176,-1936){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$x_1$}%
+}}}}
+\put(3451,-1936){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$x_2$}%
+}}}}
+\put(4651,-1936){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$x_3$}%
+}}}}
+\put(6376,-1936){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$x_n$}%
+}}}}
+\put(7651,-4486){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$C_m$}%
+}}}}
+\put(4426,-6136){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$y$}%
+}}}}
+\put(7051,-2236){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,1}(Variable Nodes)}%
+}}}}
+\put(7276,-3061){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,1}(Edges determined by 3SAT instance)}%
+}}}}
+\put(8101,-3961){\makebox(0,0)[lb]{\smash{{\SetFigFont{7}{8.4}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,1}(Clause Nodes)}%
+}}}}
+\end{picture}%
