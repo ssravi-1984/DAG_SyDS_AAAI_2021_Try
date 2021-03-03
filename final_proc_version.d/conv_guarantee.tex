@@ -1,0 +1,23 @@
+\section{Convergence Guarantee for DAG-SyDSs}
+\label{sec:conv_guarantee}
+
+As mentioned earlier, \cite{Chistikov-etal-2020}
+showed that the convergence
+guarantee problem is \cpsp-complete for 
+SyDSs on general directed graphs.
+%However, they did not address the convergence guarantee problem
+%for DAG SyDSs.
+Here, we show that this problem 
+remains computationally intractable even for
+DAG SyDSs. 
+
+\begin{theorem}\label{thm:convergence_guaranee}
+The convergence guarantee problem for DAG SyDSs is co-NP-complete,
+even when restricted to dags with three levels and 3-symmetric functions.
+\end{theorem}
+
+\noindent
+\textbf{Proof (idea):}~ The reduction is from 3SAT \cite{GJ-1979}.
+The details are given in \cite{Rosenkrantz-etal-2020}.
+
+

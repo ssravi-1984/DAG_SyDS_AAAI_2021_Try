@@ -1,0 +1,37 @@
+\begin{picture}(0,0)%
+\includegraphics{dag_syds_example.pdf}%
+\end{picture}%
+\setlength{\unitlength}{1381sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(5551,4401)(2686,-4984)
+\put(5176,-1336){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_2$}%
+}}}}
+\put(2776,-1336){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_1$}%
+}}}}
+\put(3901,-3136){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_4$}%
+}}}}
+\put(5251,-4411){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_6$}%
+}}}}
+\put(6826,-3061){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_5$}%
+}}}}
+\put(7651,-1336){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$v_3$}%
+}}}}
+\put(2776,-3136){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(AND)}%
+}}}}
+\put(7576,-961){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(ID)}%
+}}}}
+\put(5176,-4861){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(XOR)}%
+}}}}
+\put(2701,-886){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(ID)}%
+}}}}
+\put(6751,-3511){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(OR)}%
+}}}}
+\put(4951,-886){\makebox(0,0)[lb]{\smash{{\SetFigFont{8}{9.6}{\sfdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(COMP)}%
+}}}}
+\end{picture}%

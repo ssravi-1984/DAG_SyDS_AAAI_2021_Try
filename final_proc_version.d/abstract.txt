@@ -1,0 +1,14 @@
+
+
+Discrete dynamical systems serve as useful formal models to study
+diffusion phenomena in social networks.  Motivated by applications
+in systems biology, several recent papers have studied algorithmic
+and complexity aspects of diffusion problems for dynamical systems
+whose underlying graphs are directed, and may contain directed
+cycles.  Such problems can be regarded as reachability problems in
+the phase space of the corresponding dynamical system. We show that
+computational intractability results for reachability problems hold
+even for dynamical systems on directed acyclic graphs (dags).  We
+also show that for dynamical systems on dags where each local
+function is monotone, the reachability problem can be solved
+efficiently.

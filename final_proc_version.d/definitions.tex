@@ -1,0 +1,292 @@
+\section{Definitions and Notation}
+\label{sec:defs}
+
+\smallskip
+\noindent
+\underline{\textsf{SyDSs on directed graphs:}}
+Let \bbb{} denote the Boolean domain \{0,1\}.
+In this paper, a \textbf{Synchronous Dynamical System} (SyDS)~
+\cals{} over \bbb{} is assumed to be specified as
+a pair ${\cals}  = (G, {\calf})$, where
+(i) $G(V,E)$, a directed graph with $|V| = n$,
+represents the underlying graph of the SyDS,
+with node set~$V$ and (directed) edge set~$E$, and
+(ii) ${\calf} = \{f_1, f_2, \ldots, f_n \}$ is a collection of
+functions in the system, with
+$f_i$ denoting the \textbf{local transition
+function} associated with node $v_i$, $1 \leq i \leq n$.
+Each node of $G$ has a state value from \bbb.
+Each Boolean function $f_i$ specifies the local interaction
+between node $v_i$ and its in-neighbors in $G$.
+The inputs to function $f_i$ are the state of $v_i$ and
+those of the in-neighbors of $v_i$ in $G$;
+function $f_i$ maps
+each combination of inputs to a value in \bbb.
+This value becomes the next state of node $v_i$.
+It is assumed that each local function can be evaluated in
+polynomial time.
+In a SyDS, all nodes compute and update their next state
+\emph{synchronously}.
+Other update disciplines (e.g., sequential updates)
+have also been considered in the literature (e.g., \cite{MR-2007}).
+At any time $\tau$,
+the {\bf configuration} \calc{} of a SyDS
+is the $n$-vector $(s_1^{\tau}, s_2^{\tau}, \ldots, s_n^{\tau})$,
+where $s_i^{\tau} \in \bbb$ is the state of
+node $v_i$ at time $\tau$ ($1 \leq i \leq n$).
+A \textbf{DAG-SyDS} is a SyDS whose underlying graph is a dag.
+
+\begin{figure}
+\begin{center}
+\input{dag_syds_example.pdf_t}
+\end{center}
+\caption{An example of a DAG-SyDS.
+The local functions at nodes $v_1$ through
+$v_6$ are Identity, Complement, Identity, AND, OR and
+XOR respectively.}
+\label{fig:ex_dag_syds}
+\end{figure}
+
+\smallskip
+
+\noindent
+\textbf{Example:}~ An example of a DAG-SyDS is shown in
+Figure~\ref{fig:ex_dag_syds}.
+Here, the local functions at nodes $v_1$ through
+$v_6$ are Identity, Complement, Identity, AND, OR and
+XOR respectively.
+(The Identity and Complement functions have only one input;
+they return respectively the input value and its complement.) 
+Suppose the initial configuration of the SyDS is $(1, 0, 1, 0, 0, 0)$;
+that is, at time $\tau = 0$, $v_1$ is in state 1, 
+$v_2$ is in state 0, $\ldots$, $v_6$ is in state 0.
+Recall that the inputs to the local function at a node $v$ are the current
+state of $v$ and those of its in-neighbors (if any).
+Since the local functions at $v_1$ and $v_3$ are Identity functions,
+the states of $v_1$ and $v_3$ will remain 1 in all subsequent time steps.
+Since the local function at $v_2$ is the Complement function, the state of
+$v_2$ at time $\tau = 1$ is 1.
+Using the local functions at $v_4$, $v_5$ and $v_6$, one can verify that
+their states at time $\tau = 1$ are 0, 1 and 0 respectively.
+Thus, the configuration at time $\tau = 1$ is 
+$(1, 1, 1, 0, 1, 0)$.
+Similarly, the configuration at times $\tau = 2$ and
+$\tau = 3$ are  $(1, 0, 1, 0, 1, 1)$ and $(1, 1, 1, 0, 1, 0)$
+respectively.
+Thus, the configuration at time $\tau = 3$ is the same as that
+at $\tau = 1$.
+In other words, the SyDS cycles between the two configurations
+at times $\tau =1$ and $\tau = 2$.
+
+\smallskip
+\noindent
+\underline{\textsf{Additional definitions regarding SyDSs:}}~
+Some additional concepts
+related to SyDSs are defined below.
+
+\begin{definition}\label{def:variable_typesl}
+For the local transition function $f_v$ of a given node $v$ of a directed  SyDS,
+we call the variable corresponding to the source node 
+of each incoming edge to $v$ an {\bf incoming variable} of $f_v$,
+and call the variable corresponding to $v$ the  {\bf self variable} of $f_v$.
+\end{definition}
+
+The \textbf{phase space} of a SyDS was defined in Section~\ref{sec:intro}.
+A \textbf{transient} in phase space is a simple directed path $P$ whose
+last node is part of a directed cycle which does not 
+contain any other node of $P$.
+The length of a phase space cycle is the number of edges in the cycle,
+and the length of a transient is the number of edges in the transient.
+
+Let \cals{} be a SyDS.
+For a given configuration \calc{} and node $v$,
+we let $\calc(v)$ denote the state of node $v$ in \calc{}.
+For a given configuration \calc{} and set of nodes $Y$,
+we let $\calc[Y]$ denote the projection of \calc{} onto $Y$.
+We assume that the initial configuration of the system 
+occurs at time 0.
+For a given initial configuration \calc{} and nonnegative integer $i$,
+we let $\calc_i$ denote the configuration of \cals{} at time $i$.
+
+For a given initial configuration \calc{},
+we  say that a given node $v$ is \textbf{stable} at time $t$ if
+for all $i \geq t$, $\calc_i(v)= \calc_t(v)$.
+Also, we say that a given node $v$ is \textbf{alternating} at time $t$ if
+for all $i \geq 0$, 
+$\calc_{t+2i}(v) =  \calc_t(v)$ 
+and $\calc_{t+2i+1}(v) = \overline{ \calc_t(v)}$ 
+(i.e., the state of $v$ alternates between 0 and 1).  
+%The following lemma shows an important property of some
+%nodes of a \btsyds{} whose underlying graph is a dag.
+
+
+\smallskip
+\noindent
+\underline{\textsf{Graph theoretic definitions:}}~
+Given a dag, we say that node $u$ {\bf directly precedes}
+node $v$ if the graph contains an edge from $u$ to $v$,
+that $u$ {\bf precedes} $v$ if the graph contains a path (possibly
+with no edges) from $u$ to $v$,
+and that $u$ {\bf properly precedes} $v$
+if the graph contains a path with at least one edge  from $u$ to $v$.
+Note that the local transition function for a given node $v$  in a
+directed SyDS is a function of $v$
+and the nodes that directly precede $v$.
+
+\begin{definition}\label{def:dag_level}
+For a dag $G(V,E)$, 
+the \textbf{level} of a node $v \in V$ is the maximum number
+of edges in any directed path to $v$.
+\end{definition}
+
+Suppose a given dag $G(V,E)$ has $L$ levels. 
+For each $j$, $0 \leq j < L$, we let $\call_j$ denote the set of nodes at level $j$,
+and let $\call_j'$ denote the nodes whose level is at most $j$.
+
+\smallskip
+\noindent
+\underline{\textsf{Boolean function definitions:}}~
+Here, we provide definitions of several classes of
+Boolean functions used in this paper.
+These definitions are from \cite{Crama-Hammer-2011,BH+06}.  
+
+Consider assignments $\alpha$ and $\beta$
+to a set of Boolean variables $X$.  We say that $\alpha \leq \beta$
+if for every variable $x \in X$, $\alpha(x) \leq \beta(x)$.  A
+Boolean function $f$  is {\bf monotone nondecreasing} if for every
+pair of assignments $\alpha$ and $\beta$ to its variables, $\alpha
+\leq \beta$ implies that $f(\alpha) \leq f(\beta)$, and is {\bf
+monotone nonincreasing} if for every pair of assignments $\alpha$
+and $\beta$ to its variables, $\alpha \leq \beta$ implies that
+$f(\alpha) \geq f(\beta)$.  We say that $f$ is {\bf monotone} if
+$f$ is either monotone nondecreasing or monotone nonincreasing. 
+Common examples of monotone functions are OR and AND.
+A {\bf monotone SyDS} is a SyDS whose local transition functions are
+all monotone.
+
+A \textbf{symmetric} Boolean function is one whose
+value does not depend on the order in
+which the input bits are specified;
+that is, the function value depends only on how many
+of its inputs are 1.
+For example, the XOR function is symmetric since the 
+value of the function is determined by the parity of the number 
+of 1's in the input.
+
+In symmetric Boolean functions, we need not know whether a specific
+input is 0 or 1; it is enough to know the number of 1s in the input.
+A similar situation arises in anonymous symmetric pure strategy
+graphical games where each player's strategy is from \{0,1\}. 
+A player $X$ doesn't know whether a specific neighbor chose 0 or 1; 
+$X$ knows how many neighbors chose 1.
+Convergence in SyDSs corresponds to reaching
+a fixed point where everyone is satisfied with the outcome. 
+This is similar to a Nash equilibrium in the game theoretic setting.
+%Symmetric SyDSs
+%can be thought of as anonymous pure strategy
+%games with two strategies.  
+In this sense, the convergence
+problem is related to the problem of Nash equilibria in such games and
+reachability is useful in understanding whether players can achieve
+certain equilibria (see e.g.,
+~\cite{blonski1999anonymous,daskalakis2007computing,daskalakis2015approximate,jackson2010social}).
+
+A Boolean function $f$ is \textbf{$r$-symmetric}
+if the inputs to $f$ can be partitioned into at most $r$ classes
+such that the value of $f$ depends only on how many of the
+inputs in each of the $r$ classes are 1.
+Note that symmetric functions defined above are 1-symmetric.
+For each node $v$, the local (majority) function 
+used in \cite{Chistikov-etal-2020}
+to study opinion diffusion can be seen to be 2-symmetric:
+one class contains just the node $v$ and the other class
+contains all the in-neighbors of $v$.
+The value of the function is determined by the number
+of 1's in these two classes.
+
+A SyDS is $r$-symmetric
+if each of its local transition
+functions is $r'$-symmetric for some $r' \leq r$.
+
+\smallskip
+\noindent
+\underline{\textsf{Problem definitions:}}~ We now provide
+formal specifications of the problems considered in this paper.
+%\label{sse:prob_def}
+
+\smallskip
+\noindent
+\textbf{Reachability} %(\textsc{Reach})
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by an underlying directed
+graph $G(V,E)$ and a local transition function $f_v$ for each node $v \in V$
+and two configurations \calc{} and \cald{}. 
+
+%\smallskip
+\noindent
+\underline{\textsf{Question:}}~ Starting from configuration \calc,
+does \cals{} reach configuration \cald? 
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%
+We observe that \textsc{Reach} is solvable in polynomial time for
+any class of SyDSs for which function evaluation can be done in
+polynomial time and there is a polynomial bound on the length of a
+phase space cycle and the length of a transient.  In such a case,
+the given SyDS can be simulated for the required number of steps.
+As will be seen, this approach is applicable to NCFs, monotone
+functions (with both positive and negative monotone functions allowed
+in \cals{}), and bithreshold functions.
+%%%%%%%%%%%%%%%%%%%%%%%
+\fi
+
+\smallskip
+\noindent
+\textbf{Convergence} %(\textsc{Convergence})
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by a directed graph $G(V,E)$, a local function $f_v$ 
+for each $v \in V$ and a configuration \calc{}. 
+
+%\smallskip
+\noindent
+\underline{\textsf{Question:}}~ Starting from configuration \calc,
+does  \cals{} reach a fixed point? 
+
+
+%Similar to \textsc{Reach}, \textsc{Convergence} is
+%solvable in polynomial time for any class of SyDSs for which local function
+%evaluation can be done in polynomial time and there is a polynomial
+%bound on the length of a phase space cycle and the length of a
+%transient.  
+%In such a case, the given SyDS can be simulated for the
+%required number of steps.
+
+
+\smallskip
+\noindent
+\textbf{Convergence Guarantee} %(\textsc{Convergence Guarantee})
+
+\smallskip
+\noindent
+\underline{\textsf{Instance:}}~ A SyDS \cals{} specified 
+by a directed
+graph $G(V,E)$ and a local function $f_v$ for each $v \in V$. 
+
+%\smallskip
+\noindent
+\underline{\textsf{Question:}}~ Does \cals{} reach a fixed point from
+\emph{every} initial configuration?
+
+The formulation of the Convergence Guarantee problem 
+in \cite{Chistikov-etal-2020} considers the negation of the above
+question (i.e., is there a configuration \calc{} from which
+the SyDS does not reach a fixed point?).
+However, since the complexity class \cpsp{} is closed under
+complement \cite{Papadimitriou-1993}, there is no difference in
+the complexity of the two versions of the problem.

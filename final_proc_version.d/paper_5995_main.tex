@@ -1,0 +1,270 @@
+%%\documentclass[11pt]{article}
+%%
+%%\setlength{\textheight}{9.0 in}
+%%\setlength{\textwidth}{6.5 in}
+%%\setlength{\oddsidemargin}{0 in}
+%%\setlength{\evensidemargin}{0 in}
+%%\setlength{\topmargin}{-0.5 in}
+%%
+%%\setlength{\parskip}{4pt}
+
+%%% DAG-SyDSs -- Version to appear in AAAI 2021.
+  
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage{aaai21}  % DO NOT CHANGE THIS
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet} % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+
+%%% Suggested by AAAI
+\usepackage[switch]{lineno}
+
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in}  % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in}  % DO NOT CHANGE THIS
+
+%\nocopyright
+%PDF Info Is REQUIRED.
+% For /Author, add all authors within the parentheses, separated by commas. No accents or commands.
+% For /Title, add Title in Mixed Case. No accents or commands. Retain the parentheses.
+\pdfinfo{
+/Title (Synchronous Dynamical Systems on Directed Acyclic Graphs (DAGs):
+       Complexity and Algorithms)
+/Author (Daniel J. Rosenkrantz, Madhav V. Marathe, S. S. Ravi and
+         Richard E. Stearns)
+%(AAAI Press Staff, Pater Patel Schneider, Sunil Issar, J. Scott Penberthy, 
+%George Ferguson, Hans Guesgen, Francisco Cruz, Marc Pujol-Gonzalez)
+/TemplateVersion (2021.1)
+} %Leave this
+% Put your actual complete list of authors (no codes, scripts, shortcuts, 
+%or LaTeX commands) within the parentheses in mixed case.
+% Each author should be only by a comma. If the name contains accents, 
+%remove them. If there are any LaTeX commands, remove them.
+
+% DISALLOWED PACKAGES
+% \usepackage{authblk} -- This package is specifically forbidden
+% \usepackage{balance} -- This package is specifically forbidden
+% \usepackage{color (if used in text)
+% \usepackage{CJK} -- This package is specifically forbidden
+% \usepackage{float} -- This package is specifically forbidden
+% \usepackage{flushend} -- This package is specifically forbidden
+% \usepackage{fontenc} -- This package is specifically forbidden
+% \usepackage{fullpage} -- This package is specifically forbidden
+% \usepackage{geometry} -- This package is specifically forbidden
+% \usepackage{grffile} -- This package is specifically forbidden
+% \usepackage{hyperref} -- This package is specifically forbidden
+% \usepackage{navigator} -- This package is specifically forbidden
+% (or any other package that embeds links such as navigator or hyperref)
+% \indentfirst} -- This package is specifically forbidden
+% \layout} -- This package is specifically forbidden
+% \multicol} -- This package is specifically forbidden
+% \nameref} -- This package is specifically forbidden
+% \usepackage{savetrees} -- This package is specifically forbidden
+% \usepackage{setspace} -- This package is specifically forbidden
+% \usepackage{stfloats} -- This package is specifically forbidden
+% \usepackage{tabu} -- This package is specifically forbidden
+% \usepackage{titlesec} -- This package is specifically forbidden
+% \usepackage{tocbibind} -- This package is specifically forbidden
+% \usepackage{ulem} -- This package is specifically forbidden
+% \usepackage{wrapfig} -- This package is specifically forbidden
+
+% DISALLOWED COMMANDS
+% \nocopyright -- Your paper will not be published if you use this command
+% \addtolength -- This command may not be used
+% \balance -- This command may not be used
+% \baselinestretch -- Your paper will not be published if you use this command
+% \clearpage -- No page breaks of any kind may be used for the final version of your paper
+% \columnsep -- This command may not be used
+% \newpage -- No page breaks of any kind may be used for the final version of your paper
+% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
+% \pagestyle -- This command may not be used
+% \tiny -- This is not an acceptable font size.
+% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
+% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+
+\setcounter{secnumdepth}{2} %May be changed to 1 or 2 if section numbers are desired.
+
+% The file aaai21.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+% Title
+
+% Your title must be in mixed case, not sentence case.
+% That means all verbs (including short verbs like be, is, using,and go),
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+
+%%% The following may reduce space around figures.
+
+\setlength{\abovedisplayskip}{-1pt}
+\setlength{\belowdisplayskip}{-1pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+\title{Synchronous Dynamical Systems on Directed Acyclic Graphs (DAGs):\newline
+       Complexity and Algorithms
+}
+\author{
+Daniel J. Rosenkrantz,\textsuperscript{\rm 1,2}~
+Madhav V. Marathe,\textsuperscript{\rm 1,3}~
+S. S. Ravi,\textsuperscript{\rm 1,2}~
+Richard E. Stearns\textsuperscript{\rm 1,2} {\medskip}\\
+}
+\affiliations{
+\textsuperscript{\rm 1}{Biocomplexity Institute and Initiative, University Virginia,
+Charlottesville, VA 22904.~}
+\textsuperscript{\rm 2}{Computer Science Dept., University at Albany -- SUNY, Albany,
+NY 12222.~}
+\textsuperscript{\rm 3}{Computer Science Dept.,
+University Virginia, Charlottesville, VA 22904.\smallskip}\\ 
+drosenkrantz@gmail.com,~
+marathe@virginia.edu,~
+ssravi0@gmail.com,~
+thestearns2@gmail.com
+}
+
+%% \usepackage[nofillcomment,ruled,linesnumbered]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+
+%\title{Synchronous Dynamical Systems on Directed Acyclic Graphs (DAGs):\newline
+%      Complexity and Algorithms}
+
+%\author{}
+
+\begin{document}
+
+%\linenumbers  %
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{fact}{Fact}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{observation}{Observation}[section]
+\newtheorem{claim}{Claim}[section]
+
+\newcommand{\true}{\texttt{True}}
+\newcommand{\false}{\texttt{False}}
+
+\newcommand{\QED}{\hfill\rule{2mm}{2mm}}
+
+\newcommand{\irange}{\mbox{$1 \leq i \leq n$}}
+\newcommand{\jrange}{\mbox{$1 \leq j \leq m$}}
+
+\newcommand{\dunder}[1]{\underline{\underline{#1}}}
+
+\newcommand{\bbb}{\mbox{$\mathbb{B}$}}
+
+\newcommand{\cals}{\mbox{$\mathcal{S}$}}
+\newcommand{\calc}{\mbox{$\mathcal{C}$}}
+\newcommand{\cali}{\mbox{$\mathcal{I}$}}
+\newcommand{\calcp}{\mbox{$\mathcal{C'}$}}
+\newcommand{\cald}{\mbox{$\mathcal{D}$}}
+\newcommand{\call}{\mbox{$\mathcal{L}$}}
+\newcommand{\calf}{\mbox{$\mathcal{F}$}}
+
+\newcommand{\calco}{\mbox{$\mathcal{C}_{1}$}}
+\newcommand{\calcz}{\mbox{$\mathcal{C}_0$}}
+\newcommand{\calci}{\mbox{$\mathcal{C}_i$}}
+\newcommand{\calcipo}{\mbox{$\mathcal{C}_{i+1}$}}
+\newcommand{\calct}{\mbox{$\mathcal{C}_{t}$}}
+\newcommand{\calctmo}{\mbox{$\mathcal{C}_{t-1}$}}
+\newcommand{\dcare}{\texttt{x}}
+
+\newcommand{\genprob}{\mbox{\textsc{CSC}}}
+\newcommand{\pre}{\textsc{Pre}}
+\newcommand{\npre}{\textsc{\#Pre}}
+
+\newcommand{\cnp}{\textsf{NP}}
+\newcommand{\cconp}{\textsf{Co-NP}}
+\newcommand{\cpsp}{\textsf{PSPACE}}
+
+%%% An operator used in proving PSPACE-hardness result.
+\newcommand{\ourop}{\mbox{$\otimes$}}
+
+\maketitle
+
+\begin{abstract}
+\input{abstract.tex}
+\end{abstract}
+
+\setcounter{footnote}{3}
+
+\input{introduction.tex}
+
+\input{definitions.tex}
+
+\input{levels_and_paths.tex}   %% Structural properties of DAG SyDSs
+
+\input{reachability.tex}
+
+\input{reducing_symmetry_level.tex}
+
+\input{conv_guarantee.tex}
+
+%%% We omit the result for reachability of linear functions
+%%% since that result has been reported by Ogihara et al.
+
+%\input{linear_reachability.tex}
+
+\input{monotone_reachability.tex}
+
+%\input{ncf_reachability.tex}
+
+
+%%% We will keep the results in the following 
+%%% sections for a longer version of the paper. 
+
+%\input{ge_problem.tex} 
+
+%\input{hardness_for_two_level_dags.tex}
+
+\input{conclusions.tex}
+
+\clearpage
+
+%\baselineskip=\normalbaselineskip
+
+%\bibliographystyle{plain}
+\noindent
+\textbf{Acknowledgments:}~
+We thank the referees for carefully reading
+the paper and providing very helpful feedback.
+This work is partially supported by NSF Grants  
+IIS-1633028 (BIG DATA),
+CMMI-1745207 (EAGER),
+OAC-1916805 (CINES),
+CCF-1918656 (Expeditions),
+CNS-2028004 (RAPID),
+OAC-2027541 (RAPID) and
+IIS-1908530.
+
+\bigskip
+
+\noindent
+\textbf{Potential ethical impact of the work:}~ 
+The work reported in this paper addresses some complexity and algorithmic
+issues associated with formal models for contagion
+propagation in social networks.
+The results are in the form of theorems and algorithms
+that are useful in understanding the strengths and
+weaknesses of different formal models.
+Our work does not involve experiments on public or private data.
+%\textcolor{red}{(To be completed.)}
+
+\bigskip
+
+\bibliography{refs}
+
+\end{document}

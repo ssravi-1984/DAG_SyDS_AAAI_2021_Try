@@ -1,0 +1,97 @@
+\section{DAG-SyDSs: Some Phase Space Properties}
+\label{sec:bounded-levels}
+
+In this section, we present some properties of the
+phase spaces of DAG-SyDSs.
+These properties are independent of the local functions
+at the nodes of the DAG-SyDS.
+Our first result points out that the phase spaces
+of DAG-SyDSs may contain exponentially long cycles.
+
+\smallskip
+\begin{proposition}\label{pro:long_phase_space_cycle}
+For any $n  > 1$, there is an $n$ node DAG-SyDS 
+whose phase space graph is a cycle of length $2^n$.
+\end{proposition}
+
+\noindent
+\textbf{Proof:}~ 
+For a given $n > 1$ we construct the DAG-SyDS $S_n$ to be a counter, as follows.
+The underlying graph contains $n$ levels, one node per level. 
+For each node, there is an incoming edge from the nodes on each of the lower levels.
+The transition function for each node is the function 
+that retains the current value of the node if any of the lower order bits is 0,
+and changes the value of the node if all of the lower order bits are 1.
+
+Suppose a given configuration of $S_n$ is interpreted as encoding
+an integer $k$, $0 \leq k < 2^n$.  Then the successor configuration
+encodes the integer $k + 1 \pmod{2^n}$.  Thus, the phase space of
+$S_n$ is a cycle of length $2^n$.  \QED
+
+\smallskip
+
+For any SyDS, any infinitely long phase space path consists of a
+transient (possibly of length 0), followed by an infinite number
+of repetitions of a basic cycle.  We now show that for any 
+DAG-SyDS, the length of every phase space cycle is a power of 2.
+Moreover, the lengths of the longest transient and the longest phase
+space cycle are each bounded by an exponential function of the
+number of levels in the underlying graph of the SyDS.
+We begin with a lemma whose proof appears in \cite{Rosenkrantz-etal-2020}.
+
+\smallskip
+
+\begin{lemma}\label{lem:all_inputs_stable}
+For a given DAG-SyDS, and a given initial configuration, suppose
+that the node values of all incoming edges to a given node $v$ are
+stable at time $t$.  Then node $v$ is either alternating at time
+$t$, or stable at time $t+1$.
+\end{lemma}
+
+\begin{lemma}\label{lem:level_zero_nodes}
+For a DAG-SyDS, every level 0 node is either
+alternating at time 0 or stable at time 1.
+\end{lemma}
+\noindent
+\textbf{Proof:}~
+ A level 0 node has no incoming edges,
+so the result follows from Lemma \ref{lem:all_inputs_stable}.  \QED
+
+We will also use the following result which is a slight restatement
+of Proposition~1 in \cite{Chistikov-etal-2020}.
+
+
+\begin{proposition}\label{pro:transient_fixed_point}
+For a DAG-SyDS,
+the length of a transient leading to a fixed point does not
+exceed the number of levels of the SyDS.
+\end{proposition}
+
+We can now state our result on the lengths of cycles and
+transients in DAG-SyDSs.
+
+\begin{theorem}\label{thm:levels_phase_space}
+For a DAG-SyDS,
+the length of every phase space cycle is a power of 2.
+Moreover, if the number of levels of a given acyclic SyDS is $L$,
+then no phase space cycle is longer than $2^L$,
+and no transient is longer than $2^L-1$.
+\end{theorem}
+
+\noindent
+\textbf{Proof (idea):}~ We use induction on the number of levels.
+The details appear in \cite{Rosenkrantz-etal-2020}.
+
+Theorem~\ref{thm:levels_phase_space} provides upper bounds
+on the lengths of transients and cycles in DAG-SyDSs.
+We now present a result that provides matching
+lower bounds on cycle and transient lengths.
+
+\begin{theorem}\label{thm:path_length_lower_bounds}
+For every $L  \geq 1$, there is a DAG-SyDS with $L$ levels
+whose phase space contains a transient of length $2^L-1$,
+leading to a cycle of length $2^L$.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ See \cite{Rosenkrantz-etal-2020}.
