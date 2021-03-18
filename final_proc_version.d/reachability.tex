@@ -117,14 +117,14 @@ If $h =1$, then 0.
 Otherwise, if the $i+1$ incoming edges from $Y$ encode the integer $2^i+i$, 
 then $r_{i-1}$.
 Otherwise,  if the incoming edges from $Y$ encode the integer $i$, 
-then operation $\ourop_0$ applied to $r_i$ and $r_{i-1}$.
+then operation $\ourop_i$ applied to $r_i$ and $r_{i-1}$.
 Otherwise, $r_i$.
 
 The local transition function for $r_{n-1}$ is as follows.
 If $h=0$ and the $n$ incoming edges from $Y$ encode the integer $2^{n-1}+n-1$, 
 then $r_{n-2}$.
 If $h =0$ and  the $n$ incoming edges from $Y$ encode the integer $n-1$, 
-then operation $\ourop_0$ applied to $r_{n-1}$ and $r_{n-2}$.
+then operation $\ourop_{n-1}$ applied to $r_{n-1}$ and $r_{n-2}$.
 Otherwise, $r_{n-1}$.
 
 Note that SyDS \cals{} is 6-symmetric; the local transition functions

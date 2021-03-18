@@ -57,26 +57,27 @@ $v_6$ are Identity, Complement, Identity, AND, OR and
 XOR respectively.
 (The Identity and Complement functions have only one input;
 they return respectively the input value and its complement.) 
-Suppose the initial configuration of the SyDS is $(1, 0, 1, 0, 0, 0)$;
-that is, at time $\tau = 0$, $v_1$ is in state 1, 
-$v_2$ is in state 0, $\ldots$, $v_6$ is in state 0.
+Suppose the initial configuration of the SyDS is $(0, 0, 1, 0, 0, 0)$;
+that is, at time $\tau = 0$, $v_3$ is in state 1 and all other 
+nodes are in state 0.
 Recall that the inputs to the local function at a node $v$ are the current
 state of $v$ and those of its in-neighbors (if any).
 Since the local functions at $v_1$ and $v_3$ are Identity functions,
-the states of $v_1$ and $v_3$ will remain 1 in all subsequent time steps.
+the states of $v_1$ and $v_3$ will remain 0 and 1 respectively
+in all subsequent time steps.
 Since the local function at $v_2$ is the Complement function, the state of
 $v_2$ at time $\tau = 1$ is 1.
 Using the local functions at $v_4$, $v_5$ and $v_6$, one can verify that
 their states at time $\tau = 1$ are 0, 1 and 0 respectively.
 Thus, the configuration at time $\tau = 1$ is 
-$(1, 1, 1, 0, 1, 0)$.
-Similarly, the configuration at times $\tau = 2$ and
-$\tau = 3$ are  $(1, 0, 1, 0, 1, 1)$ and $(1, 1, 1, 0, 1, 0)$
-respectively.
-Thus, the configuration at time $\tau = 3$ is the same as that
+$(0, 1, 1, 0, 1, 0)$.
+Similarly, the configuration at times $\tau$ = 2, 3, 4 and 5 
+are  $(0, 0, 1, 0, 1, 0)$, $(0, 1, 1, 0, 1, 1)$,
+$(0, 0, 1, 0, 1, 1)$ and $(0, 1, 1, 0, 1, 0)$ respectively.
+Thus, the configuration at time $\tau = 5$ is the same as that
 at $\tau = 1$.
-In other words, the SyDS cycles between the two configurations
-at times $\tau =1$ and $\tau = 2$.
+In other words, the SyDS cycles among the four configurations
+at times $\tau =1$ through $\tau = 4$.
 
 \smallskip
 \noindent
